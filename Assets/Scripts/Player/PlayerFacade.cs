@@ -1,18 +1,10 @@
-using Mirror;
+using Assets.Scripts.Entity;
+using Assets.Scripts.Game;
 
-//facade
-public class PlayerFacade : NetworkBehaviour
+public class PlayerFacade : EntityFacade
 {
-    // facade
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        FacadeLocator.Singleton.RegisterFacade(this);
     }
 }
