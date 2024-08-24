@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.ILifeCycle;
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 namespace Assets.Scripts.Player.Components
 {

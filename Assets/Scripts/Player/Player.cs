@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Mirror;
-using UnityEngine;
 
 //facade
-public class Player : NetworkBehaviour
+public class PlayerFacade : NetworkBehaviour
 {
     // facade
     // Start is called before the first frame update
