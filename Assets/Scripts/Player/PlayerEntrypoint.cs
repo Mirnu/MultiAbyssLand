@@ -3,20 +3,8 @@ using Mirror;
 namespace Assets.Scripts.Player {
     public class PlayerEntryPoint : NetworkBehaviour {
         [Server]
-        public void OnEntry(NetworkConnection conn) {
-            RpcEntryServer();
-            RpcEntryClient(conn);
-        }
-
-        private void RpcEntryServer() 
-        {
+        public void OnEntry() {
             
-        }
-
-        [TargetRpc]
-        private void RpcEntryClient(NetworkConnection conn)
-        {
-
         }
     }
 }

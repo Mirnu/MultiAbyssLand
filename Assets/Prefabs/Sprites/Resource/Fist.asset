@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteInInventary: {fileID: 0}
   Name: 
-  Tool: {fileID: 0}
+  Tool: {fileID: -2485080197551266002, guid: ad47fddbc28b2054594008801b21e457, type: 3}
   Info: 

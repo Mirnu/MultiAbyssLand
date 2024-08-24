@@ -12,7 +12,7 @@ public class MALNetworkManager : NetworkManager
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Debug.Log("Adding new player: " + conn);
-        playerEntrypoint.OnEntry(conn);
+       
         base.OnServerAddPlayer(conn);
     }
 
