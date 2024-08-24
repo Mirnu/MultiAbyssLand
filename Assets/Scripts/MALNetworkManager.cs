@@ -7,11 +7,12 @@ using Assets.Scripts.Player;
 public class MALNetworkManager : NetworkManager
 {
     [SerializeField] private WorldEntrypoint worldEntrypoint;
-    [SerializeField] private PlayerEntrypoint playerEntrypoint;
+    [SerializeField] private PlayerEntryPoint playerEntrypoint;
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Debug.Log("Adding new player: " + conn);
+        playerEntrypoint.OnEntry(conn);
         base.OnServerAddPlayer(conn);
     }
 

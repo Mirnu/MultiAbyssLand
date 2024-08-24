@@ -1,10 +1,22 @@
 using Mirror;
-using UnityEngine;
 
 namespace Assets.Scripts.Player {
-    public class PlayerEntrypoint : NetworkBehaviour {
-        public void OnEntry() {
-            Debug.Log("PlayerEntrypoint");
+    public class PlayerEntryPoint : NetworkBehaviour {
+        [Server]
+        public void OnEntry(NetworkConnection conn) {
+            RpcEntryServer();
+            RpcEntryClient(conn);
+        }
+
+        private void RpcEntryServer() 
+        {
+            
+        }
+
+        [TargetRpc]
+        private void RpcEntryClient(NetworkConnection conn)
+        {
+
         }
     }
 }
