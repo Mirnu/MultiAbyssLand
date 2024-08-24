@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Mirror;
+using UnityEngine;
 
 namespace Assets.Scripts.Entity
 {
-    public class CoreComponent : MonoBehaviour
+    public class CoreComponent : NetworkBehaviour
     {
 
         
