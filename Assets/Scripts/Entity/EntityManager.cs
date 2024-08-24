@@ -2,6 +2,7 @@
 using Mirror;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Entity
 {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Entity
     {
         private Dictionary<Type, List<EntityComponent>> _componentsMap = new();
 
-        public void AddComponent<T>(T component) where T : EntityComponent
+        public void RegisterComponent<T>(EntityComponent component) 
         {
             if (_componentsMap.TryGetValue(typeof(T),
                 out List<EntityComponent> components))
@@ -27,7 +28,8 @@ namespace Assets.Scripts.Entity
         {
             if (isServer)
                 ServerUpdate();
-            else
+
+            if (isLocalPlayer)
                 ClientUpdate();
         }
 
@@ -44,7 +46,7 @@ namespace Assets.Scripts.Entity
         private void ClientUpdate()
         {
             List<EntityComponent> clientTickables = GetComponentsByType<IClientTickable>();
- 
+            Debug.Log(clientTickables.Count);
             foreach (IClientTickable clientTickable in clientTickables)
             {
                 clientTickable.ClientTick();

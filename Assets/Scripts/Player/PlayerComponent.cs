@@ -4,11 +4,9 @@ namespace Assets.Scripts.Player
 {
     public class PlayerComponent : EntityComponent
     {
-
-
-        private void Awake()
+        protected PlayerManager GetManager()
         {
-            
+            return (PlayerManager)entityManager;
         }
     }
 }

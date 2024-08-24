@@ -1,11 +1,15 @@
 ﻿using Assets.Scripts.Entity;
-using System;
-using System.Collections.Generic;
 
 namespace Assets.Scripts.Player
 {
     public class PlayerManager : EntityManager
     {
-        
+        public PlayerInput PlayerInput { get; private set; }
+
+        private void Awake()
+        {
+            PlayerInput = new();
+            PlayerInput.Enable();
+        }
     }
 }
