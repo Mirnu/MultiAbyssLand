@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Resources.Data;
 using Mirror;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Resources.Tools
 {
@@ -8,12 +9,11 @@ namespace Assets.Scripts.Resources.Tools
     {
         private Resource _resource;
 
-        protected PlayerFacade playerFacade;
 
-        public void Init(Resource resource, PlayerFacade facade)
+        public void Init(Resource resource)
         {
             _resource = resource;
-            playerFacade = facade;
+            Debug.Log("ЭЩКЕРЕЕЕЕ");
         }
 
         public bool TryGetResource<T>(out T resource) where T : Resource

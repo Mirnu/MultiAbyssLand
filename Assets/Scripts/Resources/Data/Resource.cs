@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Resources.Tools;
+using UnityEngine;
 
 namespace Assets.Scripts.Resources.Data
 {
@@ -7,7 +8,7 @@ namespace Assets.Scripts.Resources.Data
     {
         public Sprite SpriteInInventary;
         public string Name;
-       // public Tool Tool;
+        public Tool Tool;
         [TextArea(3, 10)] public string Info;
     }
 }
