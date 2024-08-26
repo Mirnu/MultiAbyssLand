@@ -18,10 +18,7 @@ namespace Assets.Scripts.Player.Components
         public event Action<Resource> ToolChanged;
 
         [Server]
-        private void Start()
-        {
-            Equip(_baseResource);
-        }
+        private void Start() => EmptyHand();
 
         [Server]
         public void Equip(Resource resource)

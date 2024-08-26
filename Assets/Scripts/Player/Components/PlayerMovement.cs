@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Player.Components
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Movement : PlayerComponent, IClientTickable
+    public class PlayerMovement : PlayerComponent, IClientTickable
     {
         private PlayerInput _input;
         private PlayerManager _playerManager;
