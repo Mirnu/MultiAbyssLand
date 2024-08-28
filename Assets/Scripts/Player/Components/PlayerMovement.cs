@@ -31,6 +31,13 @@ namespace Assets.Scripts.Player.Components
             _input = _playerManager.PlayerInput;
         }
 
+        //поверьте мне, когда-нибудь я сделаю entrypoint для клиента
+        public override void OnStartClient()
+        {
+            Camera.main.transform.SetParent(transform);
+            Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
+        }
+
         public void ClientTick()
         {
             Vector2 direction = _input.Gameplay.Movement.ReadValue<Vector2>();
