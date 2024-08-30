@@ -20,6 +20,12 @@ namespace Assets.Scripts.Player.Components
         [Server]
         private void Start() => EmptyHand();
 
+        [TargetRpc]
+        private void RpcOnToolChanged()
+        {
+            ToolChanged?.Invoke(_currentResource);
+        }
+
         [Server]
         public void Equip(Resource resource)
         {
@@ -28,8 +34,9 @@ namespace Assets.Scripts.Player.Components
                 NetworkServer.Destroy(_currentTool.gameObject);
 
             _currentResource = resource;
-            ToolChanged?.Invoke(resource);
-            _currentTool = createTool(resource);
+            ToolChanged?.Invoke(_currentResource);
+            RpcOnToolChanged();
+            _currentTool = createTool(_currentResource);
         }
 
         [Server]

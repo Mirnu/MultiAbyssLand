@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.ILifeCycle;
+using Mirror;
 using System;
 using UnityEngine;
 
@@ -36,6 +37,13 @@ namespace Assets.Scripts.Player.Components
             Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
         }
 
+        [Command]
+        private void OnMoved() => Moved?.Invoke();
+        [Command]
+        private void OnStopMoved() => StopMoved?.Invoke();
+        [Command]
+        private void OnStartMoved() => StartMoved?.Invoke();
+
         public override void ClientTick()
         {
             Vector2 direction = _input.Gameplay.Movement.ReadValue<Vector2>();
@@ -48,15 +56,18 @@ namespace Assets.Scripts.Player.Components
             {
                 StartMoved?.Invoke();
                 IsStaying = false;
+                OnStartMoved();
             }
             if (direction.x == 0 && direction.y == 0 && !IsStaying)
             {
                 StopMoved?.Invoke();
                 IsStaying = true;
+                OnStopMoved();
             }
             if (direction.x != 0 || direction.y != 0)
             {
                 Moved?.Invoke();
+                OnMoved();
             }
             float speed = Time.deltaTime * 5; //fck mgk num cuz map not ready
 

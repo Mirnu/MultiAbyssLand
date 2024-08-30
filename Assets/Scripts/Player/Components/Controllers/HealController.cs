@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.ILifeCycle;
 using Assets.Scripts.Player.Data;
+using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Player.Components.Controllers
 
         private Dictionary<string, HealData> _healMap = new();
 
+        [Server]
         public void LockByName(string name)
         {
             if (!_healMap.ContainsKey(name) || _healMap[name].IsLocked) return;
@@ -20,6 +22,7 @@ namespace Assets.Scripts.Player.Components.Controllers
             removeRecovery(name);
         }
 
+        [Server]
         public void UnLockByName(string name)
         {
             if (!_healMap.ContainsKey(name) || !_healMap[name].IsLocked) return;
@@ -29,6 +32,7 @@ namespace Assets.Scripts.Player.Components.Controllers
 
         public bool IsHealedByName(string name) => _healMap.ContainsKey(name);
 
+        [Server]
         public void HealByTime(string name, int health, float delta = 1)
         {
             _healMap[name] = new HealData
@@ -41,6 +45,7 @@ namespace Assets.Scripts.Player.Components.Controllers
             _recovery.HealthRecoveryPerSec += (float)health / delta;
         }
 
+        [Server]
         public void StopHealByName(string name)
         {
             if (!_healMap.ContainsKey(name)) return;
@@ -48,11 +53,14 @@ namespace Assets.Scripts.Player.Components.Controllers
             _healMap.Remove(name);
         }
 
+        [Server]
         private void removeRecovery(string name)
         {
             HealData heal = _healMap[name];
             _recovery.HealthRecoveryPerSec -= (float)heal.Heal / heal.Delta;
         }
+
+        [Server]
         private void addRecovery(string name)
         {
             HealData heal = _healMap[name];

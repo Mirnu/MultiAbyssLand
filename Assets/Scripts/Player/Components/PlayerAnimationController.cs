@@ -1,9 +1,6 @@
-﻿using Assets.Scripts.Misc;
-using Assets.Scripts.Resources.Data;
+﻿using Assets.Scripts.Resources.Data;
 using Mirror;
-using Mirror.Examples.Benchmark;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,6 +43,7 @@ namespace Assets.Scripts.Player.Components
             { Animations.LeftWalk, "LeftWalk" }
         };
 
+        [Client]
         private void OnDestroy()
         {
             _playerMovement.StartMoved -= OnStartWalk;
@@ -54,7 +52,7 @@ namespace Assets.Scripts.Player.Components
             _hand.ToolChanged -= OnToolChanged;
         }
 
-        private void Awake()
+        public override void ClientInitialize()
         {
             ChangeAnimation((int)Animations.DownIdle);
             _directionController.DirectionChanged += OnDirectionChanged;
@@ -63,21 +61,25 @@ namespace Assets.Scripts.Player.Components
             _hand.ToolChanged += OnToolChanged;
         }
 
+        [Client]
         private void OnToolChanged(Resource resource)
         {
             ChangeAnimation(_currentAnimationPosition);
         }
 
+        [Client]
         private void OnDirectionChanged(Direction direction)
         {
             ChangeAnimation((int)direction);
         }
 
+        [Client]
         public void ChangeAnimation(int animation)
         {
-            _currentAnimationPosition = !isWalk
-                || (isWalk && animation > (int)Animations.LeftIdle)
-                ? animation : animation + 4;
+            _currentAnimationPosition = isWalk ? animation > 3
+                ? animation : animation + 4 : 
+                animation > 3 ? animation - 4 : animation;
+
             if (_currentAnimationPosition != animation)
             {
                 AnimationChanged?.Invoke((Animations)_currentAnimationPosition);
@@ -89,16 +91,18 @@ namespace Assets.Scripts.Player.Components
                 _armAnimator.SetInteger("State", _currentAnimationPosition);
         }
 
+        [Client]
         private void OnStartWalk()
         {
             isWalk = true;
             ChangeAnimation(_currentAnimationPosition);
         }
 
+        [Client]
         private void OnStopWalk()
         {
             isWalk = false;
-            ChangeAnimation(_currentAnimationPosition - 4);
+            ChangeAnimation(_currentAnimationPosition);
         }
     }
 }

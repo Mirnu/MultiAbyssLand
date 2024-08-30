@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.Misc;
 using Mirror;
 using System;
-using System.Collections;
-using UnityEngine;
 
 namespace Assets.Scripts.Player.Components
 {
@@ -30,6 +28,7 @@ namespace Assets.Scripts.Player.Components
             }
         }
 
+        [Client]
         private void FixedUpdate()
         {
             int interval = AngleUtils.GetInterval();

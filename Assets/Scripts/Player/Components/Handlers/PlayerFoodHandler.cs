@@ -17,7 +17,6 @@ namespace Assets.Scripts.Player.Components.Handlers
         private const string FOOD_HEAL = "food";
 
         [Server]
-
         private void OnDestroy()
         {
             _stats.FoodChanged -= OnFoodChanged;
@@ -28,6 +27,7 @@ namespace Assets.Scripts.Player.Components.Handlers
             _stats.FoodChanged += OnFoodChanged;
         }
 
+        [Server]
         private void OnFoodChanged(int food)
         {
             _boost.SpeedBoost = food > 30 ? 1 : 0.5f;
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Player.Components.Handlers
             }
         }
 
-
+        [Server]
         private IEnumerator startStarve()
         {
             WaitForSeconds delta = new WaitForSeconds(2);
