@@ -1,7 +1,5 @@
 ﻿using Mirror;
-using static UnityEngine.Rendering.VolumeComponent;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Data.UI

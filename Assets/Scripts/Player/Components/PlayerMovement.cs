@@ -5,10 +5,9 @@ using UnityEngine;
 namespace Assets.Scripts.Player.Components
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerMovement : PlayerComponent, IClientTickable
+    public class PlayerMovement : PlayerComponent
     {
         private PlayerInput _input;
-        private PlayerManager _playerManager;
         private Rigidbody _rigidbody;
 
         public event Action StartMoved;
@@ -24,11 +23,10 @@ namespace Assets.Scripts.Player.Components
 
         private void Start()
         {
-            _playerManager = GetManager();
-            _playerManager.RegisterComponent<IClientTickable>(this); 
+            playerManager.RegisterComponent<IClientTickable>(this); 
 
             if (!isLocalPlayer) return;
-            _input = _playerManager.PlayerInput;
+            _input = playerManager.PlayerInput;
         }
 
         //поверьте мне, когда-нибудь я сделаю entrypoint для клиента
@@ -38,7 +36,7 @@ namespace Assets.Scripts.Player.Components
             Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
         }
 
-        public void ClientTick()
+        public override void ClientTick()
         {
             Vector2 direction = _input.Gameplay.Movement.ReadValue<Vector2>();
             if (direction.x != 0 && direction.y != 0)

@@ -24,6 +24,35 @@ namespace Assets.Scripts.Entity
             _componentsMap.Add(typeof(T), list);
         }
 
+        private void Start()
+        {
+            if (isServer)
+                ServerStart();
+
+            if (isLocalPlayer)
+                ClientStart();
+        }
+
+        private void ServerStart()
+        {
+            List<EntityComponent> serverInitializables = GetComponentsByType<IServerInitializable>();
+
+            foreach (IServerInitializable serverInitializable in serverInitializables)
+            {
+                serverInitializable.ServerInitialize();
+            }
+        }
+
+        private void ClientStart()
+        {
+            List<EntityComponent> clientInitializables = GetComponentsByType<IClientInitializable>();
+
+            foreach (IClientInitializable clientInitializable in clientInitializables)
+            {
+                clientInitializable.ClientInitialize();
+            }
+        }
+
         private void Update()
         {
             if (isServer)
@@ -46,7 +75,7 @@ namespace Assets.Scripts.Entity
         private void ClientUpdate()
         {
             List<EntityComponent> clientTickables = GetComponentsByType<IClientTickable>();
-            Debug.Log(clientTickables.Count);
+
             foreach (IClientTickable clientTickable in clientTickables)
             {
                 clientTickable.ClientTick();
