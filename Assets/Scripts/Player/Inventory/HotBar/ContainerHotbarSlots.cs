@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Inventory.View;
+using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.Resources.Tools;
@@ -17,15 +18,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         private readonly PlayerInput _input;
         private Resource mock;
         private Resource mock1;
-        //private Hand _hand;
-
-        public ContainerHotbarSlots (PlayerInput input, List<HotbarSlotView> slots, Resource _mock, Resource _mock1) {
-            _slots = slots;
-            _input = input;
-            mock = _mock;
-            mock1 = _mock1;
-            //_hand = hand;
-        }
+        private Hand _hand;
 
         public void Initialize()
         {
@@ -36,7 +29,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             _slots[1].GetComponent<SelectableSlotView>().TrySet(mock1);
             //
             _slots[0].Select();
-            //_hand.Equip(mock);
+            _hand.Equip(mock);
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);
             //_input.Gameplay.Hotbar.performed += HotbarChangeState;
             //_input.Gameplay.Inventory.performed += HotbarChangeSelectability;
@@ -60,8 +53,8 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
                 if(_slots.Any(x => x.IsSelected)) { _slots.Find(x => x.IsSelected).Deselect(); }
                 var slot = _slots[(int)index];
                 slot.Select();
-                //if(slot.TryGet(out Resource res)) { _hand.Equip(res); }
-                //else { _hand.EmptyHand(); }
+                if(slot.TryGet(out Resource res)) { _hand.Equip(res); }
+                else { _hand.EmptyHand(); }
             }
         }
     }
