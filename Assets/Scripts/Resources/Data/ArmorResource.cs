@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Resources.Armors;
+using UnityEngine;
 
 namespace Assets.Scripts.Resources.Data
 {
@@ -8,7 +9,7 @@ namespace Assets.Scripts.Resources.Data
 
         public ArmorSlotType SlotType;
         public int ProtectionAmount;
-        //public ArmorMB EquippedSprite;
+        public ArmorMB EquippedSprite;
     }
 
     public enum ArmorSlotType
