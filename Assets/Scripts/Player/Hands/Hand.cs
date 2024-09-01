@@ -7,16 +7,14 @@ using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.Player.Hands
 {
-    public class Hand
+    public class Hand : MonoBehaviour
     {
-        [SerializeField] private Transform _transform;
-
         private Resource _currentResource;
         private Tool _currentTool;
         [SerializeField] private Resource _baseResource;
 
         public Resource CurrentResource => _currentResource;
-        public Transform Transform => _transform;
+        public Transform Transform => transform;
         public bool IsEmpty => _currentResource == _baseResource;
         public event Action<Resource> ToolChanged; 
 
@@ -35,7 +33,7 @@ namespace Assets.Scripts.Player.Hands
 
         private Tool createTool(Resource resource)
         {
-            Tool tool = Object.Instantiate(resource.Tool, _transform.position, _transform.rotation);
+            Tool tool = Object.Instantiate(resource.Tool, transform.position, transform.rotation);
             return tool;
         }
     }

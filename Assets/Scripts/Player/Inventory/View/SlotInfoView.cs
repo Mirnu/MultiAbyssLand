@@ -1,19 +1,21 @@
+using System;
 using Assets.Scripts.Resources.Data;
 using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Inventory.View {
-    public class SlotInfoView {
+    [Serializable]
+    public class SlotInfoView : MonoBehaviour {
 
-        private TextMeshProUGUI _nameText;
-        private TextMeshProUGUI _infoText;
+        [SerializeField] private TextMeshProUGUI _nameText;
+        [SerializeField] private TextMeshProUGUI _infoText;
 
         public SlotInfoView(TextMeshProUGUI nameText, TextMeshProUGUI infoText) {
             _nameText = nameText;
             _infoText = infoText;
         }
 
-        public void Update(Resource resource) {
+        public void UpdateRes(Resource resource) {
             if(resource == null) { return; }
             _nameText.text = resource.Name;
             _infoText.text = resource.Info;

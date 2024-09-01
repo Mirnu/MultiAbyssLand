@@ -14,13 +14,14 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
 {
     public class ContainerHotbarSlots : NetworkBehaviour, IDisposable
     {
-        private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
-        private readonly PlayerInput _input;
+        [SerializeField] private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
+        [SerializeField] private GameObject _inventory;
+        public PlayerInput _input;
         private Resource mock;
         private Resource mock1;
-        private Hand _hand;
+        [SerializeField] private Hand _hand;
 
-        public void Initialize()
+        public override void OnStartServer()
         {
             //
             _slots[0].TrySet(mock);
@@ -30,15 +31,25 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             //
             _slots[0].Select();
             _hand.Equip(mock);
+            _input = new PlayerInput();
+            _input.Enable();
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);
-            //_input.Gameplay.Hotbar.performed += HotbarChangeState;
-            //_input.Gameplay.Inventory.performed += HotbarChangeSelectability;
+            _input.Gameplay.Hotbar.performed += HotbarChangeState;
+            _input.Gameplay.Inventory.performed += HotbarChangeSelectability;
+            _input.Gameplay.Inventory.performed += OnInventoryChangedState;
+        }
+
+        private void OnInventoryChangedState(InputAction.CallbackContext context)
+        {
+            Debug.Log("is changed state");
+            _inventory.SetActive(!_inventory.activeSelf);
         }
 
         public void Dispose()
         {
-            //_input.Gameplay.Hotbar.performed -= HotbarChangeState;
-            //_input.Gameplay.Inventory.performed -= HotbarChangeSelectability;
+            _input.Gameplay.Hotbar.performed -= HotbarChangeState;
+            _input.Gameplay.Inventory.performed -= HotbarChangeSelectability;
+            _input.Gameplay.Inventory.performed -= OnInventoryChangedState;
         }
 
         private void HotbarChangeSelectability(InputAction.CallbackContext context) {
@@ -48,6 +59,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         }
 
         private void HotbarChangeState(InputAction.CallbackContext context) {
+            Debug.Log("PP: " + context.ReadValue<float>());
             var index = context.ReadValue<float>();
             if(index < _slots.Count) {
                 if(_slots.Any(x => x.IsSelected)) { _slots.Find(x => x.IsSelected).Deselect(); }

@@ -36,7 +36,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     UpdateDict();
                 };
                 x.OnCursorEnter += delegate {
-                    _slotInfoView.Update(x.TryGet(out Resource res) ? res : null);
+                    _slotInfoView.UpdateRes(x.TryGet(out Resource res) ? res : null);
                 };
                 x.OnCursorExit += delegate {
                     _slotInfoView.Empty();

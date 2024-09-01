@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 7553908924742549197}
   - component: {fileID: 3623429961630024572}
   - component: {fileID: 4419562377036592285}
+  - component: {fileID: 4901067183772744020}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -684,6 +685,19 @@ MonoBehaviour:
   syncInterval: 0
   entityManager: {fileID: 0}
   _baseResource: {fileID: 0}
+--- !u!114 &4901067183772744020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261704909842223932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3498c4202133748a44e396f10b178f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseResource: {fileID: 11400000, guid: b55cc8f837ef0c8459473f59a74cf288, type: 2}
 --- !u!1 &2345474157882047137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,6 +1750,7 @@ GameObject:
   - component: {fileID: 4030324317159111290}
   - component: {fileID: 4030324317159111269}
   - component: {fileID: 4030324317159111268}
+  - component: {fileID: 669543533608377663}
   m_Layer: 5
   m_Name: HotbarBackground
   m_TagString: Untagged
@@ -1828,6 +1843,28 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &669543533608377663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030324317159111270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f76b0e331e04a2ca4e95f3b82c3f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  _slots:
+  - {fileID: 4030324315710729624}
+  - {fileID: 4030324316290106735}
+  - {fileID: 4030324317025264148}
+  _inventory: {fileID: 6376043377996284022}
+  _input: {fileID: -944628639613478452, guid: 7a0723e0ff714f04e8a26ea36778425d, type: 3}
+  _hand: {fileID: 4901067183772744020}
 --- !u!1 &4404441366171887288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,6 +4674,8 @@ GameObject:
   - component: {fileID: 6376043377996284018}
   - component: {fileID: 6376043377996284017}
   - component: {fileID: 6376043377996284016}
+  - component: {fileID: 5284014134881445271}
+  - component: {fileID: 2099002807789714375}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -4731,6 +4770,58 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5284014134881445271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376043377996284022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8a2ba81317f764ca970ae0ca3e4d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  components: []
+  _slots:
+  - {fileID: 6376043379072485942}
+  - {fileID: 6376043377551571903}
+  - {fileID: 6376043377816221665}
+  - {fileID: 6376043379365753340}
+  - {fileID: 6376043377888737063}
+  - {fileID: 6376043379256492774}
+  - {fileID: 6376043377297132477}
+  - {fileID: 6376043378600190539}
+  - {fileID: 6376043377844948059}
+  - {fileID: 6376043378525895894}
+  - {fileID: 6376043379103332033}
+  - {fileID: 6376043377826675304}
+  - {fileID: 6376043379391983024}
+  - {fileID: 6376043377599500544}
+  - {fileID: 6376043378678821803}
+  - {fileID: 4030324317025264149}
+  - {fileID: 4030324316290106732}
+  - {fileID: 4030324315710729625}
+  - {fileID: 6376043378624921652}
+  - {fileID: 6376043379365753340}
+  _slotInfoView: {fileID: 1308052792184805361}
+--- !u!114 &2099002807789714375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376043377996284022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57790648af298475ab5d9657dc25b190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armorSlots: []
+  _accessorySlots: []
 --- !u!1 &6376043378067350868
 GameObject:
   m_ObjectHideFlags: 0
@@ -6356,6 +6447,7 @@ GameObject:
   - component: {fileID: 6376043378881553143}
   - component: {fileID: 6376043378881553137}
   - component: {fileID: 6376043378881553136}
+  - component: {fileID: 1308052792184805361}
   m_Layer: 5
   m_Name: ResourceInfoPanel
   m_TagString: Untagged
@@ -6422,6 +6514,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.2
+--- !u!114 &1308052792184805361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376043378881553142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edad4056898948658978e6e2ec9bf82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameText: {fileID: 6376043378788200510}
+  _infoText: {fileID: 6376043377563374836}
 --- !u!1 &6376043378893053287
 GameObject:
   m_ObjectHideFlags: 0
