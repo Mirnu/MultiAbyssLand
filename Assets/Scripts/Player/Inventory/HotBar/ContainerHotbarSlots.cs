@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Inventory.View;
+using Assets.Scripts.Player.Components;
 using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         public PlayerInput _input;
         private Resource mock;
         private Resource mock1;
-        [SerializeField] private Hand _hand;
+        [SerializeField] private ToolContainer _hand;
 
         public override void OnStartServer()
         {
