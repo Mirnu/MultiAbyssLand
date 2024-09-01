@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Components;
-using Assets.Scripts.Player.Hands;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.Resources.Tools;
