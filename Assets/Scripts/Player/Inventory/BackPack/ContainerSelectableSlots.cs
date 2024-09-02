@@ -51,7 +51,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     else { slot.SetCount(slot.GetCount() + _cursorCount); EmptyCursor(); }
                 } else if(slot.TrySet(_cursorResource)) {
                     //?
-                    //slot.TrySet(_cursorResource);
+                    slot.TrySet(_cursorResource);
                     slot.SetCount(_cursorCount);
                     EmptyCursor();
                 }
