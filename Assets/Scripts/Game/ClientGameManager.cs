@@ -1,5 +1,6 @@
 ﻿using Mirror;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Game
 {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Game
         Gameplay, // Состояние означает, что игрок начал игровой цикл
     }
 
-    public class ClientGameManager : NetworkBehaviour
+    public class ClientGameManager : MonoBehaviour
     {
         private ClientGameState _currentState;
         public ClientGameState CurrentState
@@ -24,14 +25,11 @@ namespace Assets.Scripts.Game
 
         public event Action<ClientGameState> GameStateChanged;
 
-
-        [Client]
         public void StartLoading()
         {
             CurrentState = ClientGameState.Loading;
         }
 
-        [Client]
         public void StartGameplay()
         {
             CurrentState = ClientGameState.Gameplay;
