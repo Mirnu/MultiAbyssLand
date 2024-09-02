@@ -554,7 +554,6 @@ GameObject:
   - component: {fileID: 5554401277757798117}
   - component: {fileID: 7553908924742549197}
   - component: {fileID: 3623429961630024572}
-  - component: {fileID: 4901067183772744020}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -667,19 +666,6 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 7553908924742549197}
---- !u!114 &4901067183772744020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2261704909842223932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3498c4202133748a44e396f10b178f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseResource: {fileID: 11400000, guid: b55cc8f837ef0c8459473f59a74cf288, type: 2}
 --- !u!1 &2345474157882047137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,8 +1864,7 @@ MonoBehaviour:
   - {fileID: 4030324316290106735}
   - {fileID: 4030324317025264148}
   _inventory: {fileID: 6376043377996284022}
-  _input: {fileID: -944628639613478452, guid: 7a0723e0ff714f04e8a26ea36778425d, type: 3}
-  _hand: {fileID: 4901067183772744020}
+  _hand: {fileID: 3658187816365489112}
 --- !u!1 &4404441366171887288
 GameObject:
   m_ObjectHideFlags: 0
