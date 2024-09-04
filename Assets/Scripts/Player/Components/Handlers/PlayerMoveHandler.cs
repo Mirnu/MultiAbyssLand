@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Player.Data;
+﻿using Assets.Scripts.Misc.CD;
+using Assets.Scripts.Player.Data;
 using Mirror;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Components.Handlers
@@ -11,26 +13,18 @@ namespace Assets.Scripts.Player.Components.Handlers
 
         private float _timeWalk = 0;
 
+        private Action Starve;
+
         [Server]
         private void OnDestroy()
         {
-            _movement.Moved -= OnMoved;
+            _movement.Moved -= Starve;
         }
 
         public override void ServerInitialize()
         {
-            _movement.Moved += OnMoved;
-        }
-
-        [Server]
-        private void OnMoved()
-        {
-            _timeWalk += Time.deltaTime;
-            if (_timeWalk > 5)
-            {
-                _statsModel.Food -= 1;
-                _timeWalk = 0;
-            }
+            Starve = CDUtils.CycleAccumulatingWait(5, () => _statsModel.Food -= 1);
+            _movement.Moved += Starve;
         }
     }
 }

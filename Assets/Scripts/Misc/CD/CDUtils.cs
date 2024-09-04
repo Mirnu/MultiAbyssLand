@@ -5,6 +5,9 @@ namespace Assets.Scripts.Misc.CD
 {
     public static class CDUtils
     {
+        /// <summary>
+        /// Обычный ждун, после того как функция сработает, счетчик обнулится
+        /// </summary>
         public static Action CycleWait(int time, Action callback)
         {
             float start = Time.time;
@@ -15,6 +18,25 @@ namespace Assets.Scripts.Misc.CD
                 start = Time.time;
                 callback();
             };
+        }
+
+        /// <summary>
+        /// Накапливающий ждун, его нужно вызвать столько раз по времени, указанному в параметре time
+        /// Также после того как функция сработает, счетчик обнулится
+        /// </summary>
+        public static Action CycleAccumulatingWait(int time, Action callback)
+        {
+            float timeWalk = 0;
+
+            return () =>
+            {
+                timeWalk += Time.deltaTime;
+                if (timeWalk > time)
+                {
+                    timeWalk = 0;
+                    callback();
+                }
+            }; 
         }
     }
 }
