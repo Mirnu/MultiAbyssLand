@@ -8,12 +8,21 @@ namespace Assets.Scripts.Resources.Tools
     public class Tool : NetworkBehaviour
     {
         private Resource _resource;
+        private ToolInput _input;
 
+        public ToolInput Input => _input;
 
+        [Client]
+        private void Awake()
+        {
+            _input = new ToolInput();
+            _input.Enable();
+        }
+
+        [Server]
         public void Init(Resource resource)
         {
             _resource = resource;
-            Debug.Log("ЭЩКЕРЕЕЕЕ");
         }
 
         public bool TryGetResource<T>(out T resource) where T : Resource

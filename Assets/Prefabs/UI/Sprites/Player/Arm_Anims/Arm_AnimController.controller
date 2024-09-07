@@ -1028,7 +1028,7 @@ AnimatorStateMachine:
     m_Position: {x: -650, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1343978287231544939}
-    m_Position: {x: -650, y: 310, z: 0}
+    m_Position: {x: -650, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5134234447204669803}
     m_Position: {x: 10, y: -210, z: 0}
@@ -1193,7 +1193,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LeftAnimationArm
+  m_Name: LeftActionArm
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

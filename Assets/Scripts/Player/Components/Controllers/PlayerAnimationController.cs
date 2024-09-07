@@ -43,7 +43,7 @@ namespace Assets.Scripts.Player.Components
             { Animations.LeftWalk, "LeftWalk" }
         };
 
-        [Client]
+        [Server]
         private void OnDestroy()
         {
             _playerMovement.StartMoved -= OnStartWalk;
@@ -52,7 +52,7 @@ namespace Assets.Scripts.Player.Components
             _hand.ToolChanged -= OnToolChanged;
         }
 
-        public override void ClientInitialize()
+        public override void ServerInitialize()
         {
             ChangeAnimation((int)Animations.DownIdle);
             _directionController.DirectionChanged += OnDirectionChanged;
@@ -61,23 +61,25 @@ namespace Assets.Scripts.Player.Components
             _hand.ToolChanged += OnToolChanged;
         }
 
-        [Client]
-        private void OnToolChanged(Resource resource)
-        {
-            ChangeAnimation(_currentAnimationPosition);
-        }
+        [Server]
+        private void OnToolChanged(Resource resource) => ReplayAnimation();
 
-        [Client]
+        [Server]
         private void OnDirectionChanged(Direction direction)
         {
             ChangeAnimation((int)direction);
         }
 
-        [Client]
+        public void ReplayAnimation()
+        {
+            ChangeAnimation(_currentAnimationPosition);
+        }
+
+        [Command]
         public void ChangeAnimation(int animation)
         {
             _currentAnimationPosition = isWalk ? animation > 3
-                ? animation : animation + 4 : 
+                ? animation : animation + 4 :
                 animation > 3 ? animation - 4 : animation;
 
             if (_currentAnimationPosition != animation)
@@ -87,22 +89,22 @@ namespace Assets.Scripts.Player.Components
 
             _animator.Play(_animationMap[(Animations)_currentAnimationPosition], -1, 0);
 
-            if (_hand.IsEmpty)
+            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
                 _armAnimator.SetInteger("State", _currentAnimationPosition);
         }
 
-        [Client]
+        [Server]
         private void OnStartWalk()
         {
             isWalk = true;
-            ChangeAnimation(_currentAnimationPosition);
+            ReplayAnimation();
         }
 
-        [Client]
+        [Server]
         private void OnStopWalk()
         {
             isWalk = false;
-            ChangeAnimation(_currentAnimationPosition);
+            ReplayAnimation();
         }
     }
 }

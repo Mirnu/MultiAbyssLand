@@ -752,7 +752,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   entityManager: {fileID: 8589261147340174131}
-  _baseResource: {fileID: 11400000, guid: ed7080fa57b50a34c83143087dc795c1, type: 2}
+  _baseResource: {fileID: 11400000, guid: 8637fbd93b192174dbf95565ff3eaaea, type: 2}
 --- !u!114 &4091061670237376811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8493,6 +8493,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  _armAnimationController: {fileID: 4091061670237376811}
 --- !u!114 &8589261147340174131
 MonoBehaviour:
   m_ObjectHideFlags: 0
