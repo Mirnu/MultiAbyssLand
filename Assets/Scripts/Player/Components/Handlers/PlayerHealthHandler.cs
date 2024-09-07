@@ -29,7 +29,6 @@ namespace Assets.Scripts.Player.Components.Handlers
         [Server]
         private void OnHealthChanged(int health)
         {
-            Debug.Log(health);
             if (health < _statsMax.HealthMax && _stats.Food > 70
                 && !_heal.IsHealedByName(FOOD_HEAL))
             {

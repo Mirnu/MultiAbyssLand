@@ -14,6 +14,6 @@ public class PlayerFacade : EntityFacade
 
     public void PlayArmAnimation(ArmAction action)
     {
-        _armAnimationController.PlayActionAnimation(action);
+        _armAnimationController.PlayOnceActionAnimation(action);
     }
 }

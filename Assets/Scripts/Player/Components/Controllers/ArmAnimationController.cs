@@ -18,6 +18,7 @@ namespace Assets.Scripts.Player.Components.Controllers
         [SerializeField] private PlayerDirectionController _directionController;
         [SerializeField] private List<GameObject> _handPoints;
         [SerializeField] private Animator _model;
+        [SerializeField] private PlayerAnimationController _animationController;
 
         public override void ClientTick()
         {
@@ -29,9 +30,10 @@ namespace Assets.Scripts.Player.Components.Controllers
             _hand.transform.localPosition = handPoint.transform.localPosition;
         }
 
-        public void PlayActionAnimation(ArmAction action)
+        public void PlayOnceActionAnimation(ArmAction action)
         {
-            _model.Play(action.ToString(), -1, 0);
+            _model.SetInteger("State", (int)action);
+            _animationController.ReplayAnimation();
         }
     }
 }

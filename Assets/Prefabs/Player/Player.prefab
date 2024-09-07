@@ -785,6 +785,7 @@ MonoBehaviour:
   - {fileID: 1433143395894015391}
   - {fileID: 1433143394825032468}
   _model: {fileID: 7553908924742549197}
+  _animationController: {fileID: 3742672943742044375}
 --- !u!1 &4030324315540846852
 GameObject:
   m_ObjectHideFlags: 0

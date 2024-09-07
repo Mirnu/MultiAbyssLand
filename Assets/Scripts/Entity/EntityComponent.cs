@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entity
 {
-    public class EntityComponent : NetworkBehaviour
+    public class EntityComponent : NetworkBehaviour, IServerInitializable, IClientTickable, IServerTickable,
+        IClientInitializable
     {
         [SerializeField] protected EntityManager entityManager;
 
@@ -38,5 +39,10 @@ namespace Assets.Scripts.Entity
 
             return null;
         }
+
+        public virtual void ClientInitialize() { }
+        public virtual void ClientTick() { }
+        public virtual void ServerInitialize() { }
+        public virtual void ServerTick() { }
     }
 }

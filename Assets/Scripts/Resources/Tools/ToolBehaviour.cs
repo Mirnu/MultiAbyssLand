@@ -23,7 +23,7 @@ namespace Assets.Scripts.Resources.Tools
         [Client]
         private void Start()
         {
-            tool.Input.Gameplay.Activated.performed += (InputAction.CallbackContext context) => { Debug.Log("Activated"); };
+            tool.Input.Gameplay.Activated.performed += OnActivated;
         }
 
         [Client]
