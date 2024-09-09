@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 5554401277757798117}
   - component: {fileID: 7553908924742549197}
   - component: {fileID: 3623429961630024572}
+  - component: {fileID: 1808985569174054163}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -666,6 +667,22 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 7553908924742549197}
+--- !u!114 &1808985569174054163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261704909842223932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c9d9d86d04fe54e8e387cda2cd412a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  _animator: {fileID: 7553908924742549197}
 --- !u!1 &2345474157882047137
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,8 +801,7 @@ MonoBehaviour:
   - {fileID: 1433143396644726697}
   - {fileID: 1433143395894015391}
   - {fileID: 1433143394825032468}
-  _model: {fileID: 7553908924742549197}
-  _animationController: {fileID: 3742672943742044375}
+  _armAnimator: {fileID: 1808985569174054163}
 --- !u!1 &4030324315540846852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,7 +2452,7 @@ MonoBehaviour:
   _directionController: {fileID: 301810214674017748}
   _hand: {fileID: 3658187816365489112}
   _animator: {fileID: 3243736947759867445}
-  _armAnimator: {fileID: 7553908924742549197}
+  _armAnimator: {fileID: 1808985569174054163}
 --- !u!114 &301810214674017748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8494,7 +8510,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  _armAnimationController: {fileID: 4091061670237376811}
+  _armAnimator: {fileID: 1808985569174054163}
 --- !u!114 &8589261147340174131
 MonoBehaviour:
   m_ObjectHideFlags: 0

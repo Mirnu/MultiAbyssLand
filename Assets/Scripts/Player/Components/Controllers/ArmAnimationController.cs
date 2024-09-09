@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Misc;
+using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,23 +19,16 @@ namespace Assets.Scripts.Player.Components.Controllers
         [SerializeField] private ToolContainer _hand;
         [SerializeField] private PlayerDirectionController _directionController;
         [SerializeField] private List<GameObject> _handPoints;
-        [SerializeField] private Animator _model;
-        [SerializeField] private PlayerAnimationController _animationController;
+        [SerializeField] private ArmAnimator _armAnimator;
 
         public override void ClientTick()
         {
             int hours = AngleUtils.GetHours();
             if (_hand.IsEmpty && !_hand.CurrentResource.IsTakenInHand) return;
 
-            _model.SetInteger("State", hours + 8);
+            _armAnimator.Play(hours + 8);
             GameObject handPoint = _handPoints[hours];
             _hand.transform.localPosition = handPoint.transform.localPosition;
-        }
-
-        public void PlayOnceActionAnimation(ArmAction action)
-        {
-            _model.SetInteger("State", (int)action);
-            _animationController.ReplayAnimation();
         }
     }
 }

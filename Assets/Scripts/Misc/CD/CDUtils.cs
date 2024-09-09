@@ -14,6 +14,7 @@ namespace Assets.Scripts.Misc.CD
 
             return () =>
             {
+                Debug.Log(start + time > Time.time);
                 if (start + time > Time.time) return;
                 start = Time.time;
                 callback();

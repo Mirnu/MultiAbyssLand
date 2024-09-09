@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Resources.Data;
+﻿using Assets.Scripts.Player.Components.Controllers;
+using Assets.Scripts.Resources.Data;
 using Mirror;
 using System;
 using System.Collections.Generic;
@@ -26,22 +27,11 @@ namespace Assets.Scripts.Player.Components
         [SerializeField] private PlayerDirectionController _directionController;
         [SerializeField] private ToolContainer _hand;
         [SerializeField] private Animator _animator;
-        [SerializeField] private Animator _armAnimator;
+        [SerializeField] private ArmAnimator _armAnimator;
+
 
         private int _currentAnimationPosition;
         private bool isWalk = false;
-
-        private Dictionary<Animations, string> _animationMap = new()
-        {
-            { Animations.UpIdle, "UpIdle" },
-            { Animations.RightIdle, "RightIdle" },
-            { Animations.DownIdle, "DownIdle" },
-            { Animations.LeftIdle, "LeftIdle" },
-            { Animations.UpWalk, "UpWalk" },
-            { Animations.RightWalk, "RightWalk" },
-            { Animations.DownWalk, "DownWalk" },
-            { Animations.LeftWalk, "LeftWalk" }
-        };
 
         [Server]
         private void OnDestroy()
@@ -50,6 +40,7 @@ namespace Assets.Scripts.Player.Components
             _playerMovement.StopMoved -= OnStopWalk;
             _directionController.DirectionChanged -= OnDirectionChanged;
             _hand.ToolChanged -= OnToolChanged;
+            _armAnimator.AnimationEnded -= OnArmAnimationEnded;
         }
 
         public override void ServerInitialize()
@@ -59,6 +50,13 @@ namespace Assets.Scripts.Player.Components
             _playerMovement.StartMoved += OnStartWalk;
             _playerMovement.StopMoved += OnStopWalk;
             _hand.ToolChanged += OnToolChanged;
+            _armAnimator.AnimationEnded += OnArmAnimationEnded;
+        }
+
+        private void OnArmAnimationEnded(ArmConfigurableAnimation animation)
+        {
+            if ((int)animation.Animation < 20) return;
+            ReplayAnimation();
         }
 
         [Server]
@@ -70,14 +68,22 @@ namespace Assets.Scripts.Player.Components
             ChangeAnimation((int)direction);
         }
 
+        public override void ServerTick()
+        {
+            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
+                _armAnimator.Play(_currentAnimationPosition);
+        }
+
+        [Server]
         public void ReplayAnimation()
         {
-            ChangeAnimation(_currentAnimationPosition);
+            ChangeAnimation((int)_directionController.Direction);
         }
 
         [Command]
         public void ChangeAnimation(int animation)
         {
+            if ((int)_armAnimator.CurrentAnimation.Animation >= 20) return;
             _currentAnimationPosition = isWalk ? animation > 3
                 ? animation : animation + 4 :
                 animation > 3 ? animation - 4 : animation;
@@ -87,10 +93,7 @@ namespace Assets.Scripts.Player.Components
                 AnimationChanged?.Invoke((Animations)_currentAnimationPosition);
             }
 
-            _animator.Play(_animationMap[(Animations)_currentAnimationPosition], -1, 0);
-
-            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
-                _armAnimator.SetInteger("State", _currentAnimationPosition);
+            _animator.Play(Enum.GetName(typeof(Animations), _currentAnimationPosition), -1, 0);
         }
 
         [Server]

@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class PlayerFacade : EntityFacade
 {
-    [SerializeField] private ArmAnimationController _armAnimationController;
+    [SerializeField] private ArmAnimator _armAnimator;
 
     private void Awake()
     {
         FacadeLocator.Singleton.RegisterFacade(this);
     }
 
-    public void PlayArmAnimation(ArmAction action)
+    public ArmAnimator ArmAnimator
     {
-        _armAnimationController.PlayOnceActionAnimation(action);
+        get
+        {
+            return _armAnimator;
+        }
     }
 }
