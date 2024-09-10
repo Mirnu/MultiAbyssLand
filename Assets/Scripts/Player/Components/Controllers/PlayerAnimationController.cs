@@ -90,7 +90,8 @@ namespace Assets.Scripts.Player.Components
                 _armAnimator.Play(_currentAnimationPosition);
 
 
-            if ((int)_armAnimator.CurrentAnimation.Animation >= 20) return;
+            if ((int)_armAnimator.CurrentAnimation.Animation >= 20 
+                && _armAnimator.ArmDirection != _directionController.Direction) return;
             Animate(animation);
         }
 

@@ -12,7 +12,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 {
     public class Sword : ToolBehaviour
     {
-        [SerializeField] private float _speedAttack = 0.3f;
+        [SerializeField] private float _speedAttack = 0.6f;
         [SerializeField] private List<Transform> _armTransforms;
 
         private PlayerFacade _playerFacade;
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         private Dictionary<int, (int, int)> _angleMap = new() 
         {
-            {0, (-90, -180) },
+            {0, (0, 90) },
             {1, (0, -90) },
             {2, (-180, -90) },
             {3, (-270, -180) },
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         private IEnumerator RotateSword(int interval)
         {
-            for (float i = 0; i < 1; i += Time.deltaTime)
+            for (float i = 0; i < 1; i += Time.deltaTime * _speedAttack)
             {
                 yield return null;
                 (int, int) angle = _angleMap[interval];

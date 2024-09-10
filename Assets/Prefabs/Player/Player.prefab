@@ -682,8 +682,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  entityManager: {fileID: 0}
+  entityManager: {fileID: 8589261147340174131}
   _animator: {fileID: 7553908924742549197}
+  _directionController: {fileID: 301810214674017748}
 --- !u!1 &2345474157882047137
 GameObject:
   m_ObjectHideFlags: 0

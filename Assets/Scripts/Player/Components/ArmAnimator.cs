@@ -37,9 +37,12 @@ namespace Assets.Scripts.Player.Components.Controllers
     public class ArmAnimator : PlayerComponent
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private PlayerDirectionController _directionController;
         public Action AnimationEnded;
         public Action LateAnimationEnded;
         // private PriorityQueue<ArmConfigurableAnimation> _animationsQueue = new();
+
+        public Direction ArmDirection { private set; get; }
 
         public ArmConfigurableAnimation CurrentAnimation { private set; get; }
 
@@ -52,8 +55,8 @@ namespace Assets.Scripts.Player.Components.Controllers
                     Animation = animation,
                     Priority = priority
                 };
+                ArmDirection = _directionController.Direction;
                 _animator.Play(Enum.GetName(typeof(ArmAnimation), animation), 0, 0f);
-                Debug.Log(Enum.GetName(typeof(ArmAnimation), animation));
             }
         }
 
