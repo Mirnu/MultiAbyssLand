@@ -1,44 +1,77 @@
 ﻿using Assets.Scripts.Game;
 using Assets.Scripts.Misc;
 using Assets.Scripts.Misc.CD;
-using Assets.Scripts.Player.Components.Controllers;
 using Mirror;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Resources.Tools.Impl
 {
     public class Sword : ToolBehaviour
     {
+        [SerializeField] private float _speedAttack = 0.3f;
+        [SerializeField] private List<Transform> _armTransforms;
+
         private PlayerFacade _playerFacade;
         private Action attack;
+        private WaitForFixedUpdate _waitForAttack = new WaitForFixedUpdate();
+        private SpriteRenderer _spriteRenderer;
+
+        private bool _canAttack = true;
+
+        private Dictionary<int, (int, int)> _angleMap = new() 
+        {
+            {0, (-90, -180) },
+            {1, (0, -90) },
+            {2, (-180, -90) },
+            {3, (-270, -180) },
+        };
 
         private void OnEnable()
         {
-            attack = CDUtils.CycleWait(1, Attack);
+            
             _playerFacade = FacadeLocator.Singleton.GetFacade<PlayerFacade>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _playerFacade.ArmAnimator.AnimationEnded += OnAnimationEnded;
+            _spriteRenderer.gameObject.SetActive(false);
         }
 
-        [Client]
-        protected override void OnActivated(InputAction.CallbackContext context)
+        private void OnAnimationEnded()
         {
-            
+            _canAttack = true;
         }
 
         [Client]
         protected override void OnHold()
         {
-            Debug.Log(1);
-            attack();
+            if (!_canAttack) return;
+            _canAttack = false;
+            Attack();
         }
-
 
         private void Attack()
         {
-            Debug.Log("Attack");
             int interval = AngleUtils.GetInterval();
             _playerFacade.ArmAnimator.Play(interval + 20, 10);
+            transform.localPosition = _armTransforms[interval].localPosition;
+            _spriteRenderer.gameObject.SetActive(true);
+            StopAllCoroutines();
+            StartCoroutine(RotateSword(interval));
+        }
+
+        private IEnumerator RotateSword(int interval)
+        {
+            for (float i = 0; i < 1; i += Time.deltaTime)
+            {
+                yield return null;
+                (int, int) angle = _angleMap[interval];
+                transform.eulerAngles = Vector3.forward * 
+                    math.lerp(angle.Item1, angle.Item2, i);
+            }
+            _spriteRenderer.gameObject.SetActive(false);
         }
     }
 }

@@ -16,7 +16,7 @@ public class MALNetworkManager : NetworkManager
 
     public override void OnStartServer()
     {
-        Application.targetFrameRate = 60;
+        
         worldEntrypoint.Entry();
         base.OnStartServer();
     }

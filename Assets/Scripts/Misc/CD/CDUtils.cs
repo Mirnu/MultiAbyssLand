@@ -8,15 +8,27 @@ namespace Assets.Scripts.Misc.CD
         /// <summary>
         /// Обычный ждун, после того как функция сработает, счетчик обнулится
         /// </summary>
-        public static Action CycleWait(int time, Action callback)
+        public static Action CycleWait(float time, Action callback)
         {
             float start = Time.time;
 
             return () =>
             {
-                Debug.Log(start + time > Time.time);
                 if (start + time > Time.time) return;
                 start = Time.time;
+                callback();
+            };
+        }
+
+        public static Action CycleWaitEvent(Action callback, Action action) 
+        {
+            bool called = true;
+            action += () => Debug.Log("Calllllect"); called = true;
+
+            return () =>
+            {
+                if (!called) return;
+                called = false;
                 callback();
             };
         }

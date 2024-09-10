@@ -40,7 +40,7 @@ namespace Assets.Scripts.Player.Components
             _playerMovement.StopMoved -= OnStopWalk;
             _directionController.DirectionChanged -= OnDirectionChanged;
             _hand.ToolChanged -= OnToolChanged;
-            _armAnimator.AnimationEnded -= OnArmAnimationEnded;
+            _armAnimator.LateAnimationEnded -= OnArmAnimationEnded;
         }
 
         public override void ServerInitialize()
@@ -50,13 +50,18 @@ namespace Assets.Scripts.Player.Components
             _playerMovement.StartMoved += OnStartWalk;
             _playerMovement.StopMoved += OnStopWalk;
             _hand.ToolChanged += OnToolChanged;
-            _armAnimator.AnimationEnded += OnArmAnimationEnded;
+            _armAnimator.LateAnimationEnded += OnArmAnimationEnded;
         }
 
-        private void OnArmAnimationEnded(ArmConfigurableAnimation animation)
+        private void OnArmAnimationEnded()
         {
-            if ((int)animation.Animation < 20) return;
-            ReplayAnimation();
+            if ((int)_armAnimator.CurrentAnimation.Animation >= 20)
+            {
+                ChangeAnimation((int)_directionController.Direction);
+                Animate((int)_directionController.Direction);
+            }
+
+            Debug.Log(_directionController.Direction);
         }
 
         [Server]
@@ -68,12 +73,6 @@ namespace Assets.Scripts.Player.Components
             ChangeAnimation((int)direction);
         }
 
-        public override void ServerTick()
-        {
-            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
-                _armAnimator.Play(_currentAnimationPosition);
-        }
-
         [Server]
         public void ReplayAnimation()
         {
@@ -83,17 +82,27 @@ namespace Assets.Scripts.Player.Components
         [Command]
         public void ChangeAnimation(int animation)
         {
-            if ((int)_armAnimator.CurrentAnimation.Animation >= 20) return;
             _currentAnimationPosition = isWalk ? animation > 3
                 ? animation : animation + 4 :
                 animation > 3 ? animation - 4 : animation;
 
+            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
+                _armAnimator.Play(_currentAnimationPosition);
+
+
+            if ((int)_armAnimator.CurrentAnimation.Animation >= 20) return;
+            Animate(animation);
+        }
+
+        [Server]
+        private void Animate(int animation)
+        {
             if (_currentAnimationPosition != animation)
             {
                 AnimationChanged?.Invoke((Animations)_currentAnimationPosition);
             }
 
-            _animator.Play(Enum.GetName(typeof(Animations), _currentAnimationPosition), -1, 0);
+            _animator.Play(Enum.GetName(typeof(Animations), _currentAnimationPosition), 0, 0);
         }
 
         [Server]

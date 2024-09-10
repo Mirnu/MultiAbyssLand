@@ -37,7 +37,8 @@ namespace Assets.Scripts.Player.Components.Controllers
     public class ArmAnimator : PlayerComponent
     {
         [SerializeField] private Animator _animator;
-        public event Action<ArmConfigurableAnimation> AnimationEnded;
+        public Action AnimationEnded;
+        public Action LateAnimationEnded;
         // private PriorityQueue<ArmConfigurableAnimation> _animationsQueue = new();
 
         public ArmConfigurableAnimation CurrentAnimation { private set; get; }
@@ -51,16 +52,20 @@ namespace Assets.Scripts.Player.Components.Controllers
                     Animation = animation,
                     Priority = priority
                 };
-                _animator.Play(Enum.GetName(typeof(ArmAnimation), animation));
+                _animator.Play(Enum.GetName(typeof(ArmAnimation), animation), 0, 0f);
+                Debug.Log(Enum.GetName(typeof(ArmAnimation), animation));
             }
         }
 
         public override void ServerTick()
         {
             //wait while animation is playing
-            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99)
+            float time = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
+            if (time > 0.99)
             {
-                AnimationEnded?.Invoke(CurrentAnimation);
+                AnimationEnded?.Invoke();
+                LateAnimationEnded?.Invoke();
                 CurrentAnimation = default;
             }
         }

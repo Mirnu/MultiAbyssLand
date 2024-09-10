@@ -27,6 +27,7 @@ namespace Assets.Scripts.Resources.Tools
         private void Awake()
         {
             tool = GetComponent<Tool>();
+            Debug.Log(tool != null);
         }
 
         [Client]
