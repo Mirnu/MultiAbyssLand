@@ -12,6 +12,8 @@ namespace Assets.Scripts.World.Blocks
         public event Action OnDestroyed;
 
         public Resource resource;
+        public int Health { get; private set; }
+        
 
         private SpriteRenderer _renderer;
 

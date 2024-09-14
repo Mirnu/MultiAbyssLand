@@ -30,7 +30,8 @@ namespace Assets.Scripts.Player.Components
             _input = playerManager.PlayerInput;
         }
 
-        //поверьте мне, когда-нибудь я сделаю entrypoint для клиента
+        // поверьте мне, когда-нибудь я сделаю entrypoint для клиента
+        // верим
         public override void OnStartClient()
         {
             Camera.main.transform.SetParent(transform);
