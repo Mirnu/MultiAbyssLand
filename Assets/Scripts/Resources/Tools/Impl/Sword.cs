@@ -54,11 +54,13 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         private void Attack()
         {
+            StopAllCoroutines();
             int interval = AngleUtils.GetInterval();
             _playerFacade.ArmAnimator.Play(interval + 20, 10);
-            transform.localPosition = _armTransforms[interval].localPosition;
+            transform.localPosition = _armTransforms[interval].position;
+            transform.rotation = _armTransforms[interval].rotation;
+            transform.localScale = _armTransforms[interval].localScale;
             _spriteRenderer.gameObject.SetActive(true);
-            StopAllCoroutines();
             StartCoroutine(RotateSword(interval));
         }
 
@@ -68,8 +70,9 @@ namespace Assets.Scripts.Resources.Tools.Impl
             {
                 yield return null;
                 (int, int) angle = _angleMap[interval];
-                transform.eulerAngles = Vector3.forward * 
-                    math.lerp(angle.Item1, angle.Item2, i);
+                Vector3 rotation = _armTransforms[interval].eulerAngles;
+                transform.eulerAngles = new Vector3(rotation.x, rotation.y,
+                    math.lerp(angle.Item1, angle.Item2, math.abs(rotation.y / 180) == 1 ? 1 - i : i));
             }
             _spriteRenderer.gameObject.SetActive(false);
         }
