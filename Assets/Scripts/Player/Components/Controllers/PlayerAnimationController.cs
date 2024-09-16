@@ -55,13 +55,11 @@ namespace Assets.Scripts.Player.Components
 
         private void OnArmAnimationEnded()
         {
-            if ((int)_armAnimator.CurrentAnimation.Animation >= 20)
+            if ((int)_armAnimator.CurrentAnimation.Animation >= 20 || _hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
             {
                 ChangeAnimation((int)_directionController.Direction);
                 Animate((int)_directionController.Direction);
             }
-
-            Debug.Log(_directionController.Direction);
         }
 
         [Server]

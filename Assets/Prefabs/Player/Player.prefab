@@ -771,7 +771,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   entityManager: {fileID: 8589261147340174131}
-  _baseResource: {fileID: 11400000, guid: 1d2b6601e3a7a414ca88b7ea51aabd73, type: 2}
+  _baseResource: {fileID: 11400000, guid: fec5683f7e7ce3e4e91b1c5130219d48, type: 2}
 --- !u!114 &4091061670237376811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8517,7 +8517,7 @@ Transform:
   m_GameObject: {fileID: 8011928959331681331}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.19, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8547,6 +8547,7 @@ MonoBehaviour:
   statsModel: {fileID: 0}
   maxStatsModel: {fileID: 0}
   _armAnimator: {fileID: 1808985569174054163}
+  _character: {fileID: 5473458847305667641}
 --- !u!114 &8589261147340174131
 MonoBehaviour:
   m_ObjectHideFlags: 0

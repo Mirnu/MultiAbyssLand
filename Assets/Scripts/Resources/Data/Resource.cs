@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Resources.Tools;
 using Mirror;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace Assets.Scripts.Resources.Data
 {

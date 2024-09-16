@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e540e1836a070741bff07e48e4dd3c0, type: 3}
-  m_Name: WoodenAxe
+  m_Name: WoodenSpear
   m_EditorClassIdentifier: 
   _isTakenInHand: 0
-  SpriteInInventary: {fileID: 21300000, guid: b27ba5c052271b342aa4abff8f6c075f, type: 3}
-  Name: Wooden Axe
-  Tool: {fileID: 9209898059082004809, guid: 034c82ed161db734f86bbf522bced168, type: 3}
+  SpriteInInventary: {fileID: 21300000, guid: 1e2accddeb14b974aa853130dd5e22e7, type: 3}
+  Name: Wooden Sword
+  Tool: {fileID: 1278551059963765683, guid: 78d13021560a7f74ba0f49401ab2501c, type: 3}
   Info: 
   _damage: 5
   _speed: 5

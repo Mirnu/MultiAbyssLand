@@ -20,10 +20,11 @@ namespace Assets.Scripts.Misc.CD
             };
         }
 
+        //пока не робит
         public static Action CycleWaitEvent(Action callback, Action action) 
         {
             bool called = true;
-            action += () => Debug.Log("Calllllect"); called = true;
+            action += () => called = true;
 
             return () =>
             {

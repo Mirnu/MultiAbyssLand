@@ -16,18 +16,18 @@ namespace Assets.Scripts.Player.Components.Controllers
         RightWalkArm,
         DownWalkArm,
         LeftWalkArm,
-        UpActionStartArm,
-        UpActionMidArm,
         UpActionEndArm,
+        UpActionMidArm,
+        UpActionStartArm,
         RightActionStartArm,
         RightActionMidArm,
         RightActionEndArm,
-        DownActionStartArm,
-        DownActionMidArm,
         DownActionEndArm,
-        LeftActionStartArm,
-        LeftActionMidArm,
+        DownActionMidArm,
+        DownActionStartArm,
         LeftActionEndArm,
+        LeftActionMidArm,
+        LeftActionStartArm,
         UpActionArm,
         RightActionArm,
         DownActionArm,
@@ -42,13 +42,15 @@ namespace Assets.Scripts.Player.Components.Controllers
         public Action LateAnimationEnded;
         // private PriorityQueue<ArmConfigurableAnimation> _animationsQueue = new();
 
+        private bool _untilAnimation = false;
+
         public Direction ArmDirection { private set; get; }
 
         public ArmConfigurableAnimation CurrentAnimation { private set; get; }
 
         public void Play(ArmAnimation animation, int priority = 1)
         {
-            if (CurrentAnimation.Priority <= priority)
+            if (CurrentAnimation.Priority <= priority && !_untilAnimation)
             {
                 CurrentAnimation = new ArmConfigurableAnimation
                 {
@@ -60,22 +62,42 @@ namespace Assets.Scripts.Player.Components.Controllers
             }
         }
 
+        public Action PlayUntilEnd(ArmAnimation animation, int priority = 1)
+        {
+            Play(animation, priority);
+            _untilAnimation = true;
+
+            return () =>
+            {
+                _untilAnimation = false;
+                EndAnimation();
+            };
+        }
+
         public override void ServerTick()
         {
             //wait while animation is playing
             float time = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
-            if (time > 0.99)
-            {
-                AnimationEnded?.Invoke();
-                LateAnimationEnded?.Invoke();
-                CurrentAnimation = default;
-            }
+            if (time > 0.99 && !_untilAnimation)
+                EndAnimation();
+        }
+
+        private void EndAnimation()
+        {
+            AnimationEnded?.Invoke();
+            LateAnimationEnded?.Invoke();
+            CurrentAnimation = default;
         }
 
         public void Play(int animation, int priority = 0)
         {
             Play((ArmAnimation)animation, priority);
+        }
+
+        public Action PlayUntilEnd(int animation, int priority = 0)
+        {
+            return PlayUntilEnd((ArmAnimation)animation, priority);
         }
     }
 

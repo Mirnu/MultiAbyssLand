@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Resources.Data
 {
-    [CreateAssetMenu(menuName = "Resources/WeaponResource")]
+    [CreateAssetMenu(menuName = "Resources/new WeaponResource")]
     public class WeaponResource : Resource
     {
         [SerializeField] private int _damage;

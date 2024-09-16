@@ -30,6 +30,10 @@ namespace Assets.Scripts.Misc
             return result;
         }
 
+
+        /// <summary>
+        /// Возвращает интервал от 0 до 11 в часах
+        /// </summary>
         public static int GetHours()
         {
             int angle = GetAngle();
@@ -38,7 +42,7 @@ namespace Assets.Scripts.Misc
         }
 
         /// <summary>
-        /// Возвращает интервал от 0 до 3, где 0 - 12:00, 1 - 3:00, 2 - 6:00, 3 - 9:00
+        /// Возвращает интервал от 0 до 3, где 0 - 12:00, 1 - 03:00, 2 - 06:00, 3 - 09:00
         /// (Все означает "От", например 0 от 12:00 до 3:00)
         /// </summary>
         public static int GetInterval()
