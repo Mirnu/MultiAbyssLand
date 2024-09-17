@@ -1,20 +1,20 @@
 ﻿using System;
 using Assets.Scripts.Resources.Data;
+using Mirror;
 using UnityEngine;
 
 namespace Assets.Scripts.World.Blocks
 {
-    public class Block : MonoBehaviour
+    public class Block : NetworkBehaviour
     {
-        public event Action OnLeftClick;
-        public event Action OnRightClick;
-        public event Action OnMiddleClick;
-        public event Action OnDestroyed;
+        public Action OnLeftClick;
+        public Action OnRightClick;
+        public Action OnMiddleClick;
+        public Action OnDestroyed;
 
         public Resource resource;
         public int Health { get; private set; }
         
-
         private SpriteRenderer _renderer;
 
         private void Awake() {

@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.ILifeCycle;
+using Assets.Scripts.World.Blocks;
 using Mirror;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Player.Components
 {
@@ -28,6 +30,7 @@ namespace Assets.Scripts.Player.Components
 
             if (!isLocalPlayer) return;
             _input = playerManager.PlayerInput;
+            _input.Gameplay.Mouse.performed += onLeftClick;
         }
 
         // поверьте мне, когда-нибудь я сделаю entrypoint для клиента
@@ -44,6 +47,14 @@ namespace Assets.Scripts.Player.Components
         private void OnStopMoved() => StopMoved?.Invoke();
         [Command]
         private void OnStartMoved() => StartMoved?.Invoke();
+        [ClientCallback]
+        private void onLeftClick(InputAction.CallbackContext context) {
+            // бляяяяя я ебал
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            BlockManager.Singleton.leftClickCmd(mousePos2D);
+        }
 
         public override void ClientTick()
         {
