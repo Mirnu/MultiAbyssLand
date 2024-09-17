@@ -25,11 +25,25 @@ namespace Assets.Scripts.World.Blocks {
         }
 
         [Command(requiresAuthority = false)]
-        public void leftClickCmd(Vector2 mousePos2D) {
+        public void AnyClickCmd(Vector2 mousePos2D, float m) {
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if(hit.collider != null && blocks.Any(x => x.transform.position == hit.collider.transform.position)) {
-                Debug.Log("found a block: " + hit.collider.name);
-                blocks.Find(x => x.transform.position == hit.collider.transform.position).OnLeftClick?.Invoke();
+                Debug.Log("found a block: " + hit.collider.name + " : " + m);
+                switch (m) {
+                    case 0 : { 
+                        blocks.Find(x => x.transform.position == hit.collider.transform.position).OnLeftClick?.Invoke();
+                        break; 
+                    }
+                    case 1 : {
+                        blocks.Find(x => x.transform.position == hit.collider.transform.position).OnRightClick?.Invoke();
+                        break; 
+                    }
+                    case 2 : {
+                        blocks.Find(x => x.transform.position == hit.collider.transform.position).OnMiddleClick?.Invoke();
+                        break; 
+                    }
+                }
+                
             }
         }
 

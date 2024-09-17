@@ -53,7 +53,7 @@ namespace Assets.Scripts.Player.Components
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-            BlockManager.Singleton.leftClickCmd(mousePos2D);
+            BlockManager.Singleton.AnyClickCmd(mousePos2D, context.action.ReadValue<float>());
         }
 
         public override void ClientTick()
