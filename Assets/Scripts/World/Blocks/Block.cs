@@ -2,20 +2,22 @@
 using Assets.Scripts.Resources.Data;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.World.Blocks
 {
     public class Block : NetworkBehaviour
     {
-        public Action OnLeftClick;
-        public Action OnRightClick;
-        public Action OnMiddleClick;
-        public Action OnDestroyed;
+        public UnityEvent OnLeftClick;
+        public UnityEvent OnRightClick;
+        public UnityEvent OnMiddleClick;
+        public UnityEvent OnDestroyed;
+        public UnityEvent OnFixedUpdate;
 
         public Resource resource;
-        public int Health { get; private set; }
+        public float Health { get; private set; }
         
-        private SpriteRenderer _renderer;
+        protected SpriteRenderer _renderer;
 
         private void Awake() {
             _renderer = GetComponent<SpriteRenderer>();
@@ -26,5 +28,21 @@ namespace Assets.Scripts.World.Blocks
         {
             OnDestroyed?.Invoke();
         }
+
+        [ServerCallback]
+        public void Damage(float amount) {
+            if(Health > amount) {
+                Health -= amount;
+            } else {
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
+    [Serializable]
+    public class BlockInWorld {
+        public Block block;
+        public Vector2 pos;
     }
 }

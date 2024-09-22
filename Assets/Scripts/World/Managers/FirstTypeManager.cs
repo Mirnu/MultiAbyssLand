@@ -49,8 +49,8 @@ namespace Assets.Scripts.World.Managers {
             Health = MaxHealth;
             Go = go;
             Go.transform.position = pos;
-            Go.OnLeftClick += onDamaged;
-            Go.OnDestroyed += onDestroyed;
+            Go.OnLeftClick.AddListener(delegate {onDamaged?.Invoke();});
+            Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
         }
 
         public void Damage(int amount) {
