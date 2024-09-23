@@ -7,11 +7,12 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.Entity.Pathfinding
 {
-    public class NavMeshPathfindingStrategy : IPathfindingStrategy
+    [System.Serializable]
+    public class NavMeshPathfindingStrategy : PathfindingStrategy
     {
         private Vector3 _previousPoint { get; set; }
 
-        public void MoveTo(Transform target, GameObject self)
+        public override void MoveTo(Transform target, GameObject self)
         {
             if (!self.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
             {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Entity.Pathfinding
             agent.SetDestination(new Vector3(target.transform.position.x, target.transform.position.y));
         }
 
-        public void MoveToPreviousPoint(GameObject self)
+        public override void MoveToPreviousPoint(GameObject self)
         {
             if (!self.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
             {

@@ -8,9 +8,11 @@ namespace Assets.Scripts.Entity
     {
         [SerializeField] protected EntityStatsModel statsModel;
         [SerializeField] protected EntityMaxStatsModel maxStatsModel;
-        [SerializeField] protected IPathfindingStrategy pathfindingStrategy;
+        [SerializeField] protected PathfindingStrategy pathfindingStrategy;
 
         protected EntityStateMachine stateMachine;
-        public GameObject CurrentTarget { get; protected set; }
+
+        [SyncVar] private GameObject _currentTarget;
+        public GameObject CurrentTarget { get => _currentTarget; protected set { _currentTarget = value; } }
     }
 }

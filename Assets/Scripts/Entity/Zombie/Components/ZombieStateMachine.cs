@@ -15,8 +15,8 @@ namespace Assets.Scripts.Entity.Zombie {
         [SerializeField] public  ZombieSearchState SearchState;
         [SerializeField] public  ZombieHitState HitState;
 
-        private EntityState _curState;
-        private EntityState _prevState;
+        [SyncVar] private EntityState _curState;
+        [SyncVar]  private EntityState _prevState;
 
         public override void ServerInitialize()
         {

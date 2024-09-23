@@ -21,6 +21,10 @@ GameObject:
   - component: {fileID: 8191783974337840405}
   - component: {fileID: 5638273201059861825}
   - component: {fileID: 8530342499333399354}
+  - component: {fileID: 2442011315551378729}
+  - component: {fileID: 4282328796656367810}
+  - component: {fileID: 654919067803298857}
+  - component: {fileID: 5388402824263447289}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -35,13 +39,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529546354424365297}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9327, y: -1.7982, z: 0}
   m_LocalScale: {x: 0.8145, y: 1.8964, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4880209825592757940
 SpriteRenderer:
@@ -112,6 +116,7 @@ MonoBehaviour:
   syncInterval: 0
   statsModel: {fileID: 4296874857738091300}
   maxStatsModel: {fileID: 6024707777077106368}
+  pathfindingStrategy: {fileID: 2442011315551378729}
   stateMachine: {fileID: 6924465811180416738}
 --- !u!114 &1085433263108125429
 MonoBehaviour:
@@ -249,6 +254,7 @@ MonoBehaviour:
   entityManager: {fileID: 1085433263108125429}
   _Stats: {fileID: 4296874857738091300}
   _EntityModel: {fileID: 2488158673717844323}
+  _PathfindingStrategy: {fileID: 2442011315551378729}
   AttackState: {fileID: 8191783974337840405}
   SearchState: {fileID: 8530342499333399354}
   HitState: {fileID: 5638273201059861825}
@@ -269,6 +275,7 @@ MonoBehaviour:
   syncInterval: 0
   entityManager: {fileID: 1085433263108125429}
   entityStats: {fileID: 4296874857738091300}
+  pathfindingStrategy: {fileID: 2442011315551378729}
   stateMachine: {fileID: 6924465811180416738}
   entityModel: {fileID: 2488158673717844323}
 --- !u!114 &5638273201059861825
@@ -288,6 +295,7 @@ MonoBehaviour:
   syncInterval: 0
   entityManager: {fileID: 1085433263108125429}
   entityStats: {fileID: 4296874857738091300}
+  pathfindingStrategy: {fileID: 2442011315551378729}
   stateMachine: {fileID: 6924465811180416738}
   entityModel: {fileID: 2488158673717844323}
 --- !u!114 &8530342499333399354
@@ -307,5 +315,85 @@ MonoBehaviour:
   syncInterval: 0
   entityManager: {fileID: 1085433263108125429}
   entityStats: {fileID: 4296874857738091300}
+  pathfindingStrategy: {fileID: 2442011315551378729}
   stateMachine: {fileID: 6924465811180416738}
   entityModel: {fileID: 2488158673717844323}
+--- !u!114 &2442011315551378729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529546354424365297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d627ae5849a5b544a275b27b15dfa1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+--- !u!54 &4282328796656367810
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529546354424365297}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &654919067803298857
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529546354424365297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.26
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5388402824263447289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529546354424365297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b20dc110904e47f8a154cdcf6433eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 6905371865122139676}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  bufferResetMultiplier: 3
+  changedDetection: 1
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01

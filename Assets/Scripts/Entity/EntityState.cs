@@ -10,7 +10,7 @@ namespace Assets.Scripts.Entity
         protected EntityStateMachine stateMachine;
         protected EntityFacade entityModel;
         [SerializeField] protected EntityStatsModel entityStats;
-        [SerializeField] protected IPathfindingStrategy pathfindingStrategy;
+        [SerializeField] protected PathfindingStrategy pathfindingStrategy;
 
         public abstract void Enter();
 

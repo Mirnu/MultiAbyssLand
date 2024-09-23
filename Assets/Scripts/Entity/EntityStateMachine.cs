@@ -9,7 +9,7 @@ namespace Assets.Scripts.Entity
     {
         [SerializeField] protected EntityStatsModel _Stats;
         [SerializeField] protected EntityFacade _EntityModel;
-        [SerializeField] protected IPathfindingStrategy _PathfindingStrategy;
+        [SerializeField] protected PathfindingStrategy _PathfindingStrategy;
 
 /*        public abstract void Initialize();*/
         public abstract bool ChangeState(EntityState new_state);
