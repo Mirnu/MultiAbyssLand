@@ -32,6 +32,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
             Vector3 mousePosition = Input.mousePosition;
             Vector3 direction = ((Vector2)mousePosition - Constants.Center).normalized; 
             Vector3 targetPosition = direction * _distance;
+            transform.position = _startPosition;
             transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition);
 
             yield return Move(_startPosition, targetPosition);

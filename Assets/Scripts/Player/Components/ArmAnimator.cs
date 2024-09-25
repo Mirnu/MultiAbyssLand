@@ -42,7 +42,7 @@ namespace Assets.Scripts.Player.Components.Controllers
         public Action LateAnimationEnded;
         // private PriorityQueue<ArmConfigurableAnimation> _animationsQueue = new();
 
-        private bool _untilAnimation = false;
+        public bool UntilAnimation { private set; get; } = false;
 
         public Direction ArmDirection { private set; get; }
 
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Player.Components.Controllers
 
         public void Play(ArmAnimation animation, int priority = 1)
         {
-            if (CurrentAnimation.Priority <= priority && !_untilAnimation)
+            if (CurrentAnimation.Priority <= priority && !UntilAnimation)
             {
                 CurrentAnimation = new ArmConfigurableAnimation
                 {
@@ -65,11 +65,11 @@ namespace Assets.Scripts.Player.Components.Controllers
         public Action PlayUntilEnd(ArmAnimation animation, int priority = 1)
         {
             Play(animation, priority);
-            _untilAnimation = true;
+            UntilAnimation = true;
 
             return () =>
             {
-                _untilAnimation = false;
+                UntilAnimation = false;
                 EndAnimation();
             };
         }
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Player.Components.Controllers
             //wait while animation is playing
             float time = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
-            if (time > 0.99 && !_untilAnimation)
+            if (time > 0.99 && !UntilAnimation)
                 EndAnimation();
         }
 
