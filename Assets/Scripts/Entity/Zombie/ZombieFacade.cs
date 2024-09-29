@@ -5,6 +5,7 @@ using UnityEngine;
 using Mirror;
 using Assets.Scripts.Player;
 using Assets.Scripts.Player.Components;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Entity.Zombie 
 {
@@ -13,11 +14,16 @@ namespace Assets.Scripts.Entity.Zombie
     {
         [SerializeField] protected new ZombieStateMachine stateMachine;
 
-        private void OnServer()
+        [Server]
+        private void Start()
         {
             FacadeLocator.Singleton.RegisterFacade(this);
             /*stateMachine.Initialize();*/
             Debug.Log(pathfindingStrategy);
+            var agent = GetComponent<NavMeshAgent>();
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            transform.rotation = new Quaternion();
         }
 
         private void Update()
@@ -30,6 +36,7 @@ namespace Assets.Scripts.Entity.Zombie
             statsModel.HP -= damage;
         }
 
+        [Server]
         private void OnCollisionEnter(Collision other) {
             if (!isServer) return;
             if (other.gameObject.TryGetComponent(out PlayerMovement player))
@@ -39,17 +46,18 @@ namespace Assets.Scripts.Entity.Zombie
             }
         }
 
+        [Server]
         private void OnTriggerEnter(Collider other) {
-            if (!isServer) return;
             if (other.gameObject.TryGetComponent(out PlayerMovement player))
             {
                 Debug.Log("Get it!");
-                CurrentTarget = player.gameObject;
-                Debug.Log(stateMachine.AttackState);
+                CurrentTarget = other.gameObject;
+                Debug.Log(other.gameObject);
                 stateMachine.ChangeState(stateMachine.AttackState);
             }
         }
 
+        [Server]
         private void OnTriggerExit(Collider other) {
             if (!isServer) return;
             if (other.gameObject.TryGetComponent(out PlayerMovement player))

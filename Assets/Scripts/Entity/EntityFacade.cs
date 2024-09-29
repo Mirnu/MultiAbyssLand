@@ -12,7 +12,7 @@ namespace Assets.Scripts.Entity
 
         protected EntityStateMachine stateMachine;
 
-        [SyncVar] private GameObject _currentTarget;
-        public GameObject CurrentTarget { get => _currentTarget; protected set { _currentTarget = value; } }
+        /*[SyncVar] private*/ public GameObject CurrentTarget;
+        /*public GameObject CurrentTarget { get => _currentTarget; protected set { _currentTarget = value; } }*/
     }
 }
