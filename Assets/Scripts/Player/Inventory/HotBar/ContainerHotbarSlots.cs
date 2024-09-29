@@ -30,8 +30,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             _slots[1].TrySet(mock1);
             _slots[1].GetComponent<SelectableSlotView>().TrySet(mock1);
             //
-            _slots[0].Select();
-            _hand.Equip(mock);
+          
             _input = new PlayerInput();
             _input.Enable();
             _slots.ForEach(x => x.GetComponent<SelectableSlotView>().enabled = false);

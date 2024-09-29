@@ -85,7 +85,7 @@ public class NewNetworkAuthenticator : NetworkAuthenticator
 
     /// <summary>
     /// Called on client when the server's AuthResponseMessage arrives
-    /// </summary>
+    /// </summary
     /// <param name="msg">The message payload</param>
     public void OnAuthResponseMessage(AuthResponseMessage msg)
     {
