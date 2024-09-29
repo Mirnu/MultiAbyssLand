@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Inventory.View;
+using Mirror;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,8 +13,10 @@ namespace Assets.Scripts.Player.Inventory.View
         public event Action OnCursorEnter;
         public event Action OnCursorExit;
 
+        [Client]
         public void OnPointerClick(PointerEventData eventData)
         {
+            Debug.Log("Меня нажали!!!!!");
             if (eventData.button == PointerEventData.InputButton.Left)
             {
                 LeftMouseClick?.Invoke();
