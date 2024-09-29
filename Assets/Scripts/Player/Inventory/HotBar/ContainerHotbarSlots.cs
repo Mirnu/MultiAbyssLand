@@ -17,15 +17,16 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         [SerializeField] private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
         [SerializeField] private GameObject _inventory;
         public PlayerInput _input;
-        private Resource mock;
-        private Resource mock1;
+        [SerializeField] private Resource mock;
+        [SerializeField] private Resource mock1;
         [SerializeField] private ToolContainer _hand;
 
-        public override void OnStartServer()
+        public override void OnStartClient()
         {
             //
             _slots[0].TrySet(mock);
             _slots[0].GetComponent<SelectableSlotView>().TrySet(mock);
+            _slots[0].GetComponent<SelectableSlotView>().SetCount(52);
             _slots[1].TrySet(mock1);
             _slots[1].GetComponent<SelectableSlotView>().TrySet(mock1);
             //

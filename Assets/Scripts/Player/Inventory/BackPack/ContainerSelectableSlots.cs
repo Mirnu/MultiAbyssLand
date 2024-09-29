@@ -21,7 +21,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
         private int _cursorCount = 0;
         private bool _;
 
-        public override void OnStartServer()
+        public override void OnStartClient()
         {
             //
             _slots[0].SetCount(15);
@@ -52,6 +52,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 } else if(slot.TrySet(_cursorResource)) {
                     //?
                     slot.TrySet(_cursorResource);
+                    Debug.Log(":::: " + slot.GetCount());
                     slot.SetCount(_cursorCount);
                     EmptyCursor();
                 }
@@ -110,8 +111,11 @@ namespace Assets.Scripts.Player.Inventory.BackPack
         public void AddToFirst(RecipeComponent recipeComponent) {
             foreach(var slot in _slots) {
                 if(!slot.TryGet(out Resource res)) {
+                    Debug.Log(":::::::: " + slot.name);
                     slot.TrySet(recipeComponent.resource);
                     slot.SetCount(recipeComponent.count);
+                    slot.TryGet(out Resource _res);
+                    Debug.Log(":::::::: " + _res.name);
                     UpdateDict();
                     return;
                 }

@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.Resources.Crafting;
+using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;

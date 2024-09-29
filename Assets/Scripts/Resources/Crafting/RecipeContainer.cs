@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.Resources.Crafting {
-    public class RecipeContainer {
+    [CreateAssetMenu(fileName = "RecipeContainer", menuName = "Data/RecipeContainer", order = 0)]
+    public class RecipeContainer : ScriptableObject {
         public List<Recipe> AllRecipes = new List<Recipe>();
 
         public RecipeContainer(List<Recipe> recipes) {
