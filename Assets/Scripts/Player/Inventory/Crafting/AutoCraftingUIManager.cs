@@ -18,6 +18,7 @@ namespace Assets.Scripts.Inventory.Crafting {
         [SerializeField] private RecipeContainer _recipeContainer;
 
         public void UpdateCraftMenu() {
+            Debug.Log("UpdateCraftMenu");
             _currentPrefabs.ForEach(x => UnityEngine.Object.Destroy(x.gameObject));
             _currentPrefabs.Clear();
             var _retrieved = _selectableSlots.components;
@@ -43,6 +44,6 @@ namespace Assets.Scripts.Inventory.Crafting {
 
         public void Dispose() { _selectableSlots.onInvChanged -= delegate { UpdateCraftMenu(); }; }
 
-        public void Initialize() { _selectableSlots.onInvChanged += delegate { UpdateCraftMenu(); }; }
+        public void Awake() { _selectableSlots.onInvChanged += delegate { UpdateCraftMenu(); }; }
     }
 }

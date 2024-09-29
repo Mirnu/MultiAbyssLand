@@ -25,7 +25,7 @@ namespace Assets.Scripts.World.Blocks {
 
         public void RegisterBlock(Block block, Vector2 pos) {
             var l = Instantiate(block, pos, block.transform.rotation);
-
+            l.OnLeftClick.AddListener(delegate { Debug.Log("NIGGER BALLS"); });
             NetworkServer.Spawn(l.gameObject);
         }
 
@@ -52,10 +52,5 @@ namespace Assets.Scripts.World.Blocks {
             }
         }
 
-        // public bool TryGetBlockAtPos(Vector2 pos, out Block block) {
-        //     if(!blocks.Any(x => (Vector2)x.transform.position == pos)) { block = null; return false; }
-        //     block = blocks.Find(x => (Vector2)x.transform.position == pos);
-        //     return true;
-        // }
     }
 }

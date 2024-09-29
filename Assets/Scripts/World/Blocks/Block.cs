@@ -21,7 +21,7 @@ namespace Assets.Scripts.World.Blocks
 
         private void Awake() {
             _renderer = GetComponent<SpriteRenderer>();
-            _renderer.sprite = resource.SpriteInInventary;
+            //_renderer.sprite = resource.SpriteInInventary;
         }
 
         public void Destroy()
