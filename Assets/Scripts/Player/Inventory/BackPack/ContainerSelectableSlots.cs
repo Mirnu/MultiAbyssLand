@@ -16,10 +16,16 @@ namespace Assets.Scripts.Player.Inventory.BackPack
 
         [SerializeField] private List<SelectableSlotView> _slots = new List<SelectableSlotView>();
         [SerializeField] private SlotInfoView _slotInfoView;
+        [SerializeField] private Sprite onHover;
+        [SerializeField] private AudioClip onHoverClip;
 
         private Resource _cursorResource;
         private int _cursorCount = 0;
         private bool _;
+
+        public void DoForAll(Action<SelectableSlotView> action) {
+            _slots.ForEach(action);
+        }
 
         public override void OnStartClient()
         {
@@ -36,9 +42,11 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     UpdateDict();
                 };
                 x.OnCursorEnter += delegate {
+                    x.SetBackground(onHover);
                     _slotInfoView.UpdateRes(x.TryGet(out Resource res) ? res : null);
                 };
                 x.OnCursorExit += delegate {
+                    x.ResetBackground();
                     _slotInfoView.Empty();
                 };
             });
@@ -52,7 +60,6 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 } else if(slot.TrySet(_cursorResource)) {
                     //?
                     slot.TrySet(_cursorResource);
-                    Debug.Log(":::: " + slot.GetCount());
                     slot.SetCount(_cursorCount);
                     EmptyCursor();
                 }
@@ -111,11 +118,9 @@ namespace Assets.Scripts.Player.Inventory.BackPack
         public void AddToFirst(RecipeComponent recipeComponent) {
             foreach(var slot in _slots) {
                 if(!slot.TryGet(out Resource res)) {
-                    Debug.Log(":::::::: " + slot.name);
                     slot.TrySet(recipeComponent.resource);
                     slot.SetCount(recipeComponent.count);
                     slot.TryGet(out Resource _res);
-                    Debug.Log(":::::::: " + _res.name);
                     UpdateDict();
                     return;
                 }

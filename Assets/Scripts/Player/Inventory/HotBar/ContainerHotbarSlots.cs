@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Components;
+using Assets.Scripts.Player.Inventory.BackPack;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.Resources.Tools;
@@ -42,6 +43,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         private void OnInventoryChangedState(InputAction.CallbackContext context)
         {
             Debug.Log("is changed state");
+            _inventory.GetComponent<ContainerSelectableSlots>().DoForAll(x => x.OnCursorExit?.Invoke());
             _inventory.SetActive(!_inventory.activeSelf);
         }
 

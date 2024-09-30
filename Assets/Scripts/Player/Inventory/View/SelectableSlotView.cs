@@ -8,15 +8,14 @@ namespace Assets.Scripts.Player.Inventory.View
 {
     public class SelectableSlotView : SlotView, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        public event Action LeftMouseClick;
-        public event Action RightMouseClick;
-        public event Action OnCursorEnter;
-        public event Action OnCursorExit;
+        public Action LeftMouseClick;
+        public Action RightMouseClick;
+        public Action OnCursorEnter;
+        public Action OnCursorExit;
 
         [Client]
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("Меня нажали!!!!!");
             if (eventData.button == PointerEventData.InputButton.Left)
             {
                 LeftMouseClick?.Invoke();

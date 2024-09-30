@@ -17,11 +17,17 @@ namespace Assets.Scripts.Inventory.View {
         private TextMeshProUGUI _countDisplay;
         private Resource _currentResource;
         private int _currentAmount = 0;
+        private Sprite oldBack;
 
         private void Awake() {
             slotBackground = GetComponent<Image>();   
+            oldBack = slotBackground.sprite;
             _countDisplay = GetComponentInChildren<TextMeshProUGUI>(); 
         }
+
+        public void SetBackground(Sprite background) => slotBackground.sprite = background;
+
+        public void ResetBackground() { if(oldBack == null) { return; } slotBackground.sprite = oldBack; } 
 
         public virtual bool TryGet(out Resource res) {
             res = _currentResource;
