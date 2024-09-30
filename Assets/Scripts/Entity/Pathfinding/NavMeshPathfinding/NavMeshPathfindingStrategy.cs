@@ -23,6 +23,17 @@ namespace Assets.Scripts.Entity.Pathfinding
             agent.SetDestination(new Vector3(target.transform.position.x, target.transform.position.y));
         }
 
+        public override void MoveTo(Vector3 target, GameObject self)
+        {
+            if (!self.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
+            {
+                Debug.LogError("NavMesh agent was missing in NavMeshPathfindingStrategy.MoveTo method");
+                return;
+            }
+            _previousPoint = target;
+            agent.SetDestination(target);
+        }
+
         public override void MoveToPreviousPoint(GameObject self)
         {
             if (!self.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))

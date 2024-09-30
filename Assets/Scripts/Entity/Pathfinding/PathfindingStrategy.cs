@@ -12,6 +12,12 @@ namespace Assets.Scripts.Entity.Pathfinding
         public virtual void MoveTo(Transform target, GameObject self) {
             throw new NotImplementedException();
         }
+
+        public virtual void MoveTo(Vector3 target, GameObject self)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void MoveToPreviousPoint(GameObject self) {
             throw new NotImplementedException();
         }
