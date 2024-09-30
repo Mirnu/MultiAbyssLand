@@ -23,6 +23,7 @@ namespace Assets.Scripts.Entity.Zombie
             var agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
+            agent.speed = statsModel.Speed;
             transform.rotation = new Quaternion();
         }
 
