@@ -31,11 +31,7 @@ namespace Assets.Scripts.Entity.Zombie
         {
             /*stateMachine.Update();*/
         }
-
-        public void TakeDamage(int damage)
-        {
-            statsModel.HP -= damage;
-        }
+        
 
         [Server]
         private void OnCollisionEnter(Collision other) {

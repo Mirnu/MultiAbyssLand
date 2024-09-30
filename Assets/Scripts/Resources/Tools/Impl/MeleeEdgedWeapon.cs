@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.Game;
+﻿using Assets.Scripts.Entity;
+using Assets.Scripts.Game;
 using Assets.Scripts.Misc;
 using Assets.Scripts.Misc.CD;
+using Assets.Scripts.Resources.Data;
 using Mirror;
 using System;
 using System.Collections;
@@ -14,6 +16,8 @@ namespace Assets.Scripts.Resources.Tools.Impl
     {
         [SerializeField] protected float speedAttack = 2;
         [SerializeField] protected List<Transform> armTransforms;
+        [SerializeField] protected Vector3 center;
+        [SerializeField] protected Vector3 size;
 
         protected PlayerFacade playerFacade;
         protected Action attack;
@@ -53,6 +57,28 @@ namespace Assets.Scripts.Resources.Tools.Impl
         }
 
         protected virtual void Attack()
+        {
+            VisualAttack();
+
+            Collider[] colliders = Physics.OverlapBox(center, size);
+            WeaponResource weaponResource = tool.GetResource<WeaponResource>();
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.TryGetComponent(out EntityFacade facade))
+                {
+                    facade.TakeDamage(weaponResource.Damage);
+                }
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(center, size);
+        }
+
+        private void VisualAttack()
         {
             StopAllCoroutines();
             int interval = AngleUtils.GetInterval();

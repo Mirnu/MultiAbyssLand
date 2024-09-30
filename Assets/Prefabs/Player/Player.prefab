@@ -570,11 +570,11 @@ Transform:
   m_GameObject: {fileID: 2162624763698873636}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.4925373}
+  m_LocalScale: {x: 0.14925373, y: 0.14925373, z: 0.14925373}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4226146127649683782}
+  m_Father: {fileID: 3063070514137256246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5431809916721566522
 Camera:
@@ -2020,7 +2020,7 @@ MonoBehaviour:
   - {fileID: 4030324316290106735}
   - {fileID: 4030324317025264148}
   _inventory: {fileID: 6376043377996284022}
-  mock: {fileID: 11400000, guid: fec5683f7e7ce3e4e91b1c5130219d48, type: 2}
+  mock: {fileID: 11400000, guid: 8637fbd93b192174dbf95565ff3eaaea, type: 2}
   mock1: {fileID: 11400000, guid: 1d2b6601e3a7a414ca88b7ea51aabd73, type: 2}
   _hand: {fileID: 3658187816365489112}
 --- !u!1 &4404441366171887288
@@ -2414,6 +2414,7 @@ Transform:
   - {fileID: 7269406869024007535}
   - {fileID: 1540473239689753172}
   - {fileID: 4623756353105497481}
+  - {fileID: 4025592207667624240}
   m_Father: {fileID: 4226146127649683782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3135598704882169830
@@ -8714,7 +8715,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4025592207667624240}
   - {fileID: 4030324317159111271}
   - {fileID: 6376043377996284023}
   - {fileID: 11516258868160695}

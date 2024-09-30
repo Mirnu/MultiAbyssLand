@@ -14,5 +14,11 @@ namespace Assets.Scripts.Entity
 
         /*[SyncVar] private*/ public GameObject CurrentTarget;
         /*public GameObject CurrentTarget { get => _currentTarget; protected set { _currentTarget = value; } }*/
+
+        [Server]
+        public void TakeDamage(int damage)
+        {
+            statsModel.HP -= damage;
+        }
     }
 }
