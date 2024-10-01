@@ -28,7 +28,7 @@ namespace Assets.Scripts.Entity.Zombie
             {
                 var point = (Vector2)entityModel.gameObject.transform.position + Random.insideUnitCircle * _searchRadius;
                 Vector3 new_point = new Vector3(point.x, point.y, entityModel.gameObject.transform.position.z);
-                pathfindingStrategy.MoveTo(new_point, gameObject);
+                pathfindingStrategy.MoveTo(new_point, entityModel.gameObject);
                 _checkpointTime = Time.time;
                 _cooldownTime = Random.RandomRange(3f, 6f);
             }
@@ -45,7 +45,7 @@ namespace Assets.Scripts.Entity.Zombie
 
         private void Awake()
         {
-            _agent = entityModel.gameObject.GetComponent<NavMeshAgent>();
+            _agent = entityModel.gameObject.GetComponentInParent<NavMeshAgent>();
         }
     }
 }
