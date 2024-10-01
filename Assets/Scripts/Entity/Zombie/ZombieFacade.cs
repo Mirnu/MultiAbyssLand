@@ -31,12 +31,13 @@ namespace Assets.Scripts.Entity.Zombie
         {
             /*stateMachine.Update();*/
         }
-        
+
 
         [Server]
-        private void OnCollisionEnter(Collision other) {
-            if (!isServer) return;
-            if (other.gameObject.TryGetComponent(out PlayerMovement player))
+        private void OnCollisionEnter(Collision other)
+        {
+            var player = other.gameObject.GetComponentInParent<PlayerFacade>();
+            if (player)
             {
                 CurrentTarget = player.gameObject;
                 stateMachine.ChangeState(stateMachine.HitState);
@@ -44,8 +45,10 @@ namespace Assets.Scripts.Entity.Zombie
         }
 
         [Server]
-        private void OnTriggerEnter(Collider other) {
-            if (other.gameObject.TryGetComponent(out PlayerMovement player))
+        private void OnTriggerEnter(Collider other)
+        {
+            var player = other.gameObject.GetComponentInParent<PlayerFacade>();
+            if (player)
             {
                 Debug.Log("Get it!");
                 CurrentTarget = other.gameObject;
@@ -55,9 +58,10 @@ namespace Assets.Scripts.Entity.Zombie
         }
 
         [Server]
-        private void OnTriggerExit(Collider other) {
-            if (!isServer) return;
-            if (other.gameObject.TryGetComponent(out PlayerMovement player))
+        private void OnTriggerExit(Collider other)
+        {
+            var player = other.gameObject.GetComponentInParent<PlayerFacade>();
+            if (player)
             {
                 CurrentTarget = null;
                 stateMachine.ChangeState(stateMachine.SearchState);

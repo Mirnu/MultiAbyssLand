@@ -22,8 +22,7 @@ namespace Assets.Scripts.Entity.Zombie
 
         public override void Tick()
         {
-            Debug.Log(_isSearch);
-            if (entityModel.gameObject.GetComponent<NavMeshAgent>().velocity.magnitude == 0.0f) _isSearch = true;
+            if (_agent.velocity.magnitude == 0.0f) _isSearch = true;
             if (!_isSearch) return;
             if ((Time.time - _checkpointTime) >= _cooldownTime)
             {
