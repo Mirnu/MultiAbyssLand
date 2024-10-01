@@ -15,10 +15,12 @@ namespace Assets.Scripts.Entity.Zombie
 
         public override void Enter()
         {
-            if (entityModel.CurrentTarget.TryGetComponent<PlayerFacade>(out PlayerFacade target))
+            PlayerFacade player = entityModel.CurrentTarget.GetComponentInParent<PlayerFacade>();
+            if (player)
             {
-                Debug.Log($"{target} was attacked");
+                Debug.Log($"{player} was attacked");
             }
+            /*entityModel.CurrentTarget = player.gameObject;*/
             stateMachine.ChangeState(stateMachine.AttackState);
         }
 

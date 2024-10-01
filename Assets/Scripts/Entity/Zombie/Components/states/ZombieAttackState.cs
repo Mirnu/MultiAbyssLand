@@ -19,13 +19,13 @@ namespace Assets.Scripts.Entity.Zombie
 
         public override bool Exit()
         {
-            pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
+            Debug.Log("Attack exit");
             return true;
         }
 
         public override void Tick()
         {
-            Debug.Log(entityModel.CurrentTarget.transform);
+            Debug.Log("Attack tick");
             pathfindingStrategy.MoveTo(entityModel.CurrentTarget.transform, entityModel.gameObject);
         }
     }
