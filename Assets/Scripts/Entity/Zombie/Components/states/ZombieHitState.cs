@@ -20,7 +20,7 @@ namespace Assets.Scripts.Entity.Zombie
             {
                 Debug.Log($"{player} was attacked");
             }
-            entityModel.CurrentTarget = player.gameObject;
+            /*entityModel.CurrentTarget = player.gameObject;*/
             stateMachine.ChangeState(stateMachine.AttackState);
         }
 

@@ -39,7 +39,7 @@ namespace Assets.Scripts.Entity.Zombie
             var player = other.gameObject.GetComponentInParent<PlayerFacade>();
             if (player)
             {
-                CurrentTarget = player.gameObject;
+                CurrentTarget = other.gameObject;
                 stateMachine.ChangeState(stateMachine.HitState);
             }
         }

@@ -39,7 +39,12 @@ namespace Assets.Scripts.Entity.Zombie
             return true;
         }
 
-        public override void Enter() {
+        public override void Enter() {         
+            pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
+        }
+
+        private void Awake()
+        {
             _agent = entityModel.gameObject.GetComponent<NavMeshAgent>();
         }
     }

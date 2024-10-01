@@ -10,7 +10,7 @@ namespace Assets.Scripts.Entity.Pathfinding
     [System.Serializable]
     public class NavMeshPathfindingStrategy : PathfindingStrategy
     {
-        private Vector3 _previousPoint { get; set; }
+        public Vector3 _previousPoint { get; set; }
 
         public override void MoveTo(Transform target, GameObject self)
         {

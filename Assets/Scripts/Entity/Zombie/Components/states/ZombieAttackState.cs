@@ -20,7 +20,6 @@ namespace Assets.Scripts.Entity.Zombie
         public override bool Exit()
         {
             Debug.Log("Attack exit");
-            pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
             return true;
         }
 
