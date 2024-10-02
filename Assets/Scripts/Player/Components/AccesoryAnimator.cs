@@ -26,7 +26,7 @@ namespace Assets.Scripts.Player.Components
             _shirtsAnimator.Play(animationName, 0, 0);
 
             string hairAnimationName = _hairAnimationMap[animation > 3 ? animation - 4 : animation];
-            _shirtsAnimator.Play(hairAnimationName, 0, 0);
+            _hairAnimator.Play(hairAnimationName, 0, 0);
         }
     }
 }
