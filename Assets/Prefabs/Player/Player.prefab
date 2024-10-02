@@ -2603,6 +2603,7 @@ GameObject:
   - component: {fileID: 3742672943742044375}
   - component: {fileID: 301810214674017748}
   - component: {fileID: 4744783742279693474}
+  - component: {fileID: 1608041549634993475}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -2842,6 +2843,7 @@ MonoBehaviour:
   _hand: {fileID: 3658187816365489112}
   _animator: {fileID: 3243736947759867445}
   _armAnimator: {fileID: 1808985569174054163}
+  _accesoryAnimator: {fileID: 1608041549634993475}
 --- !u!114 &301810214674017748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2893,6 +2895,21 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &1608041549634993475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473458847305667641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1000f39c079fa3e48a7d0cb950878132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hairAnimator: {fileID: 3834025691606388298}
+  _paintsAnimator: {fileID: 3843335642277633076}
+  _shirtsAnimator: {fileID: 4939404258415283527}
 --- !u!1 &5712181195936640935
 GameObject:
   m_ObjectHideFlags: 0

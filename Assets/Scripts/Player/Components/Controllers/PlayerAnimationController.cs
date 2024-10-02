@@ -28,6 +28,7 @@ namespace Assets.Scripts.Player.Components
         [SerializeField] private ToolContainer _hand;
         [SerializeField] private Animator _animator;
         [SerializeField] private ArmAnimator _armAnimator;
+        [SerializeField] private AccesoryAnimator _accesoryAnimator;
 
 
         private int _currentAnimationPosition;
@@ -102,6 +103,7 @@ namespace Assets.Scripts.Player.Components
             }
 
             _animator.Play(Enum.GetName(typeof(Animations), _currentAnimationPosition), 0, 0);
+            _accesoryAnimator.Play(_currentAnimationPosition);
         }
 
         [Server]

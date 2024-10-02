@@ -11,8 +11,6 @@ namespace Assets.Scripts.Player
         {
             PlayerInput = new();
             PlayerInput.Enable();
-
-            Application.targetFrameRate = 60;
         }
     }
 }
