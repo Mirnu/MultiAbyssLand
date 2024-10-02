@@ -293,7 +293,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &654919067803298857
 SphereCollider:
@@ -526,4 +526,3 @@ MonoBehaviour:
   pathfindingStrategy: {fileID: 6796907416547300163}
   stateMachine: {fileID: 8114585766834157483}
   entityModel: {fileID: 2488158673717844323}
-  _navMeshAgent: {fileID: 9030207242517343125}
