@@ -14,8 +14,10 @@ namespace Assets.Scripts.Entity.Zombie
     {
         [SerializeField] private new ZombieStateMachine stateMachine;
         [SerializeField] private new ZombieFacade entityModel;
-        private float _cooldownTime = 5f;
-        private float _checkpointTime= 0f;
+        public float cooldownTimeMax = 6f;
+        public float cooldownTimeMin = 3f;
+        private float _cooldownTime = 0f;
+        private float _checkpointTime = 0f;
         private float _searchRadius = 5f;
         private bool _isSearch = false;
         private NavMeshAgent _agent;
@@ -30,7 +32,7 @@ namespace Assets.Scripts.Entity.Zombie
                 Vector3 new_point = new Vector3(point.x, point.y, entityModel.gameObject.transform.position.z);
                 pathfindingStrategy.MoveTo(new_point, entityModel.gameObject);
                 _checkpointTime = Time.time;
-                _cooldownTime = Random.RandomRange(3f, 6f);
+                _cooldownTime = Random.RandomRange(cooldownTimeMin, cooldownTimeMax);
             }
         }
         public override bool Exit()

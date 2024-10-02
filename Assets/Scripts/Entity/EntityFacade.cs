@@ -6,7 +6,7 @@ namespace Assets.Scripts.Entity
 {
     public abstract class EntityFacade : NetworkBehaviour
     {
-        [SerializeField] protected EntityStatsModel statsModel;
+        public EntityStatsModel statsModel;
         [SerializeField] protected EntityMaxStatsModel maxStatsModel;
         [SerializeField] protected PathfindingStrategy pathfindingStrategy;
 
