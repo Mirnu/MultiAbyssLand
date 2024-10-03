@@ -20,5 +20,16 @@ namespace Assets.Scripts.Entity
         {
             statsModel.HP -= damage;
         }
+
+        public virtual void Die(int hp)
+        {
+            if (hp > 0) return;
+            Destroy(gameObject);
+        }
+
+        public void Awake()
+        {
+            statsModel.HpChanged += Die;
+        }
     }
 }
