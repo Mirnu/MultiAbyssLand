@@ -16,7 +16,7 @@ namespace Assets.Scripts.Entity
         /*public GameObject CurrentTarget { get => _currentTarget; protected set { _currentTarget = value; } }*/
 
         [Server]
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             statsModel.HP -= damage;
         }

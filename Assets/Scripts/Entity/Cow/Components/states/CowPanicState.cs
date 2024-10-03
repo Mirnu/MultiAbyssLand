@@ -41,14 +41,14 @@ namespace Assets.Scripts.Entity.Cow
 
         public override bool Exit()
         {
-            entityModel.statsModel.Speed = entityModel.statsModel.Speed / (1f + 0.5f);
+            entityModel.statsModel.Speed = entityModel.statsModel.Speed / (1f + 2f);
             _isSearch = false;
             return true;
         }
 
         public override void Enter() {
             panicDurationTime = Time.time;
-            entityModel.statsModel.Speed = entityModel.statsModel.Speed * (1f + 0.5f);
+            entityModel.statsModel.Speed = entityModel.statsModel.Speed * (1f + 2f);
             pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
         }
 

@@ -27,6 +27,13 @@ namespace Assets.Scripts.Entity.Cow
             transform.rotation = new Quaternion();
         }
 
+        [Server]
+        public override void TakeDamage(int hp)
+        {
+            statsModel.HP -= hp;
+            stateMachine.ChangeState(stateMachine.PanicState);
+        }
+
         private void Update()
         {
             /*stateMachine.Update();*/
