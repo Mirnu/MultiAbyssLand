@@ -85,6 +85,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  _HP: 3
+  _Speed: 0
+  _Damage: 0
+  _CanDie: 0
+  _HasAI: 0
+  _CanAttack: 0
 --- !u!1 &4973916822782728756
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,12 @@ namespace Assets.Scripts.Entity
     [RequireComponent(typeof(EntityMaxStatsModel)), RequireComponent(typeof(Humanoid))]
     public class EntityStatsModel: NetworkBehaviour
     {
-        private int _HP;
-        private float _Speed;
-        private int _Damage;
-        private bool _CanDie;
-        private bool _HasAI;
-        private bool _CanAttack;
+        [ReadOnly, SerializeField] private int _HP;
+        [ReadOnly, SerializeField] private float _Speed;
+        [ReadOnly, SerializeField] private int _Damage;
+        [ReadOnly, SerializeField] private bool _CanDie;
+        [ReadOnly, SerializeField] private bool _HasAI;
+        [ReadOnly, SerializeField] private bool _CanAttack;
 
         protected EntityMaxStatsModel _MaxStats;
 
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Entity
             get => _HP;
             set
             {
-                int new_value = value > 0 ? value : 1;
+                int new_value = value > 0 ? value : 0;
                 if (new_value == _HP) return;
                 _HP = new_value > _MaxStats.HP ? _MaxStats.HP : new_value;
                 HpChanged?.Invoke(_HP);
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Entity
             get => _Speed;
             set
             {
-                float new_value = value > 0 ? value : 1;
+                float new_value = value > 0 ? value : 0;
                 if (new_value == _Speed) return;
                 _Speed = new_value > _MaxStats.Speed ? _MaxStats.Speed : new_value;
                 SpeedChanged?.Invoke(_Speed);
