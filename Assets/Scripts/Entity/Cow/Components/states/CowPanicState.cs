@@ -22,11 +22,15 @@ namespace Assets.Scripts.Entity.Cow
         public override void Tick()
         {
             if (Time.time - panicDurationTime >= panicDuration) stateMachine.ChangeState(stateMachine.SearchState);
-            if (_agent.velocity.magnitude == 0.0f) _isSearch = true;
+            if (_agent.velocity.magnitude == 0.0f)
+            {
+                _isSearch = true;
+                _cowAnimator.PlayIdle();
+            } else _cowAnimator.PlayByDirection(_agent.velocity.normalized, true);
             if (!_isSearch) return;
             if ((Time.time - _checkpointTime) >= _cooldownTime)
             {
-                _cowAnimator.PlayByDirection(_agent.velocity.normalized, true);
+                
                 var point = (Vector2)entityModel.gameObject.transform.position + Random.insideUnitCircle * _searchRadius;
                 Vector3 new_point = new Vector3(point.x, point.y, entityModel.gameObject.transform.position.z);
                 pathfindingStrategy.MoveTo(new_point, entityModel.gameObject);

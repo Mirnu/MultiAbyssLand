@@ -9,6 +9,7 @@ namespace Assets.Scripts.Entity.Cow
     public class CowAnimator : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
+        private Animations lastWalkAnimation;
 
         private Vector2[] _targets = new Vector2[]
         {
@@ -20,8 +21,7 @@ namespace Assets.Scripts.Entity.Cow
 
         public void PlayIdle()
         {
-            int animationId = Random.Range(0, 4);
-            PlayAnimation(animationId);
+            PlayAnimation(lastWalkAnimation - 4);
         }
 
         public void PlayAnimation(Animations animation)
@@ -36,6 +36,7 @@ namespace Assets.Scripts.Entity.Cow
         {
             Vector2 target = FindClosestVector(direction);
             int id = Array.IndexOf(_targets, target);
+            lastWalkAnimation = (Animations)id;
             PlayAnimation(isWalk ? id + 4 : id);
         }
 

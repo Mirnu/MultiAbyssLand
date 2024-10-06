@@ -19,7 +19,10 @@ namespace Assets.Scripts.Entity.Zombie
 
         public override void ServerTick()
         {
-            _animator.PlayByDirection(_agent.velocity.normalized, true);
+            if (_agent.velocity.magnitude == 0.0f)
+            {
+                _animator.PlayIdle();
+            } else _animator.PlayByDirection(_agent.velocity.normalized, true);
         }
 
         public override void Enter()
