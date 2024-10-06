@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.ILifeCycle;
 using Assets.Scripts.World.Blocks;
+using Assets.Scripts.World.Managers;
 using Mirror;
 using System;
 using UnityEngine;
@@ -53,7 +54,7 @@ namespace Assets.Scripts.Player.Components
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-            BlockManager.Singleton.AnyClickCmd(mousePos2D, context.action.ReadValue<float>());
+            FirstTypeManager.Singleton.AnyClickCmd(mousePos2D, context.action.ReadValue<float>());
         }
 
         public override void ClientTick()

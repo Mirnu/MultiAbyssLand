@@ -15,7 +15,6 @@ namespace Assets.Scripts.World.Blocks
         public UnityEvent OnFixedUpdate;
 
         public Resource resource;
-        public float Health { get; private set; }
         
         protected SpriteRenderer _renderer;
 
@@ -27,15 +26,6 @@ namespace Assets.Scripts.World.Blocks
         public void Destroy()
         {
             OnDestroyed?.Invoke();
-        }
-
-        [ServerCallback]
-        public void Damage(float amount) {
-            if(Health > amount) {
-                Health -= amount;
-            } else {
-                Destroy(gameObject);
-            }
         }
 
     }
