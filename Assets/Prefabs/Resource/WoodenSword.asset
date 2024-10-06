@@ -17,5 +17,5 @@ MonoBehaviour:
   Name: Wooden Sword
   Tool: {fileID: 1278551059963765683, guid: 59eda8d9dd29c5743a8f095b2eb96245, type: 3}
   Info: 
-  _damage: 5
+  _damage: 10
   _speed: 5

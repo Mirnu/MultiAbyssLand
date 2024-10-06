@@ -1,22 +1,16 @@
 ﻿using Assets.Scripts.Misc.Constants;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Menu.View
 {
-    public class PlayButton : MonoBehaviour
+    public class PlayButton : MenuButton, IPointerClickHandler
     {
-        private Button _button;
-
-        private void Awake()
+        public void OnPointerClick(PointerEventData eventData)
         {
-            _button = GetComponent<Button>();
-
-            _button.onClick.AddListener(() =>
-            {
-                SceneManager.LoadScene(Scenes.Game);
-            });
+            SceneManager.LoadScene(Scenes.Game);
         }
     }
 }

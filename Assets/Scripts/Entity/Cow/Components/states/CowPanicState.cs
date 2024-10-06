@@ -1,17 +1,12 @@
-using Assets.Scripts.Entity;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditorInternal;
 using UnityEngine;
-using Assets.Scripts.Entity.Pathfinding;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.Entity.Cow
 {
     public class CowPanicState : EntityState
     {
+        [SerializeField] private CowAnimator _cowAnimator;
+
         [SerializeField] private new CowStateMachine stateMachine;
         [SerializeField] private new CowFacade entityModel;
         [SerializeField] private float _cooldownTimeMax = 6f;
@@ -31,6 +26,7 @@ namespace Assets.Scripts.Entity.Cow
             if (!_isSearch) return;
             if ((Time.time - _checkpointTime) >= _cooldownTime)
             {
+                _cowAnimator.PlayByDirection(_agent.velocity.normalized, true);
                 var point = (Vector2)entityModel.gameObject.transform.position + Random.insideUnitCircle * _searchRadius;
                 Vector3 new_point = new Vector3(point.x, point.y, entityModel.gameObject.transform.position.z);
                 pathfindingStrategy.MoveTo(new_point, entityModel.gameObject);

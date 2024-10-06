@@ -58,9 +58,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         protected virtual void Attack()
         {
-            VisualAttack();
-
-            Collider[] colliders = Physics.OverlapBox(center, size);
+            Collider[] colliders = Physics.OverlapBox(gameObject.transform.position + center, size);
             WeaponResource weaponResource = tool.GetResource<WeaponResource>();
 
             foreach (Collider collider in colliders)
@@ -70,12 +68,14 @@ namespace Assets.Scripts.Resources.Tools.Impl
                     facade.TakeDamage(weaponResource.Damage);
                 }
             }
+
+            VisualAttack();
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(center, size);
+            Gizmos.DrawWireCube(gameObject.transform.position + center, size);
         }
 
         private void VisualAttack()

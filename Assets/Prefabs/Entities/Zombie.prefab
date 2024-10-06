@@ -85,6 +85,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  _HP: 0
+  _Speed: 0
+  _Damage: 0
+  _CanDie: 0
+  _HasAI: 0
+  _CanAttack: 0
 --- !u!1 &1529546354424365297
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +111,8 @@ GameObject:
   - component: {fileID: 2166650923551546278}
   - component: {fileID: 9030207242517343125}
   - component: {fileID: 6796907416547300163}
+  - component: {fileID: 5842979212677242803}
+  - component: {fileID: 6786756555820610474}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -122,8 +130,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9327, y: -1.7982, z: 0}
-  m_LocalScale: {x: 0.8145, y: 1.8964, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1866756906402388}
   - {fileID: 2371369642478129668}
@@ -170,12 +178,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -22073423, guid: 8b798cf214ad0bb46bd12dc5d71ff45c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -370,8 +378,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.99999994, y: 0.99999994, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1459704, y: 0.24375251, z: 0.2}
+  m_Center: {x: 0.0008161101, y: -0.042330887, z: 0}
 --- !u!195 &9030207242517343125
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -409,6 +417,40 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+--- !u!114 &5842979212677242803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529546354424365297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5e83c7a06726d4ab66e36398d7ac66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6786756555820610474}
+--- !u!95 &6786756555820610474
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529546354424365297}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4b72870b56342240bef3ad39f729874, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5287931695576771192
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,8 +526,10 @@ MonoBehaviour:
   entityManager: {fileID: 1085433263108125429}
   entityStats: {fileID: 1945159726685513426}
   pathfindingStrategy: {fileID: 6796907416547300163}
+  _animator: {fileID: 5842979212677242803}
   stateMachine: {fileID: 8114585766834157483}
   entityModel: {fileID: 2488158673717844323}
+  _agent: {fileID: 9030207242517343125}
 --- !u!114 &6240234537941475868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,5 +568,8 @@ MonoBehaviour:
   entityManager: {fileID: 1085433263108125429}
   entityStats: {fileID: 1945159726685513426}
   pathfindingStrategy: {fileID: 6796907416547300163}
+  _animator: {fileID: 5842979212677242803}
   stateMachine: {fileID: 8114585766834157483}
   entityModel: {fileID: 2488158673717844323}
+  cooldownTimeMax: 6
+  cooldownTimeMin: 3

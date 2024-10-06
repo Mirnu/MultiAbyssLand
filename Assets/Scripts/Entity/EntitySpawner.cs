@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEditor;
-using NavMeshPlus.Components;
 
 public class EntitySpawner : NetworkBehaviour
 {

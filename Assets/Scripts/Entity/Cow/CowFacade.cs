@@ -1,10 +1,6 @@
 using Assets.Scripts.Game;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Assets.Scripts.Player;
-using Assets.Scripts.Player.Components;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.Entity.Cow

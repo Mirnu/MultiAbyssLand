@@ -88,6 +88,8 @@ MonoBehaviour:
   - {fileID: 262352373122800661, guid: 8a2312903461816448a30782e5a4a442, type: 3}
   - {fileID: 169747878536284619, guid: f4899e8820f56dd42af39771ed5d44f5, type: 3}
   - {fileID: 4167840899521343808, guid: 44bb2859d54bab143851c239ed152368, type: 3}
+  center: {x: 0, y: 0, z: 0}
+  size: {x: 3, y: 3, z: 3}
 --- !u!1 &5986749992570485701
 GameObject:
   m_ObjectHideFlags: 0

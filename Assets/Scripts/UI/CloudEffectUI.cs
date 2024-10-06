@@ -14,11 +14,19 @@ namespace Assets.Scripts.UI
         [SerializeField] private int _maxClouds = 5;
         [SerializeField] private float _cloudSpeed = 10;
 
+        private List<GameObject> _clouds = new();
+
         private float _maxRandomTime => _timeLive / _maxClouds;
 
-        private void Awake()
+        private void OnEnable()
         {
             StartCoroutine(Init());
+        }
+
+        private void OnDisable()
+        {
+            _clouds.ForEach(x => Destroy(x));
+            _clouds.Clear();
         }
 
         private IEnumerator Init()
@@ -36,6 +44,7 @@ namespace Assets.Scripts.UI
         {
             int yPos = Random.Range(_asymptote.Down, _asymptote.Up);
             RectTransform cloud = Instantiate(_cloudSprites[Random.Range(0, _cloudSprites.Count)], transform);
+            _clouds.Add(cloud.gameObject);
 
             cloud.anchoredPosition = new Vector2(cloud.anchoredPosition.x, yPos);
             StartCoroutine(MoveAndDestroyCloud(cloud));

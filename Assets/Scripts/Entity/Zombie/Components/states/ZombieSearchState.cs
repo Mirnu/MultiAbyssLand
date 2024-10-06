@@ -1,17 +1,13 @@
-using Assets.Scripts.Entity;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditorInternal;
+using Assets.Scripts.Entity.Cow;
 using UnityEngine;
-using Assets.Scripts.Entity.Pathfinding;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.AI;
 
 namespace Assets.Scripts.Entity.Zombie
 {
     public class ZombieSearchState : EntityState
     {
+        [SerializeField] private CowAnimator _animator;
+
         [SerializeField] private new ZombieStateMachine stateMachine;
         [SerializeField] private new ZombieFacade entityModel;
         public float cooldownTimeMax = 6f;
@@ -28,6 +24,7 @@ namespace Assets.Scripts.Entity.Zombie
             if (!_isSearch) return;
             if ((Time.time - _checkpointTime) >= _cooldownTime)
             {
+                _animator.PlayByDirection(_agent.velocity.normalized, true);
                 var point = (Vector2)entityModel.gameObject.transform.position + Random.insideUnitCircle * _searchRadius;
                 Vector3 new_point = new Vector3(point.x, point.y, entityModel.gameObject.transform.position.z);
                 pathfindingStrategy.MoveTo(new_point, entityModel.gameObject);

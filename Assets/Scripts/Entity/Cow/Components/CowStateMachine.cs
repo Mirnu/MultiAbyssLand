@@ -1,10 +1,4 @@
-using Assets.Scripts.Entity;
-using Assets.Scripts.Entity.Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using Mirror;
 
 
 namespace Assets.Scripts.Entity.Cow {

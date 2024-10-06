@@ -16,6 +16,8 @@ namespace Assets.Scripts.Menu.View
 
         private Image _spriteRenderer;
 
+        private void OnDisable() => OnExit();
+
         private void Awake()
         {
             _spriteRenderer = GetComponent<Image>();
@@ -27,7 +29,9 @@ namespace Assets.Scripts.Menu.View
             _spriteRenderer.rectTransform.sizeDelta = _hoverSize;
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public void OnPointerExit(PointerEventData eventData) => OnExit();
+
+        private void OnExit()
         {
             _spriteRenderer.sprite = _defaultSprite;
             _spriteRenderer.rectTransform.sizeDelta = _defaultSize;

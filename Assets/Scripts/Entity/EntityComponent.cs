@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.ILifeCycle;
-using Assets.Scripts.Player;
 using Mirror;
 using UnityEngine;
 
