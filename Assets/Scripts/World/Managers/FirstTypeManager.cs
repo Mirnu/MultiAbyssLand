@@ -10,7 +10,7 @@ namespace Assets.Scripts.World.Managers {
     // 1 система блоков
     public class FirstTypeManager : NetworkBehaviour
     {
-        [SerializeField] private Dictionary<InteractableGO, BlockInWorld> blocks = new Dictionary<InteractableGO, BlockInWorld>();
+        [SerializeField] private List<InteractableGO> blocks = new List<InteractableGO>();
 
         private static FirstTypeManager _singleton;
 
@@ -35,19 +35,19 @@ namespace Assets.Scripts.World.Managers {
         [Command(requiresAuthority = false)]
         public void AnyClickCmd(Vector2 mousePos2D, float m) {
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-            if(hit.collider != null && blocks.Keys.ToList().Any(x => x.pos == hit.collider.transform.position)) {
+            if(hit.collider != null && blocks.Any(x => x.Pos == hit.collider.transform.position)) {
                 Debug.Log("found a block: " + hit.collider.name + " : " + m);
                 switch (m) {
                     case 0 : { 
-                        blocks.Keys.ToList().Find(x =>  x.pos == hit.collider.transform.position).Go.OnLeftClick?.Invoke();
+                        blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnLeftClick?.Invoke();
                         break; 
                     }
                     case 1 : {
-                        blocks.Keys.ToList().Find(x =>  x.pos == hit.collider.transform.position).Go.OnRightClick?.Invoke();
+                        blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnRightClick?.Invoke();
                         break; 
                     }
                     case 2 : {
-                        blocks.Keys.ToList().Find(x =>  x.pos == hit.collider.transform.position).Go.OnMiddleClick?.Invoke();
+                        blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnMiddleClick?.Invoke();
                         break; 
                     }
                 }
@@ -59,28 +59,25 @@ namespace Assets.Scripts.World.Managers {
         {
             foreach(var x in blocks)
             {
-                x.Key.Init(delegate { x.Key.Go.transform.Rotate(0, 0, 25); }, 
-                    delegate{ Object.Destroy(x.Key.Go.gameObject); }, x.Value.block, x.Value.pos);
+                // x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, 
+                //     delegate{ Object.Destroy(x.Go.gameObject); }, x.block, x.pos);
                 //Console.WriteLine($"key: {person.Key}  value: {person.Value}");
             }
-            blocks.Keys.ToList().ForEach(x => { 
-                // Типа рофл плэйсхолдер пон да?
-                
-            });
         }
     }
 
-    [Serializable]
+    [System.Serializable]
     public class InteractableGO {
         public Block Go;
-        public int Health;
-        public int MaxHealth;
+        [HideInInspector] public int Health;
+        [HideInInspector] public int MaxHealth;
 
-        public Action OnDamaged;
-        public Action OnDestroyed;
-        public Vector3 pos { get { return Go.transform.position; } set { Go.transform.position = value; } }
+        [HideInInspector] public Action OnDamaged;
+        [HideInInspector] public Action OnDestroyed;
+        public Vector3 Pos;
 
         public void Init(Action onDamaged, Action onDestroyed, Block go, Vector3 pos) {
+            Pos = pos;
             Go = Object.Instantiate(go, pos, Quaternion.identity);
             Go.OnLeftClick.AddListener(delegate {onDamaged?.Invoke();});
             Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
