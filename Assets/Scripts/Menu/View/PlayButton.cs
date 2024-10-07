@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Misc.Constants;
+using Mirror;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ namespace Assets.Scripts.Menu.View
     {
         public void OnPointerClick(PointerEventData eventData)
         {
-            SceneManager.LoadScene(Scenes.Game);
+            NetworkManager.singleton.StartHost();
         }
     }
 }

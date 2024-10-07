@@ -6,8 +6,8 @@ using Assets.Scripts.Player;
 
 public class MALNetworkManager : NetworkManager
 {
-    [SerializeField] private WorldEntrypoint worldEntrypoint;
-    [SerializeField] private PlayerEntryPoint playerEntrypoint;
+  // [SerializeField] private WorldEntrypoint worldEntrypoint;
+    //[SerializeField] private PlayerEntryPoint playerEntrypoint;
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
@@ -16,8 +16,7 @@ public class MALNetworkManager : NetworkManager
 
     public override void OnStartServer()
     {
-        
-        worldEntrypoint.Entry();
+       // worldEntrypoint.Entry();
         base.OnStartServer();
     }
 

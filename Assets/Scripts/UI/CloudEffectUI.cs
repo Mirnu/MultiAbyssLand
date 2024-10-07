@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,15 +19,12 @@ namespace Assets.Scripts.UI
 
         private float _maxRandomTime => _timeLive / _maxClouds;
 
-        private void OnEnable()
+
+
+        [Client]
+        private void Start()
         {
             StartCoroutine(Init());
-        }
-
-        private void OnDisable()
-        {
-            _clouds.ForEach(x => Destroy(x));
-            _clouds.Clear();
         }
 
         private IEnumerator Init()
@@ -43,7 +41,9 @@ namespace Assets.Scripts.UI
         private void Spawn()
         {
             int yPos = Random.Range(_asymptote.Down, _asymptote.Up);
-            RectTransform cloud = Instantiate(_cloudSprites[Random.Range(0, _cloudSprites.Count)], transform);
+            int id = Random.Range(0, _cloudSprites.Count);
+            if (id < 0 || id >= _cloudSprites.Count) return;
+            RectTransform cloud = Instantiate(_cloudSprites[id], transform);
             _clouds.Add(cloud.gameObject);
 
             cloud.anchoredPosition = new Vector2(cloud.anchoredPosition.x, yPos);

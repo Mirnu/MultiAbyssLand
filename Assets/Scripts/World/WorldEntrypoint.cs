@@ -12,8 +12,14 @@ public class WorldEntrypoint : NetworkBehaviour
         
     }
 
+    [Server]
+    private void Start()
+    {
+        GetComponent<WorldFacade>().Generate("test");
+    }
+
     public void Entry() {
         Debug.Log("WorldEntrypoint");
-        GetComponent<WorldFacade>().Generate( "test");
+        
     }
 }
