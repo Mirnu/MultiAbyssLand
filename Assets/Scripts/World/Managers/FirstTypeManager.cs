@@ -25,7 +25,7 @@ namespace Assets.Scripts.World.Managers {
             }
             blocks.ForEach(x => { 
                 RegisterBlock(x.Go, x.Pos, out Block inWorld);
-                x.Init(delegate { inWorld.transform.Rotate(0, 0, 25); }, delegate{ Destroy(inWorld.gameObject); }, inWorld);
+                x.Init(delegate { inWorld.transform.Rotate(0, 0, 25); x.Damage(1); }, delegate{ Debug.LogWarning("DESTROY"); Destroy(inWorld.gameObject); }, inWorld);
             });
 
             base.OnStartServer();
@@ -55,31 +55,31 @@ namespace Assets.Scripts.World.Managers {
                         break; 
                     }
                 }
-                
             }
         }
-
     }
 
     [Serializable]
     public class InteractableGO {
         public Block Go;
-        [HideInInspector] public int Health;
-        [HideInInspector] public int MaxHealth;
+        public int Health;
+        public int MaxHealth;
 
-        public UnityEvent OnDamaged;
-        public UnityEvent OnDestroyed;
+        public Action OnLeftClick;
+        public Action OnRightClick;
         public Vector3 Pos;
 
         public void Init(Action onDamaged, Action onDestroyed, Block inWorld) {
             Go = inWorld;
+            Health = MaxHealth;
             Go.OnLeftClick.AddListener(delegate {onDamaged?.Invoke();});
             Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
         }
 
         public void Damage(int amount) {
-            if(Health > amount) { OnDamaged?.Invoke(); }
-            else { OnDestroyed?.Invoke(); }
+            Debug.LogWarning("NIGGER:" + amount);
+            if(Health > amount) { OnLeftClick?.Invoke(); Health -= amount; }
+            else { Go.OnDestroyed?.Invoke(); }
         }
     }
 }
