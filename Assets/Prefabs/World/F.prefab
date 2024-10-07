@@ -102,6 +102,21 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  OnLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRightClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFixedUpdate:
+    m_PersistentCalls:
+      m_Calls: []
   resource: {fileID: 0}
 --- !u!114 &1404156984623684888
 MonoBehaviour:

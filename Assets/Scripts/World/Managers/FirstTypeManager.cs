@@ -5,6 +5,7 @@ using Object = UnityEngine.Object;
 using UnityEngine;
 using Mirror;
 using System.Linq;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.World.Managers {
     // 1 система блоков
@@ -22,21 +23,24 @@ namespace Assets.Scripts.World.Managers {
             {
                 _singleton = this;
             }
-            //blocks.ForEach(x => RegisterBlock(x.Go, x.pos));
+            blocks.ForEach(x => { 
+                RegisterBlock(x.Go, x.Pos, out Block inWorld);
+                x.Init(delegate { inWorld.transform.Rotate(0, 0, 25); }, delegate{ Destroy(inWorld.gameObject); }, inWorld);
+            });
+
             base.OnStartServer();
         }
 
-        public void RegisterBlock(Block block, Vector2 pos) {
-            var l = Instantiate(block, pos, block.transform.rotation);
-            l.OnLeftClick.AddListener(delegate { Debug.Log("NIGGER BALLS"); });
+        public void RegisterBlock(Block orig, Vector2 pos, out Block inWorld) {
+            var l = Instantiate(orig, pos, orig.transform.rotation);
             NetworkServer.Spawn(l.gameObject);
+            inWorld = l;
         }
 
         [Command(requiresAuthority = false)]
         public void AnyClickCmd(Vector2 mousePos2D, float m) {
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if(hit.collider != null && blocks.Any(x => x.Pos == hit.collider.transform.position)) {
-                Debug.Log("found a block: " + hit.collider.name + " : " + m);
                 switch (m) {
                     case 0 : { 
                         blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnLeftClick?.Invoke();
@@ -55,41 +59,23 @@ namespace Assets.Scripts.World.Managers {
             }
         }
 
-        public void Initialize()
-        {
-            foreach(var x in blocks)
-            {
-                // x.Init(delegate { x.Go.transform.Rotate(0, 0, 25); }, 
-                //     delegate{ Object.Destroy(x.Go.gameObject); }, x.block, x.pos);
-                //Console.WriteLine($"key: {person.Key}  value: {person.Value}");
-            }
-        }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class InteractableGO {
         public Block Go;
         [HideInInspector] public int Health;
         [HideInInspector] public int MaxHealth;
 
-        [HideInInspector] public Action OnDamaged;
-        [HideInInspector] public Action OnDestroyed;
+        public UnityEvent OnDamaged;
+        public UnityEvent OnDestroyed;
         public Vector3 Pos;
 
-        public void Init(Action onDamaged, Action onDestroyed, Block go, Vector3 pos) {
-            Pos = pos;
-            Go = Object.Instantiate(go, pos, Quaternion.identity);
+        public void Init(Action onDamaged, Action onDestroyed, Block inWorld) {
+            Go = inWorld;
             Go.OnLeftClick.AddListener(delegate {onDamaged?.Invoke();});
             Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
         }
-
-        // public InteractableGO(Action onDamaged, Action onDestroyed, Block go, Vector3 pos) {
-        //     Health = MaxHealth;
-        //     Go = go;
-        //     Go.transform.position = pos;
-        //     Go.OnLeftClick.AddListener(delegate {onDamaged?.Invoke();});
-        //     Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
-        // }
 
         public void Damage(int amount) {
             if(Health > amount) { OnDamaged?.Invoke(); }
