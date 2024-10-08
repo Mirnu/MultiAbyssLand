@@ -3406,9 +3406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d66905dd5f57943b126d41dce0e3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   _cloudSprites:
   - {fileID: 8781668993334149495, guid: 7c14d5b1945e88840b37b697a22837c9, type: 3}
   - {fileID: 8486777921561376185, guid: a7489ebf30e9b0547a2b3383c1d09e4e, type: 3}
@@ -7403,9 +7400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d66905dd5f57943b126d41dce0e3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   _cloudSprites: []
   _asymptote:
     Up: 0
