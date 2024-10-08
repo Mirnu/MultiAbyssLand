@@ -15,7 +15,6 @@ namespace Assets.Scripts.Entity
         /*[SyncVar] private*/ public GameObject CurrentTarget;
         /*public GameObject CurrentTarget { get => _currentTarget; protected set { _currentTarget = value; } }*/
 
-        [Server]
         public virtual void TakeDamage(int damage)
         {
             statsModel.HP -= damage;
@@ -24,12 +23,18 @@ namespace Assets.Scripts.Entity
         public virtual void Die(int hp)
         {
             if (hp > 0) return;
+            statsModel.HpChanged -= Die;
             Destroy(gameObject);
         }
 
         public void Awake()
         {
             statsModel.HpChanged += Die;
+        }   
+
+        public void Update()
+        {
+            /*Debug.Log($"Entity hp: {statsModel.HP}");*/
         }
     }
 }

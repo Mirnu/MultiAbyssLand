@@ -24,17 +24,23 @@ namespace Assets.Scripts.World.Managers {
                 _singleton = this;
             }
             blocks.ForEach(x => { 
-                RegisterBlock(x.Go, x.Pos, out Block inWorld);
-                x.Init(delegate { inWorld.transform.Rotate(0, 0, 25); x.Damage(1); }, delegate{ Debug.LogWarning("DESTROY"); Destroy(inWorld.gameObject); }, inWorld);
+                RegisterBlock(x.Go, x.Pos, x);
             });
 
             base.OnStartServer();
         }
 
-        public void RegisterBlock(Block orig, Vector2 pos, out Block inWorld) {
+        public void Place(Block orig, Vector2 pos, InteractableGO iGo) {
             var l = Instantiate(orig, pos, orig.transform.rotation);
             NetworkServer.Spawn(l.gameObject);
-            inWorld = l;
+            iGo = new InteractableGO(delegate { l.transform.Rotate(0, 0, 10); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
+            blocks.Add(iGo);
+        }
+
+        public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
+            var l = Instantiate(orig, pos, orig.transform.rotation);
+            NetworkServer.Spawn(l.gameObject);
+            iGo.Init(delegate { l.transform.Rotate(0, 0, 25); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
         }
 
         [Command(requiresAuthority = false)]
@@ -65,8 +71,6 @@ namespace Assets.Scripts.World.Managers {
         public int Health;
         public int MaxHealth;
 
-        public Action OnLeftClick;
-        public Action OnRightClick;
         public Vector3 Pos;
 
         public void Init(Action onDamaged, Action onDestroyed, Block inWorld) {
@@ -76,9 +80,15 @@ namespace Assets.Scripts.World.Managers {
             Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
         }
 
+        public InteractableGO(Action onDamaged, Action onDestroyed, Block inWorld) {
+            Go = inWorld;
+            Health = MaxHealth;
+            Go.OnLeftClick.AddListener(delegate {onDamaged?.Invoke();});
+            Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
+        }
+
         public void Damage(int amount) {
-            Debug.LogWarning("NIGGER:" + amount);
-            if(Health > amount) { OnLeftClick?.Invoke(); Health -= amount; }
+            if(Health > amount) { Health -= amount; }
             else { Go.OnDestroyed?.Invoke(); }
         }
     }
