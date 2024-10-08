@@ -19,18 +19,25 @@ namespace Assets.Scripts.UI
 
         private float _maxRandomTime => _timeLive / _maxClouds;
 
-
-
-        [Client]
-        private void Start()
+        private void OnEnable()
         {
+            Time.timeScale = 1;
+            Debug.Log(1);
             StartCoroutine(Init());
+        }
+
+        private void OnDisable()
+        {
+            _clouds.ForEach(x => Destroy(x));
+            _clouds.Clear();
+            StopAllCoroutines();
         }
 
         private IEnumerator Init()
         {
-            while (true)
+            while (gameObject.activeSelf)
             {
+                Debug.Log(2);
                 Spawn();
 
                 float timeWait = Random.Range(_maxRandomTime * 0.9f, _maxRandomTime);
@@ -40,11 +47,14 @@ namespace Assets.Scripts.UI
 
         private void Spawn()
         {
+            Debug.Log(2.5f);
             int yPos = Random.Range(_asymptote.Down, _asymptote.Up);
             int id = Random.Range(0, _cloudSprites.Count);
             if (id < 0 || id >= _cloudSprites.Count) return;
             RectTransform cloud = Instantiate(_cloudSprites[id], transform);
             _clouds.Add(cloud.gameObject);
+
+            Debug.Log(3);
 
             cloud.anchoredPosition = new Vector2(cloud.anchoredPosition.x, yPos);
             StartCoroutine(MoveAndDestroyCloud(cloud));
@@ -52,11 +62,13 @@ namespace Assets.Scripts.UI
 
         private IEnumerator MoveAndDestroyCloud(RectTransform cloud)
         {
+            Debug.Log(4);
             float start = Time.time;
 
             while (start + _timeLive > Time.time)
             {
                 cloud.anchoredPosition -= Vector2.right * _cloudSpeed * Time.deltaTime;
+                Debug.Log(_cloudSpeed);
                 yield return null;
             }
             Destroy(cloud.gameObject);

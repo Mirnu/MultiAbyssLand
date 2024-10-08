@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.Scripts.Menu.View.Abstract;
+using Assets.Scripts.Misc.Managers;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Menu.View
 {
-    public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class MenuButton : SoundButton, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private Vector2 _defaultSize;
         [SerializeField] private Sprite _defaultSprite;
@@ -23,10 +25,11 @@ namespace Assets.Scripts.Menu.View
             _spriteRenderer = GetComponent<Image>();
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public override void OnPointerEnter(PointerEventData eventData)
         {
             _spriteRenderer.sprite = _hoverSprite;
             _spriteRenderer.rectTransform.sizeDelta = _hoverSize;
+            base.OnPointerEnter(eventData);
         }
 
         public void OnPointerExit(PointerEventData eventData) => OnExit();

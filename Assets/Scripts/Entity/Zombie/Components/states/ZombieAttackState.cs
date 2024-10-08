@@ -32,14 +32,12 @@ namespace Assets.Scripts.Entity.Zombie
 
         public override bool Exit()
         {
-            Debug.Log("Attack exit");
             pathfindingStrategy.MoveToPreviousPoint(entityModel.gameObject);
             return true;
         }
 
         public override void Tick()
         {
-            Debug.Log("Attack tick");
             pathfindingStrategy.MoveTo(entityModel.CurrentTarget.transform, entityModel.gameObject);
         }
     }

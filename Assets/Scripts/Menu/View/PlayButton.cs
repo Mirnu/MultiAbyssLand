@@ -9,9 +9,10 @@ namespace Assets.Scripts.Menu.View
 {
     public class PlayButton : MenuButton, IPointerClickHandler
     {
-        public void OnPointerClick(PointerEventData eventData)
+        public override void OnPointerClick(PointerEventData eventData)
         {
             NetworkManager.singleton.StartHost();
+            base.OnPointerClick(eventData);
         }
     }
 }

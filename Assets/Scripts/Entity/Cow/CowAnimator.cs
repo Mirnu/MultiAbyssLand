@@ -1,12 +1,11 @@
 ﻿using Assets.Scripts.Player.Components;
+using Mirror;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Entity.Cow
 {
-    public class CowAnimator : MonoBehaviour
+    public class CowAnimator : NetworkBehaviour
     {
         [SerializeField] private Animator _animator;
         private Animations lastWalkAnimation;
@@ -54,7 +53,6 @@ namespace Assets.Scripts.Entity.Cow
                     closest = target;
                 }
             }
-            Debug.Log(closest);
             return closest;
         }
     }

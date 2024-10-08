@@ -83,9 +83,10 @@ namespace Assets.Scripts.Player.Components
                 OnMoved();
             }
             float speed = Time.deltaTime * 5; //fck mgk num cuz map not ready
-
+            float oldZ = _rigidbody.position.z;
+            float deltaZ = (_rigidbody.position.y + 62) / (40 + 62) * 10 - oldZ;
             Vector3 deltaPos = new Vector3(direction.x * speed, direction.y * speed,
-                direction.y * speed * 0.01f); //fck mgk num cuz map not ready
+                deltaZ); //fck mgk num cuz map not ready
 
             _rigidbody.MovePosition(_rigidbody.position + deltaPos);
         }

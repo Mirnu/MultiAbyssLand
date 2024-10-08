@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Menu.View.Abstract;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Menu.View
 {
-    public class InformationButton : MonoBehaviour, IPointerClickHandler
+    public class InformationButton : SoundButton, IPointerClickHandler
     {
         [SerializeField] private GameObject _tablet;
 
-        public void OnPointerClick(PointerEventData eventData)
+        public override void OnPointerClick(PointerEventData eventData)
         {
             _tablet.SetActive(!_tablet.activeSelf);
+            base.OnPointerClick(eventData);
         }
     }
 }
