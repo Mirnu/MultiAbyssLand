@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Resources.Crafting;
 using Assets.Scripts.Resources.Data;
 using Mirror;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Assets.Scripts.World.Blocks
         public UnityEvent OnDestroyed;
         public UnityEvent OnFixedUpdate;
 
-        public Resource resource;
+        public RecipeComponent resource;
         
         protected SpriteRenderer _renderer;
 

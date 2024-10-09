@@ -6,12 +6,14 @@ using UnityEngine;
 using Mirror;
 using System.Linq;
 using UnityEngine.Events;
+using Assets.Scripts.Resources.Crafting;
 
 namespace Assets.Scripts.World.Managers {
     // 1 система блоков
     public class FirstTypeManager : NetworkBehaviour
     {
         [SerializeField] private List<InteractableGO> blocks = new List<InteractableGO>();
+        [SerializeField] private BlockOnGround blockOnGroundPrefab;
 
         private static FirstTypeManager _singleton;
 
@@ -30,17 +32,24 @@ namespace Assets.Scripts.World.Managers {
             base.OnStartServer();
         }
 
-        public void Place(Block orig, Vector2 pos, InteractableGO iGo) {
-            var l = Instantiate(orig, pos, orig.transform.rotation);
-            NetworkServer.Spawn(l.gameObject);
-            iGo = new InteractableGO(delegate { l.transform.Rotate(0, 0, 10); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
-            blocks.Add(iGo);
-        }
+        // моя тупить
+        // public void Place(Block orig, Vector2 pos, InteractableGO iGo) {
+        //     var l = Instantiate(orig, pos, orig.transform.rotation);
+        //     NetworkServer.Spawn(l.gameObject);
+        //     iGo = new InteractableGO(delegate { l.transform.Rotate(0, 0, 10); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
+        //     blocks.Add(iGo);
+        // }
 
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
             var l = Instantiate(orig, pos, orig.transform.rotation);
             NetworkServer.Spawn(l.gameObject);
-            iGo.Init(delegate { l.transform.Rotate(0, 0, 25); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
+            iGo.Init(delegate { l.transform.Rotate(0, 0, 25); iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); NetworkServer.Destroy(l.gameObject); blocks.Remove(iGo); }, l);
+        }
+
+        public void DropBlock(RecipeComponent drop, Vector2 pos) {
+            var l = Instantiate(blockOnGroundPrefab, pos, Quaternion.identity);
+            l.SetComponent(drop);
+            NetworkServer.Spawn(l.gameObject);
         }
 
         [Command(requiresAuthority = false)]

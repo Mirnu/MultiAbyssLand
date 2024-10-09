@@ -117,7 +117,9 @@ MonoBehaviour:
   OnFixedUpdate:
     m_PersistentCalls:
       m_Calls: []
-  resource: {fileID: 0}
+  resource:
+    resource: {fileID: 11400000, guid: fec5683f7e7ce3e4e91b1c5130219d48, type: 2}
+    count: 4
 --- !u!114 &1404156984623684888
 MonoBehaviour:
   m_ObjectHideFlags: 0
