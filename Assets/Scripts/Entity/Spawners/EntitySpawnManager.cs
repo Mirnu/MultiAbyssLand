@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using System.Linq;
 using System;
 using Random = UnityEngine.Random;
+using Unity.VisualScripting;
 
 namespace Assets.Scripts.Entity
 {
@@ -20,9 +20,10 @@ namespace Assets.Scripts.Entity
         private float curSpawnRate = 0f;
 
         private List<GameObject> _mobPool = new List<GameObject>();
-        private PlayerFacade[] players;
+        private List<PlayerFacade> players;
 
-        [HideInInspector] public EntitySpawnManager Instance;
+        [HideInInspector] public static EntitySpawnManager Instance;
+
 
         private void Awake()
         {
@@ -37,53 +38,61 @@ namespace Assets.Scripts.Entity
 
         private void Update()
         {
-            players = (PlayerFacade[])FindObjectsByType(typeof(PlayerFacade), FindObjectsSortMode.None);
             if (Time.time - spawnCircleTime > curSpawnRate)
             {
                 SpawnRandomly();
                 curSpawnRate = Random.Range(_spawnRateMin, _spawnRateMax);
                 spawnCircleTime = Time.time;
             }
+            Debug.Log($"Player pos: {PlayerFacade.Instance.transform.position}");
+            UpdatePool();
         }
 
         [Server]
         private void SpawnRandomly()
         {
-            foreach (PlayerFacade player in FindObjectsByType(typeof(PlayerFacade), FindObjectsSortMode.None))
+            Vector3 playerPos = PlayerFacade.Instance.transform.position;
+            foreach (SpawnData mob in _mobSpawnData)
             {
-                Vector3 playerPos = player.gameObject.transform.position;
-                foreach (SpawnData mob in _mobSpawnData)
-                {
-                    if (_mobPool.Count >= _maxEntitiesSimCount) continue;
-                    float rate = Random.Range(1, 101);
-                    if (rate < mob.SpawnChance * 100) continue;
-                    float x_min = Random.Range(Math.Min(playerPos.x - _playerViewDistance, playerPos.x - _playerSimDistance), Math.Max(playerPos.x - _playerViewDistance, playerPos.x - _playerSimDistance));
-                    float x_max = Random.Range(Math.Min(playerPos.x + _playerSimDistance, playerPos.x + _playerViewDistance), Math.Max(playerPos.x + _playerViewDistance, playerPos.x + _playerSimDistance));        
-                    float y_min = Random.Range(Math.Min(playerPos.y - _playerSimDistance, playerPos.y - _playerViewDistance), Math.Max(playerPos.y - _playerSimDistance, playerPos.y - _playerViewDistance));
-                    float y_max = Random.Range(Math.Min(playerPos.y + _playerSimDistance, playerPos.y + _playerViewDistance), Math.Min(playerPos.y + _playerSimDistance, playerPos.y + _playerViewDistance));
-                    float x = Random.Range(0f, 1f) < 0.5 ? x_min : x_max;
-                    float y = Random.Range(0f, 1f) < 0.5 ? y_min : y_max;
-                    var entity = Instantiate(mob.Prefab, new Vector3(x, y, 0), new Quaternion());
-                    NetworkServer.Spawn(entity);
-                }
+                if (_mobPool.Count >= _maxEntitiesSimCount) continue;
+                float rate = Random.Range(1, 101);
+                if (rate < mob.SpawnChance * 100) continue;
+                float x_min = Random.Range(Math.Min(playerPos.x - _playerViewDistance, playerPos.x - _playerSimDistance), Math.Max(playerPos.x - _playerViewDistance, playerPos.x - _playerSimDistance));
+                float x_max = Random.Range(Math.Min(playerPos.x + _playerSimDistance, playerPos.x + _playerViewDistance), Math.Max(playerPos.x + _playerViewDistance, playerPos.x + _playerSimDistance));
+                float y_min = Random.Range(Math.Min(playerPos.y - _playerSimDistance, playerPos.y - _playerViewDistance), Math.Max(playerPos.y - _playerSimDistance, playerPos.y - _playerViewDistance));
+                float y_max = Random.Range(Math.Min(playerPos.y + _playerSimDistance, playerPos.y + _playerViewDistance), Math.Min(playerPos.y + _playerSimDistance, playerPos.y + _playerViewDistance));
+                float x = Random.Range(0f, 1f) < 0.5 ? x_min : x_max;
+                float y = Random.Range(0f, 1f) < 0.5 ? y_min : y_max;
+                GameObject entity = Instantiate(mob.Prefab, new Vector3(x, y, 0), new Quaternion());
+                _mobPool.Add(entity);
+                NetworkServer.Spawn(entity);
             }
         }
 
         private void OnDrawGizmos()
         {
-            
-            foreach (PlayerFacade player in players)
-            {
+
                 Debug.Log("DRAWWWW");
+                var player = PlayerFacade.Instance;
                 Gizmos.color = Color.green;
-                Gizmos.DrawWireCube(player.gameObject.transform.position, new Vector3(_playerSimDistance*2, _playerSimDistance*2, 1));
-                Gizmos.DrawWireCube(player.gameObject.transform.position, new Vector3(_playerViewDistance*2, _playerViewDistance*2, 1));
-            }
+                Gizmos.DrawWireCube(player.gameObject.transform.position, new Vector3(_playerSimDistance * 2, _playerSimDistance * 2, 1));
+                Gizmos.DrawWireCube(player.gameObject.transform.position, new Vector3(_playerViewDistance * 2, _playerViewDistance * 2, 1));
+
         }
 
+        [Server]
         private void UpdatePool()
         {
-            _mobPool = (List<GameObject>)_mobPool.Where(item => item != null);
+            
+            foreach (GameObject entity in new List<GameObject>(_mobPool))
+            {
+                /*if (Vector2.Distance(entity.transform.position, player.transform.position) > _playerSimDistance)*/
+                if (Vector2.Distance(entity.transform.position, PlayerFacade.Instance.transform.position) > _playerSimDistance)
+                {
+                    Destroy(entity);
+                    _mobPool.Remove(entity);
+                }
+            }
         }
     }
 }
