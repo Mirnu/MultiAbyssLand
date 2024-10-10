@@ -54,6 +54,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
             if (!canAttack) return;
             canAttack = false;
             Attack();
+            tool.OnUse?.Invoke();
         }
 
         protected virtual void Attack()

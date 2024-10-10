@@ -1057,8 +1057,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 14}
-  m_SizeDelta: {x: 738, y: 220}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 660, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227484798
 MonoBehaviour:
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dc2ce9ee61d01a84ab0554e00119aa12, type: 3}
+  m_Sprite: {fileID: -1294789569, guid: dc2ce9ee61d01a84ab0554e00119aa12, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1110,10 +1110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ccd77943df08d48b0855c3881b4de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultSize: {x: 738, y: 220}
-  _defaultSprite: {fileID: 21300000, guid: dc2ce9ee61d01a84ab0554e00119aa12, type: 3}
-  _hoverSize: {x: 871, y: 356}
-  _hoverSprite: {fileID: 21300000, guid: f70b21f8e98c0aa448e1a062534c3042, type: 3}
+  _defaultSize: {x: 660, y: 150}
+  _defaultSprite: {fileID: -1294789569, guid: dc2ce9ee61d01a84ab0554e00119aa12, type: 3}
+  _hoverSize: {x: 725, y: 220}
+  _hoverSprite: {fileID: -717933980, guid: f70b21f8e98c0aa448e1a062534c3042, type: 3}
 --- !u!114 &227484801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,7 +4250,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 204}
-  m_SizeDelta: {x: 698, y: 220}
+  m_SizeDelta: {x: 660, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1336403196
 MonoBehaviour:
@@ -4272,7 +4272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5731b71df87eda144adf7bc83a9fc541, type: 3}
+  m_Sprite: {fileID: -539412364, guid: 5731b71df87eda144adf7bc83a9fc541, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4302,10 +4302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729d076ca1dd82948bef755249ce2d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultSize: {x: 689, y: 220}
-  _defaultSprite: {fileID: 21300000, guid: 5731b71df87eda144adf7bc83a9fc541, type: 3}
-  _hoverSize: {x: 1018, y: 464}
-  _hoverSprite: {fileID: 21300000, guid: 666dca39d92262748b8681ddfae6950a, type: 3}
+  _defaultSize: {x: 660, y: 200}
+  _defaultSprite: {fileID: -539412364, guid: 5731b71df87eda144adf7bc83a9fc541, type: 3}
+  _hoverSize: {x: 745, y: 295}
+  _hoverSprite: {fileID: 917532905, guid: 666dca39d92262748b8681ddfae6950a, type: 3}
 --- !u!1 &1366371049
 GameObject:
   m_ObjectHideFlags: 0
@@ -5025,7 +5025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1512199928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7450,7 +7450,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3

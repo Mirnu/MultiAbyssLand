@@ -11,6 +11,7 @@ namespace Assets.Scripts.Resources.Tools
         private ToolInput _input;
 
         public ToolInput Input => _input;
+        public Action OnUse;
 
         [Client]
         private void Awake()

@@ -6,8 +6,9 @@ using Assets.Scripts.Player;
 
 public class MALNetworkManager : NetworkManager
 {
-  // [SerializeField] private WorldEntrypoint worldEntrypoint;
+    // [SerializeField] private WorldEntrypoint worldEntrypoint;
     //[SerializeField] private PlayerEntryPoint playerEntrypoint;z
+    [SerializeField] private Texture2D _cursor;
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
@@ -20,4 +21,8 @@ public class MALNetworkManager : NetworkManager
         base.OnStartServer();
     }
 
+    private void OnEnable()
+    {
+        Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
+    }
 }

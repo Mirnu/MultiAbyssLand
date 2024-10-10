@@ -34,12 +34,14 @@ namespace Assets.Scripts.Resources.Tools
         private void Start()
         {
             tool.Input.Gameplay.Activated.performed += OnActivated;
+            tool.OnUse += OnUse;
         }
 
         [Client]
         private void OnDestroy()
         {
             tool.Input.Gameplay.Activated.performed -= OnActivated;
+            tool.OnUse -= OnUse;
         }
 
         [Client]
@@ -47,5 +49,8 @@ namespace Assets.Scripts.Resources.Tools
 
         [Client]
         protected virtual void OnHold() { }
+
+        [Client]
+        protected virtual void OnUse() { }
     }
 }

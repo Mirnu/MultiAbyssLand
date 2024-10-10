@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 660024572956398982}
   - component: {fileID: 9209898059082004809}
   - component: {fileID: 2965942609117581159}
+  - component: {fileID: 3611338887163497872}
   m_Layer: 0
   m_Name: WoodenAxe
   m_TagString: Untagged
@@ -88,6 +89,25 @@ MonoBehaviour:
   - {fileID: 262352373122800661, guid: 03b4116b6b2795943a157b1603e3e0e5, type: 3}
   - {fileID: 169747878536284619, guid: 1461de2fba0f1d64cac582e25fa802b8, type: 3}
   - {fileID: 4167840899521343808, guid: e2124571b2bd6ef468135f963efeaaa5, type: 3}
+  center: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0, z: 0}
+--- !u!114 &3611338887163497872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118956059621062716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63057cfc88433b745abab6a5c0f8985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  center: {x: 0, y: 0, z: 0}
+  size: {x: 3, y: 3, z: 3000}
 --- !u!1 &5986749992570485701
 GameObject:
   m_ObjectHideFlags: 0

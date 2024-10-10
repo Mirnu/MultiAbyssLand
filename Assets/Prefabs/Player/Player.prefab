@@ -2311,6 +2311,7 @@ MonoBehaviour:
   entityManager: {fileID: 8589261147340174131}
   _animator: {fileID: 7553908924742549197}
   _directionController: {fileID: 301810214674017748}
+  _accesoryAnimator: {fileID: 1608041549634993475}
 --- !u!1 &2325831208591015822
 GameObject:
   m_ObjectHideFlags: 0
