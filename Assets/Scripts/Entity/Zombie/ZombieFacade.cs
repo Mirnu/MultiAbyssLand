@@ -6,6 +6,7 @@ using Mirror;
 using Assets.Scripts.Player;
 using Assets.Scripts.Player.Components;
 using UnityEngine.AI;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace Assets.Scripts.Entity.Zombie 
 {
@@ -33,14 +34,22 @@ namespace Assets.Scripts.Entity.Zombie
         }
 
 
+        private float attackTime = 0f;
+        public float AttackCooldown = 1;
         [Server]
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionStay(Collision other)
         {
+            Debug.Log("Attacked");
             var player = other.gameObject.GetComponentInParent<PlayerFacade>();
             if (player)
             {
-                CurrentTarget = other.gameObject;
-                stateMachine.ChangeState(stateMachine.HitState);
+                
+                if (Time.time - attackTime > AttackCooldown)
+                {
+                    CurrentTarget = other.gameObject;
+                    player.TakeDamage(statsModel.Damage);
+                    attackTime = Time.time;
+                } 
             }
         }
 
