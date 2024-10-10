@@ -4472,8 +4472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultSize: {x: 770, y: 150}
   _defaultSprite: {fileID: -2097443857, guid: 8803167a71114fc43a9d3002b7d03049, type: 3}
-  _hoverSize: {x: 1090, y: 500}
-  _hoverSprite: {fileID: 21300000, guid: c1a2e05364b189f458c35e772f6941c9, type: 3}
+  _hoverSize: {x: 870, y: 250}
+  _hoverSprite: {fileID: 1842425601, guid: c1a2e05364b189f458c35e772f6941c9, type: 3}
 --- !u!114 &1376347541
 MonoBehaviour:
   m_ObjectHideFlags: 0
