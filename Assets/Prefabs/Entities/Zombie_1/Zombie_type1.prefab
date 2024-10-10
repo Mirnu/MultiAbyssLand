@@ -209,6 +209,7 @@ MonoBehaviour:
   pathfindingStrategy: {fileID: 6796907416547300163}
   CurrentTarget: {fileID: 0}
   stateMachine: {fileID: 8114585766834157483}
+  AttackCooldown: 1
 --- !u!114 &1085433263108125429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.13607185, y: 0.23756592, z: 0.2}
+  m_Size: {x: 0.13607185, y: 0.23756592, z: 1}
   m_Center: {x: 0.0051467153, y: -0.045424182, z: 0}
 --- !u!195 &9030207242517343125
 NavMeshAgent:
@@ -429,6 +430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5e83c7a06726d4ab66e36398d7ac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   _animator: {fileID: 6786756555820610474}
 --- !u!95 &6786756555820610474
 Animator:

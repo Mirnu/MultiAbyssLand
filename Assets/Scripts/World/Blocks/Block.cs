@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.World.Blocks
 {
-    public class Block : NetworkBehaviour
+    public class Block : MonoBehaviour
     {
         public UnityEvent OnLeftClick;
         public UnityEvent OnRightClick;

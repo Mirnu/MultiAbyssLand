@@ -35,7 +35,7 @@ namespace Assets.Scripts.Entity.Cow
                 Vector3 new_point = new Vector3(point.x, point.y, entityModel.gameObject.transform.position.z);
                 pathfindingStrategy.MoveTo(new_point, entityModel.gameObject);
                 _checkpointTime = Time.time;
-                _cooldownTime = Random.RandomRange(_cooldownTimeMin, _cooldownTimeMax);
+                _cooldownTime = Random.Range(_cooldownTimeMin, _cooldownTimeMax);
             }
         }
 

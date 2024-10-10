@@ -25,11 +25,23 @@ namespace Assets.Scripts.World.Managers {
             {
                 _singleton = this;
             }
+            
+
+            base.OnStartServer();
+        }
+
+        public void AddToBlocks(Block pref, Vector2 pos, Sprite s) {
+            var i = new InteractableGO();
+            i.Go = pref;
+            i.Go.GetComponent<SpriteRenderer>().sprite = s;
+            i.Pos = pos;
+            blocks.Add(i);
+        }
+
+        public void Init() {
             blocks.ForEach(x => { 
                 RegisterBlock(x.Go, x.Pos, x);
             });
-
-            base.OnStartServer();
         }
 
         // моя тупить
@@ -41,9 +53,8 @@ namespace Assets.Scripts.World.Managers {
         // }
 
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
-            var l = Instantiate(orig, pos, orig.transform.rotation);
-            NetworkServer.Spawn(l.gameObject);
-            iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); NetworkServer.Destroy(l.gameObject); blocks.Remove(iGo); }, l);
+            iGo.MaxHealth = 10;
+            iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); NetworkServer.Destroy(orig.gameObject); blocks.Remove(iGo); }, orig);
         }
 
         public void DropBlock(RecipeComponent drop, Vector2 pos) {
@@ -52,6 +63,7 @@ namespace Assets.Scripts.World.Managers {
             NetworkServer.Spawn(l.gameObject);
         }
 
+        // ну типа пока тестинг пон?
         [Command(requiresAuthority = false)]
         public void AnyClickCmd(Vector2 mousePos2D, float m) {
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
@@ -96,8 +108,10 @@ namespace Assets.Scripts.World.Managers {
             Go.OnDestroyed.AddListener(delegate {onDestroyed?.Invoke();});
         }
 
+        public InteractableGO() {}
+
         public void Damage(int amount) {
-            Go.OnDamaged?.Invoke();
+            //Go.OnDamaged?.Invoke();
             if(Health > amount) { Health -= amount; }
             else { Go.OnDestroyed?.Invoke(); }
         }
