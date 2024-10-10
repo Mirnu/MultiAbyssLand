@@ -14,6 +14,7 @@ namespace Assets.Scripts.World.Blocks
         public UnityEvent OnMiddleClick;
         public UnityEvent OnDestroyed;
         public UnityEvent OnFixedUpdate;
+        public UnityEvent OnDamaged;
 
         public RecipeComponent resource;
         

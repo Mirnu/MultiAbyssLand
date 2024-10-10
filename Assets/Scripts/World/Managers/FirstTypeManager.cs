@@ -43,7 +43,7 @@ namespace Assets.Scripts.World.Managers {
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
             var l = Instantiate(orig, pos, orig.transform.rotation);
             NetworkServer.Spawn(l.gameObject);
-            iGo.Init(delegate { l.transform.Rotate(0, 0, 25); iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); NetworkServer.Destroy(l.gameObject); blocks.Remove(iGo); }, l);
+            iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); NetworkServer.Destroy(l.gameObject); blocks.Remove(iGo); }, l);
         }
 
         public void DropBlock(RecipeComponent drop, Vector2 pos) {
@@ -97,6 +97,7 @@ namespace Assets.Scripts.World.Managers {
         }
 
         public void Damage(int amount) {
+            Go.OnDamaged?.Invoke();
             if(Health > amount) { Health -= amount; }
             else { Go.OnDestroyed?.Invoke(); }
         }
