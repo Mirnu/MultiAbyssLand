@@ -2,6 +2,8 @@ using Assets.Scripts.Game;
 using UnityEngine;
 using Mirror;
 using UnityEngine.AI;
+using Org.BouncyCastle.Asn1;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Entity.Cow
 {
@@ -9,6 +11,8 @@ namespace Assets.Scripts.Entity.Cow
     public class CowFacade : EntityFacade
     {
         [SerializeField] protected new CowStateMachine stateMachine;
+
+        private List<PlayerFacade> players;
 
         [Server]
         private void Start()
@@ -21,6 +25,7 @@ namespace Assets.Scripts.Entity.Cow
             agent.updateUpAxis = false;
             agent.speed = statsModel.Speed;
             transform.rotation = new Quaternion();
+            
         }
 
         [Server]

@@ -11,6 +11,8 @@ public class PlayerFacade : EntityFacade
     [SerializeField] private GameObject _character;
     [SerializeField] private PlayerStats _stats;
 
+    public static GameObject Instance;
+
     public override void TakeDamage(int damage)
     {
         Debug.Log($"ZOOMBIE DAMAGE: {damage} ZZZZ");
@@ -19,6 +21,7 @@ public class PlayerFacade : EntityFacade
 
     private void Awake()
     {
+        Instance = _character;
         FacadeLocator.Singleton.RegisterFacade(this);
     }
 
