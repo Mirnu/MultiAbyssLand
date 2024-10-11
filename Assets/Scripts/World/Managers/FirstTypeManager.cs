@@ -35,6 +35,7 @@ namespace Assets.Scripts.World.Managers {
             i.Go = pref;
             i.Go.GetComponent<SpriteRenderer>().sprite = s;
             i.Pos = pos;
+            i.MaxHealth = pref.MaxHealth;
             blocks.Add(i);
         }
 
@@ -54,7 +55,6 @@ namespace Assets.Scripts.World.Managers {
 
         [ServerCallback]
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
-            iGo.MaxHealth = 10;
             iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); Destroy(orig.gameObject); blocks.Remove(iGo); }, orig);
         }
 

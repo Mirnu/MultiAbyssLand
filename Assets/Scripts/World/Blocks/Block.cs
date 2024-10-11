@@ -15,6 +15,7 @@ namespace Assets.Scripts.World.Blocks
         public UnityEvent OnDestroyed;
         public UnityEvent OnFixedUpdate;
         public UnityEvent OnDamaged;
+        public int MaxHealth = 10;
 
         public RecipeComponent resource;
         
