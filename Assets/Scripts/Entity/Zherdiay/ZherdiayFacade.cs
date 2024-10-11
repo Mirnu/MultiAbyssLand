@@ -3,12 +3,12 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.AI;
 
-namespace Assets.Scripts.Entity.Fox
+namespace Assets.Scripts.Entity.Zherdiay
 {
 
-    public class FoxFacade : EntityFacade
+    public class ZherdiayFacade : EntityFacade
     {
-        [SerializeField] protected new FoxStateMachine stateMachine;
+        [SerializeField] protected new ZherdiayStateMachine stateMachine;
 
         [Server]
         private void Start()

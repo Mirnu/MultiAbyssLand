@@ -26,13 +26,11 @@ namespace Assets.Scripts.Entity.Bear
         {
             base.TakeDamage(damage);
             Collider[] colliders = Physics.OverlapSphere(transform.position, 10f);
-            Debug.Log($"{colliders[0]} {colliders[1]} {colliders[2]}");
             foreach (Collider coll in colliders)
             {
                 var player = coll.gameObject.GetComponentInParent<PlayerFacade>();
                 if (player)
                 {
-                    Debug.Log("FOX ATTACKKK");
                     CurrentTarget = player.Character;
                     stateMachine.ChangeState(stateMachine.AttackState);
                     break;

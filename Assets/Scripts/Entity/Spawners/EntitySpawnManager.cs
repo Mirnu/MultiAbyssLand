@@ -85,6 +85,7 @@ namespace Assets.Scripts.Entity
             
             foreach (GameObject entity in new List<GameObject>(_mobPool))
             {
+                if (!entity) continue;
                 /*if (Vector2.Distance(entity.transform.position, player.transform.position) > _playerSimDistance)*/
                 if (Vector2.Distance(entity.transform.position, PlayerFacade.Instance.transform.position) > _playerSimDistance)
                 {
