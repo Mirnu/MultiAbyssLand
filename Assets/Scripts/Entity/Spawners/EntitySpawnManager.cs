@@ -44,7 +44,6 @@ namespace Assets.Scripts.Entity
                 curSpawnRate = Random.Range(_spawnRateMin, _spawnRateMax);
                 spawnCircleTime = Time.time;
             }
-            Debug.Log($"Player pos: {PlayerFacade.Instance.transform.position}");
             UpdatePool();
         }
 
