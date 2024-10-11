@@ -3,12 +3,12 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.AI;
 
-namespace Assets.Scripts.Entity.Fox
+namespace Assets.Scripts.Entity.Bear
 {
 
-    public class FoxFacade : EntityFacade
+    public class BearFacade : EntityFacade
     {
-        [SerializeField] protected new FoxStateMachine stateMachine;
+        [SerializeField] protected new BearStateMachine stateMachine;
 
         [Server]
         private void Start()
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Entity.Fox
             if (player)
             {
                 if (Time.time - attackTime > AttackCooldown)
-                {              
+                {
                     player.TakeDamage(statsModel.Damage);
                     attackTime = Time.time;
                 } 
