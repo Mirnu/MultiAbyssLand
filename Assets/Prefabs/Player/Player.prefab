@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 503737375136558419}
   - component: {fileID: 4850514506932282098}
   - component: {fileID: 8505326038973824068}
+  - component: {fileID: 7909518461475320710}
   m_Layer: 0
   m_Name: Handlers
   m_TagString: Untagged
@@ -437,6 +438,25 @@ MonoBehaviour:
   _stats: {fileID: 3683828707839203424}
   _statsMax: {fileID: 6341703344779035642}
   _heal: {fileID: 123928012629514230}
+--- !u!114 &7909518461475320710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669654338942445687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7df925403ca88e4096ddffc812b2e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  entityManager: {fileID: 8589261147340174131}
+  _stats: {fileID: 3683828707839203424}
+  _character: {fileID: 5473458847305667641}
+  _controllers: {fileID: 1279750218825449752}
 --- !u!1 &671975623016330947
 GameObject:
   m_ObjectHideFlags: 0
