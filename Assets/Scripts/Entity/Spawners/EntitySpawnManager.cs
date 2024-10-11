@@ -68,7 +68,7 @@ namespace Assets.Scripts.Entity
             }
         }
 
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
 
                 Debug.Log("DRAWWWW");
@@ -77,7 +77,7 @@ namespace Assets.Scripts.Entity
                 Gizmos.DrawWireCube(player.gameObject.transform.position, new Vector3(_playerSimDistance * 2, _playerSimDistance * 2, 1));
                 Gizmos.DrawWireCube(player.gameObject.transform.position, new Vector3(_playerViewDistance * 2, _playerViewDistance * 2, 1));
 
-        }
+        }*/
 
         [Server]
         private void UpdatePool()
@@ -88,8 +88,8 @@ namespace Assets.Scripts.Entity
                 /*if (Vector2.Distance(entity.transform.position, player.transform.position) > _playerSimDistance)*/
                 if (Vector2.Distance(entity.transform.position, PlayerFacade.Instance.transform.position) > _playerSimDistance)
                 {
-                    Destroy(entity);
                     _mobPool.Remove(entity);
+                    Destroy(entity);
                 }
             }
         }
