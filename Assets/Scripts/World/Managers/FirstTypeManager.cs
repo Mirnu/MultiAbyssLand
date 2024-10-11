@@ -52,9 +52,10 @@ namespace Assets.Scripts.World.Managers {
         //     blocks.Add(iGo);
         // }
 
+        [ServerCallback]
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
             iGo.MaxHealth = 10;
-            iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); NetworkServer.Destroy(orig.gameObject); blocks.Remove(iGo); }, orig);
+            iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); Destroy(orig.gameObject); blocks.Remove(iGo); }, orig);
         }
 
         public void DropBlock(RecipeComponent drop, Vector2 pos) {
@@ -63,27 +64,36 @@ namespace Assets.Scripts.World.Managers {
             NetworkServer.Spawn(l.gameObject);
         }
 
-        // ну типа пока тестинг пон?
         [Command(requiresAuthority = false)]
-        public void AnyClickCmd(Vector2 mousePos2D, float m) {
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-            if(hit.collider != null && blocks.Any(x => x.Pos == hit.collider.transform.position)) {
-                switch (m) {
-                    case 0 : { 
-                        blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnLeftClick?.Invoke();
-                        break; 
-                    }
-                    case 1 : {
-                        blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnRightClick?.Invoke();
-                        break; 
-                    }
-                    case 2 : {
-                        blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnMiddleClick?.Invoke();
-                        break; 
-                    }
-                }
+        public void LeftClick(float m) {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null && blocks.Any(x => x.Go == hit.collider.GetComponent<Block>())) {
+                Debug.LogWarning("hit block: " + hit.collider.name);
+                blocks.Find(x => x.Go == hit.collider.GetComponent<Block>()).Go.OnLeftClick?.Invoke();
             }
         }
+
+        // ну типа пока тестинг пон?
+        // [Command(requiresAuthority = false)]
+        // public void AnyClickCmd(Vector2 mousePos2D, float m) {
+        //     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+        //     if(hit.collider != null && blocks.Any(x => x.Pos == hit.collider.transform.position)) {
+        //         switch (m) {
+        //             case 0 : { 
+        //                 blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnLeftClick?.Invoke();
+        //                 break; 
+        //             }
+        //             case 1 : {
+        //                 blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnRightClick?.Invoke();
+        //                 break; 
+        //             }
+        //             case 2 : {
+        //                 blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnMiddleClick?.Invoke();
+        //                 break; 
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     [Serializable]
