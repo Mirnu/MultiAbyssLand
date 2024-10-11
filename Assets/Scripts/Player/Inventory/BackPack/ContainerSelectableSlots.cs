@@ -34,18 +34,22 @@ namespace Assets.Scripts.Player.Inventory.BackPack
             //
             _slots.ForEach(x => {
                 x.LeftMouseClick += delegate { 
+                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     bindLeftClick(x);
                     UpdateDict();
                 };
                 x.RightMouseClick += delegate {
+                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     bindRightClick(x);
                     UpdateDict();
                 };
                 x.OnCursorEnter += delegate {
+                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     x.SetBackground(onHover);
                     _slotInfoView.UpdateRes(x.TryGet(out Resource res) ? res : null);
                 };
                 x.OnCursorExit += delegate {
+                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     x.ResetBackground();
                     _slotInfoView.Empty();
                 };

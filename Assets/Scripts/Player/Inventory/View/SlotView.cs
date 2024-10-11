@@ -25,7 +25,7 @@ namespace Assets.Scripts.Inventory.View {
             _countDisplay = GetComponentInChildren<TextMeshProUGUI>(); 
         }
 
-        public void SetBackground(Sprite background) => slotBackground.sprite = background;
+        public void SetBackground(Sprite background) { itemView.color = Color.white; slotBackground.sprite = background; }
 
         public void ResetBackground() { if(oldBack == null) { return; } slotBackground.sprite = oldBack; } 
 
@@ -33,6 +33,8 @@ namespace Assets.Scripts.Inventory.View {
             res = _currentResource;
             return _currentResource != null;
         }
+
+        public void SetTransparent() { if (itemView != null) { itemView.color = new Color(0, 0, 0, 0); } } 
 
         public virtual void Delete() {
             _currentAmount = 0;
