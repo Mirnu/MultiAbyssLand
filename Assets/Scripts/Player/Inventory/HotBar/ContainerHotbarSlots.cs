@@ -61,12 +61,12 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         }
 
         private void HotbarChangeState(InputAction.CallbackContext context) {
-            Debug.Log("PP: " + context.ReadValue<float>());
             var index = context.ReadValue<float>();
             if(index < _slots.Count) {
                 if(_slots.Any(x => x.IsSelected)) { _slots.Find(x => x.IsSelected).Deselect(); }
                 var slot = _slots[(int)index];
                 slot.Select();
+                _slots.ForEach(x => { if(!x.TryGet(out Resource res)) { x.SetTransparent(); } } );
                 if(slot.TryGet(out Resource res)) { _hand.Equip(res); }
                 else { _hand.EmptyHand(); }
             }

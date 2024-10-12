@@ -38,8 +38,8 @@ namespace Assets.Scripts.Player.Components
         // верим
         public override void OnStartClient()
         {
-            // Camera.main.transform.SetParent(transform);
-            // Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
+            Camera.main.transform.SetParent(transform);
+            Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
         }
 
         [Command]
