@@ -7,6 +7,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -59,7 +60,8 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         protected virtual void Attack()
         {
-            Collider[] colliders = Physics.OverlapBox(gameObject.transform.position + center, size);
+            Collider[] colliders = Physics.OverlapBox(gameObject.transform.position + center, size)
+                .Where(x => x.isTrigger == false).ToArray();
             WeaponResource weaponResource = tool.GetResource<WeaponResource>();
 
             foreach (Collider collider in colliders)

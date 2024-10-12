@@ -22,7 +22,6 @@ namespace Assets.Scripts.UI
         private void OnEnable()
         {
             Time.timeScale = 1;
-            Debug.Log(1);
             StartCoroutine(Init());
         }
 
@@ -47,14 +46,11 @@ namespace Assets.Scripts.UI
 
         private void Spawn()
         {
-            Debug.Log(2.5f);
             int yPos = Random.Range(_asymptote.Down, _asymptote.Up);
             int id = Random.Range(0, _cloudSprites.Count);
             if (id < 0 || id >= _cloudSprites.Count) return;
             RectTransform cloud = Instantiate(_cloudSprites[id], transform);
             _clouds.Add(cloud.gameObject);
-
-            Debug.Log(3);
 
             cloud.anchoredPosition = new Vector2(cloud.anchoredPosition.x, yPos);
             StartCoroutine(MoveAndDestroyCloud(cloud));
