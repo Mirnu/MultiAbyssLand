@@ -47,7 +47,7 @@ namespace Assets.Scripts.Resources.Tools
 
         // ну типа сигмо жесткий туса свэг дрип ещкере костыль пон да?
         [Client]
-        protected virtual void OnActivated(InputAction.CallbackContext context) { FirstTypeManager.Singleton.LeftClick(context.ReadValue<float>()); }
+        protected virtual void OnActivated(InputAction.CallbackContext context) { FirstTypeManager.Singleton.LeftClick(context.ReadValue<float>(), gameObject); }
 
         [Client]
         protected virtual void OnHold() { }

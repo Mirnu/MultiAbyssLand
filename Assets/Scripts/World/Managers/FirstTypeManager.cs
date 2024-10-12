@@ -65,9 +65,9 @@ namespace Assets.Scripts.World.Managers {
         }
 
         [Command(requiresAuthority = false)]
-        public void LeftClick(float m) {
+        public void LeftClick(float m, GameObject tool) {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit.collider != null && blocks.Any(x => x.Go == hit.collider.GetComponent<Block>())) {
+            if (hit.collider != null && blocks.Any(x => x.Go == hit.collider.GetComponent<Block>()) && Vector2.Distance(tool.transform.position, hit.collider.transform.position) < 2) {
                 Debug.LogWarning("hit block: " + hit.collider.name);
                 blocks.Find(x => x.Go == hit.collider.GetComponent<Block>()).Go.OnLeftClick?.Invoke();
             }

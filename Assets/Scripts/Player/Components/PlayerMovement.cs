@@ -13,6 +13,7 @@ namespace Assets.Scripts.Player.Components
     {
         private PlayerInput _input;
         private Rigidbody _rigidbody;
+        [SerializeField] private float speedMult = 1f;
 
         public event Action StartMoved;
         public event Action StopMoved;
@@ -31,15 +32,14 @@ namespace Assets.Scripts.Player.Components
 
             if (!isLocalPlayer) return;
             _input = playerManager.PlayerInput;
-            _input.Gameplay.Mouse.performed += onLeftClick;
         }
 
         // поверьте мне, когда-нибудь я сделаю entrypoint для клиента
         // верим
         public override void OnStartClient()
         {
-            Camera.main.transform.SetParent(transform);
-            Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
+            // Camera.main.transform.SetParent(transform);
+            // Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
         }
 
         [Command]
@@ -48,14 +48,6 @@ namespace Assets.Scripts.Player.Components
         private void OnStopMoved() => StopMoved?.Invoke();
         [Command]
         private void OnStartMoved() => StartMoved?.Invoke();
-        [ClientCallback]
-        private void onLeftClick(InputAction.CallbackContext context) {
-            // бляяяяя я ебал
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-            //FirstTypeManager.Singleton.AnyClickCmd(mousePos2D, context.action.ReadValue<float>());
-        }
 
         public override void ClientTick()
         {
@@ -82,7 +74,7 @@ namespace Assets.Scripts.Player.Components
                 Moved?.Invoke();
                 OnMoved();
             }
-            float speed = Time.deltaTime * 5; //fck mgk num cuz map not ready
+            float speed = Time.deltaTime * speedMult; //fck mgk num cuz map not ready
             float oldZ = _rigidbody.position.z;
             float deltaZ = (_rigidbody.position.y + 62) / (40 + 62) * 10 - oldZ;
             Vector3 deltaPos = new Vector3(direction.x * speed, direction.y * speed,

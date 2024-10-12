@@ -25,7 +25,7 @@ namespace Assets.Scripts.Inventory.View {
             _countDisplay = GetComponentInChildren<TextMeshProUGUI>(); 
         }
 
-        public void SetBackground(Sprite background) { itemView.color = Color.white; slotBackground.sprite = background; }
+        public void SetBackground(Sprite background) { slotBackground.sprite = background; }
 
         public void ResetBackground() { if(oldBack == null) { return; } slotBackground.sprite = oldBack; } 
 
