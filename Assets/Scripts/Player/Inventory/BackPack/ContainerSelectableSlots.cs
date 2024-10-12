@@ -54,6 +54,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     _slotInfoView.Empty();
                 };
             });
+            DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
         }
 
         private void bindLeftClick(SelectableSlotView slot) {

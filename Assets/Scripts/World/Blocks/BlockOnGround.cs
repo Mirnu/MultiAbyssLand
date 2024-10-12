@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Assets.Scripts.Player.Inventory.BackPack;
 using Assets.Scripts.Resources.Crafting;
 using Mirror;
@@ -22,6 +23,7 @@ public class BlockOnGround : NetworkBehaviour {
         if (!other.gameObject.GetComponentInParent<PlayerFacade>()) { return; }        
         other.transform.parent.gameObject.GetComponentInChildren<ContainerSelectableSlots>(true).AddToFirst(recipeComponent);
         NetworkServer.Destroy(gameObject);
+        //
     }
 
     // на потом когда шансы прикручиватт

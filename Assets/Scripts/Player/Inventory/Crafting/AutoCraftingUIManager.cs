@@ -18,8 +18,7 @@ namespace Assets.Scripts.Inventory.Crafting {
         [SerializeField] private RecipeContainer _recipeContainer;
 
         public void UpdateCraftMenu() {
-            Debug.Log("UpdateCraftMenu");
-            _currentPrefabs.ForEach(x => UnityEngine.Object.Destroy(x.gameObject));
+            _currentPrefabs.ForEach(x => Destroy(x.gameObject));
             _currentPrefabs.Clear();
             var _retrieved = _selectableSlots.components;
             // need to check 4 resources

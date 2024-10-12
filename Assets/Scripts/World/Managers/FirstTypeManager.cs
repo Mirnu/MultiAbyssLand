@@ -70,7 +70,7 @@ namespace Assets.Scripts.World.Managers {
             if (hit.collider != null && blocks.Any(x => x.Go == hit.collider.GetComponent<Block>())
              //&& Vector2.Distance(tool.transform.position, hit.collider.transform.position) < 2
              ) {
-                //Debug.LogWarning("hit block: " + hit.collider.name);
+                Debug.LogWarning("hit block: " + hit.collider.name);
                 blocks.Find(x => x.Go == hit.collider.GetComponent<Block>()).Go.OnLeftClick?.Invoke();
             }
         }
