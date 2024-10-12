@@ -2,6 +2,7 @@
 using Assets.Scripts.Game;
 using Assets.Scripts.Misc;
 using Assets.Scripts.Misc.CD;
+using Assets.Scripts.Misc.Managers;
 using Assets.Scripts.Resources.Data;
 using Mirror;
 using System;
@@ -19,11 +20,13 @@ namespace Assets.Scripts.Resources.Tools.Impl
         [SerializeField] protected List<Transform> armTransforms;
         [SerializeField] protected Vector3 center;
         [SerializeField] protected Vector3 size;
+        [SerializeField] private AudioSource _audioSource;
 
         protected PlayerFacade playerFacade;
         protected Action attack;
         protected WaitForFixedUpdate waitForAttack = new WaitForFixedUpdate();
         protected SpriteRenderer spriteRenderer;
+
 
         protected bool canAttack = true;
 
@@ -60,6 +63,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         protected virtual void Attack()
         {
+            _audioSource?.Play();
             Collider[] colliders = Physics.OverlapBox(gameObject.transform.position + center, size)
                 .Where(x => x.isTrigger == false).ToArray();
             WeaponResource weaponResource = tool.GetResource<WeaponResource>();

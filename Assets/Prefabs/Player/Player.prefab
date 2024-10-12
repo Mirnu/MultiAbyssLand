@@ -14829,7 +14829,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   entityManager: {fileID: 8589261147340174131}
-  speedMult: 1
+  speedMult: 2
 --- !u!54 &2482738137001319393
 Rigidbody:
   m_ObjectHideFlags: 0

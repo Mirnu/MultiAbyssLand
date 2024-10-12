@@ -54,8 +54,8 @@ namespace Assets.Scripts.Player.Components
             Vector2 direction = _input.Gameplay.Movement.ReadValue<Vector2>();
             if (direction.x != 0 && direction.y != 0)
             {
-                direction.x *= 0.7f;
-                direction.y *= 0.7f;
+                direction.x *= 0.85f;
+                direction.y *= 0.85f;
             }
             if ((direction.x != 0 || direction.y != 0) && IsStaying)
             {

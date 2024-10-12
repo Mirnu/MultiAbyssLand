@@ -7,7 +7,12 @@ namespace Assets.Scripts.Misc.Managers
     public enum Sounds 
     { 
         HoverUI,
-        ClickUI
+        ClickUI,
+        SwordSwing,
+        MeadowDayTheme,
+        ForestDayTheme,
+        SwampDayTheme,
+        WindAndTrees
     }
 
     [RequireComponent(typeof(AudioSource))]
@@ -18,6 +23,8 @@ namespace Assets.Scripts.Misc.Managers
 
         private AudioSource _audioSource;
 
+        public AudioClip CurrentClip => _audioSource.clip;
+        public Sounds? CurrentSound { get; private set; }
 
         private void Awake()
         {
@@ -26,9 +33,26 @@ namespace Assets.Scripts.Misc.Managers
             Instance = this;
         }
 
-        public void PlaySound(Sounds sound)
+        public void PlaySound(Sounds sound, bool replay = true)
         {
+            if (replay)
+            {
+                if (CurrentSound == null )
+                {
+                    CurrentSound = sound;
+                }
+                else
+                {
+                    if (CurrentSound == sound)
+                    {
+                        Debug.Log("Already playing " + sound);
+                        return;
+                    }
+                }
+            }
+            CurrentSound = sound;
             SoundConf conf = _sounds.Find(x => x.Sound == sound);
+            _audioSource.Stop();
             _audioSource.PlayOneShot(conf.Clip);
         }
     }
