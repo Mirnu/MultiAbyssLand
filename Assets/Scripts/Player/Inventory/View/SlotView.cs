@@ -23,6 +23,7 @@ namespace Assets.Scripts.Inventory.View {
             slotBackground = GetComponent<Image>();   
             oldBack = slotBackground.sprite;
             _countDisplay = GetComponentInChildren<TextMeshProUGUI>(); 
+            UpdateCount();
         }
 
         public void SetBackground(Sprite background) { slotBackground.sprite = background; }
