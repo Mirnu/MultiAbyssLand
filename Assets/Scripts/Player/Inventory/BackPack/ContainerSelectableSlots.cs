@@ -45,9 +45,9 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     UpdateDict();
                 };
                 x.OnCursorEnter += delegate {
-                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     x.SetBackground(onHover);
                     _slotInfoView.UpdateRes(x.TryGet(out Resource res) ? res : null);
+                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                 };
                 x.OnCursorExit += delegate {
                     DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });

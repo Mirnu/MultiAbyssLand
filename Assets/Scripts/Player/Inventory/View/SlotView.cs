@@ -37,7 +37,14 @@ namespace Assets.Scripts.Inventory.View {
             return _currentResource != null;
         }
 
-        public void SetTransparent() { UpdateCount(); if (itemView != null) { itemView.color = new Color(0, 0, 0, 0); } } 
+        public void SetTransparent() 
+        { 
+            UpdateCount(); 
+            if (itemView.sprite == null) 
+            { 
+                itemView.color = new Color(0, 0, 0, 0); 
+            } 
+        } 
 
         public virtual void Delete() {
             _currentAmount = 0;
