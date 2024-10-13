@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7958677803690804971}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &3650708544049677920
 MonoBehaviour:
@@ -4037,7 +4037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4073349156892493321}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &3975777015295918768
 MonoBehaviour:
@@ -6249,7 +6249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 8839515373331824564}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &8138536419352295273
 MonoBehaviour:
@@ -10429,7 +10429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4030324315540846874}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &4030324315710729625
 MonoBehaviour:
@@ -10672,7 +10672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4030324316533337164}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &4030324316290106732
 MonoBehaviour:
@@ -11201,7 +11201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4030324316747249409}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &4030324317025264149
 MonoBehaviour:
@@ -15457,10 +15457,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -15634,7 +15634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7863847354353657057}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &6199598868647670224
 MonoBehaviour:
@@ -27970,7 +27970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7015185587429848912}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &7876912466513011661
 MonoBehaviour:
@@ -28475,7 +28475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7118572199170892271}
-  selected_sprite: {fileID: 21300000, guid: 04f3ca0423f864e419279e3a33a6b66e, type: 3}
+  selected_sprite: {fileID: 21300000, guid: 551a6c48a33175f44a3f05f5693b77e4, type: 3}
   IsSelected: 0
 --- !u!114 &170091032883623128
 MonoBehaviour:

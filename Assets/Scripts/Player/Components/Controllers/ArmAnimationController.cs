@@ -24,7 +24,11 @@ namespace Assets.Scripts.Player.Components.Controllers
         public override void ClientTick()
         {
             int hours = AngleUtils.GetHours();
-            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand) return;
+            if (_hand.IsEmpty || !_hand.CurrentResource.IsTakenInHand)
+            {
+                _hand.transform.localPosition = Vector3.zero;
+                return;
+            }
 
             _armAnimator.Play(hours + 8);
             GameObject handPoint = _handPoints[hours];

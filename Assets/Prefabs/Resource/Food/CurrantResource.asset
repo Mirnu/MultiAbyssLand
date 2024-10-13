@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa25df4473e1c049a44247d1ab8f2dc, type: 3}
   m_Name: CurrantResource
   m_EditorClassIdentifier: 
-  _isTakenInHand: 1
-  SpriteInInventary: {fileID: 0}
+  _isTakenInHand: 0
+  SpriteInInventary: {fileID: 21300000, guid: 18b63379e5ae34b408fa6797655f55a9, type: 3}
   MaxCount: 64
   Name: "\u0421\u043C\u043E\u0440\u043E\u0434\u0438\u043D\u0430"
   Tool: {fileID: 1278551059963765683, guid: 67279b42a1ddefa468675ab0f4cfe2f1, type: 3}

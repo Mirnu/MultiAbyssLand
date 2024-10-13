@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa25df4473e1c049a44247d1ab8f2dc, type: 3}
   m_Name: CranberryResource
   m_EditorClassIdentifier: 
-  _isTakenInHand: 1
-  SpriteInInventary: {fileID: 0}
+  _isTakenInHand: 0
+  SpriteInInventary: {fileID: 21300000, guid: f5c8976ab68f0e74c94714cf647e6ea7, type: 3}
   MaxCount: 64
   Name: "\u041A\u043B\u044E\u043A\u0432\u0430"
   Tool: {fileID: 1278551059963765683, guid: 1dbdf003a9903d54dab9098f25007175, type: 3}
