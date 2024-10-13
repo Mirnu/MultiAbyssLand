@@ -50,7 +50,8 @@ namespace Assets.Scripts.Misc.Managers
 
                 _currentSoundType = type;
                 _themeAudioSource.Stop();
-                _themeAudioSource.PlayOneShot(clip);
+                _themeAudioSource.clip = clip;
+                _themeAudioSource.Play();
             }
         }
     }
