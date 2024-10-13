@@ -19,3 +19,9 @@ MonoBehaviour:
     Result:
       resource: {fileID: 11400000, guid: 1d2b6601e3a7a414ca88b7ea51aabd73, type: 2}
       count: 2
+  - RecipeRequirements:
+    - resource: {fileID: 11400000, guid: fec5683f7e7ce3e4e91b1c5130219d48, type: 2}
+      count: 25
+    Result:
+      resource: {fileID: 11400000, guid: 1d2b6601e3a7a414ca88b7ea51aabd73, type: 2}
+      count: 2
