@@ -27,7 +27,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             //
             _slots[0].TrySet(mock);
             _slots[0].GetComponent<SelectableSlotView>().TrySet(mock);
-            _slots[0].GetComponent<SelectableSlotView>().SetCount(52);
+            //_slots[0].GetComponent<SelectableSlotView>().SetCount(52);
             _slots[1].TrySet(mock1);
             _slots[1].GetComponent<SelectableSlotView>().TrySet(mock1);
             //

@@ -26595,8 +26595,8 @@ MonoBehaviour:
   CurrentTarget: {fileID: 0}
   _armAnimator: {fileID: 1808985569174054163}
   _character: {fileID: 5473458847305667641}
-  Stats: {fileID: 0}
-  hotbar: {fileID: 0}
+  Stats: {fileID: 3683828707839203424}
+  hotbar: {fileID: 669543533608377663}
 --- !u!114 &8589261147340174131
 MonoBehaviour:
   m_ObjectHideFlags: 0

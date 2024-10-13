@@ -40,7 +40,7 @@ namespace Assets.Scripts.Inventory.View {
         public void SetTransparent() 
         { 
             UpdateCount(); 
-            if (itemView.sprite == null) 
+            if (itemView.sprite == null && _currentResource == null) 
             { 
                 itemView.color = new Color(0, 0, 0, 0); 
             } 
@@ -57,6 +57,7 @@ namespace Assets.Scripts.Inventory.View {
             if (newResource == null) return false;
             _currentResource = newResource;
             itemView.sprite = _currentResource.SpriteInInventary;
+            DesetTransparent();
             return true;
         }
 

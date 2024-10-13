@@ -5,6 +5,7 @@ using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Crafting;
 using Assets.Scripts.Resources.Data;
+using Assets.Scripts.Resources.Tools.Impl;
 using Mirror;
 using UnityEngine;
 
@@ -31,28 +32,28 @@ namespace Assets.Scripts.Player.Inventory.BackPack
         public override void OnStartClient()
         {
             //
-            _slots[0].SetCount(15);
+            //_slots[0].SetCount(15);
             //
             _slots.ForEach(x => {
-                x.LeftMouseClick += delegate { 
-                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
+                x.LeftMouseClick += delegate {      
                     bindLeftClick(x);
                     UpdateDict();
+                    x.SetTransparent();
                 };
                 x.RightMouseClick += delegate {
-                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     bindRightClick(x);
                     UpdateDict();
+                    x.SetTransparent();
                 };
                 x.OnCursorEnter += delegate {
                     x.SetBackground(onHover);
                     _slotInfoView.UpdateRes(x.TryGet(out Resource res) ? res : null);
-                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
+                    x.SetTransparent();
                 };
                 x.OnCursorExit += delegate {
-                    DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
                     x.ResetBackground();
                     _slotInfoView.Empty();
+                    x.SetTransparent();
                 };
             });
             DoForAll(x => { if (!x.TryGet(out Resource res)) { x.SetTransparent(); } });
@@ -65,7 +66,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     else { slot.SetCount(slot.GetCount() + _cursorCount); EmptyCursor(); }
                 } else if(slot.TrySet(_cursorResource)) {
                     //?
-                    slot.TrySet(_cursorResource);
+                    //slot.TrySet(_cursorResource);
                     slot.SetCount(_cursorCount);
                     EmptyCursor();
                 }
@@ -75,6 +76,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 _cursorCount = slot.GetCount();
                 slot.Delete();
             }
+            DoForAll(x => x.SetTransparent());
         }
 
         private void UpdateDict() {
@@ -123,7 +125,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
 
         public void AddToFirst(RecipeComponent recipeComponent) {
             foreach(var slot in _slots) {
-                if(!slot.TryGet(out Resource res) || (res == recipeComponent.resource)) {
+                if(!slot.TryGet(out Resource res) || (res == recipeComponent.resource && res.GetType() != typeof(MeleeEdgedWeapon))) {
                     slot.TrySet(recipeComponent.resource);
                     if(res == recipeComponent.resource) {
                         slot.SetCount(slot.GetCount() + recipeComponent.count);
