@@ -29,9 +29,9 @@ namespace Assets.Scripts.Entity.Cow
         }
 
         [Server]
-        public override void TakeDamage(int hp)
+        public override void TakeDamage(int damage)
         {
-            statsModel.HP -= hp;
+            base.TakeDamage(damage);
             stateMachine.ChangeState(stateMachine.PanicState);
         }
 
