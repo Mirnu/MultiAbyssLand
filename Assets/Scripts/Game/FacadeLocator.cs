@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Game
@@ -20,12 +21,12 @@ namespace Assets.Scripts.Game
 
         private Dictionary<Type, object> _facades = new();
 
-        public void RegisterFacade<T>(T facade)
+        public void RegisterFacade<T>(T facade) where T : EntityFacade
         {
             _facades[typeof(T)] = facade;
         }
 
-        public T GetFacade<T>()
+        public T GetFacade<T>() where T : EntityFacade
         {
             return (T)_facades[typeof(T)] ?? default;
         }

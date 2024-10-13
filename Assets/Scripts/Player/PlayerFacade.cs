@@ -10,20 +10,22 @@ public class PlayerFacade : EntityFacade
 {
     [SerializeField] private ArmAnimator _armAnimator;
     [SerializeField] private GameObject _character;
-    [SerializeField] private PlayerStats _stats;
+    public PlayerStats Stats;
     public ContainerHotbarSlots hotbar;
 
     public static GameObject Instance;
+    public static PlayerFacade Singleton { get; private set; }
 
     public override void TakeDamage(int damage)
     {
         Debug.Log($"ZOOMBIE DAMAGE: {damage} ZZZZ");
-        _stats.Health -= damage;
+        Stats.Health -= damage;
     }
 
     private void Awake()
     {
         Instance = _character;
+        Singleton = this;
         FacadeLocator.Singleton.RegisterFacade(this);
     }
 
@@ -40,6 +42,6 @@ public class PlayerFacade : EntityFacade
     private IEnumerator Death()
     {
         yield return new WaitForSeconds(5);
-        _stats.Health = 0;
+        Stats.Health = 0;
     }
 }

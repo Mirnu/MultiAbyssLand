@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Game;
+﻿using Assets.Scripts.Entity;
+using Assets.Scripts.Game;
 using Assets.Scripts.World.Managers;
 using Mirror;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Assets.Scripts.Resources.Tools
     {
         protected Tool tool;
 
-        protected T GetFacade<T>()
+        protected T GetFacade<T>() where T : EntityFacade
         {
             return FacadeLocator.Singleton.GetFacade<T>();
         }
@@ -28,12 +29,7 @@ namespace Assets.Scripts.Resources.Tools
         private void Awake()
         {
             tool = GetComponent<Tool>();
-            Debug.Log(tool != null);
-        }
 
-        [Client]
-        private void Start()
-        {
             tool.Input.Gameplay.Activated.performed += OnActivated;
             tool.OnUse += OnUse;
         }
@@ -47,7 +43,7 @@ namespace Assets.Scripts.Resources.Tools
 
         // ну типа сигмо жесткий туса свэг дрип ещкере костыль пон да?
         [Client]
-        protected virtual void OnActivated(InputAction.CallbackContext context) { FirstTypeManager.Singleton.LeftClick(context.ReadValue<float>(), gameObject); }
+        protected virtual void OnActivated(InputAction.CallbackContext context) { }
 
         [Client]
         protected virtual void OnHold() { }
