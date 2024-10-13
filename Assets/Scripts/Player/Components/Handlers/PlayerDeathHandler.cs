@@ -33,9 +33,9 @@ namespace Assets.Scripts.Player.Components.Handlers
         {
             yield return new WaitForSeconds(5);
             Camera.main.transform.SetParent(_character.transform);
+            _character.transform.position = new Vector3(0, 0, 6.078432f);
             _character.SetActive(true);
             _controllers.SetActive(true);
-            _character.transform.position = new Vector3(0, 0, 6.078432f);
             _stats.Health = 50;
             _stats.Mana = 50;
         }
