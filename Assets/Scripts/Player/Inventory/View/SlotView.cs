@@ -26,7 +26,9 @@ namespace Assets.Scripts.Inventory.View {
             UpdateCount();
         }
 
-        public void SetBackground(Sprite background) { if (itemView != null) { itemView.color = Color.white; } slotBackground.sprite = background; }
+        public void SetBackground(Sprite background) { DesetTransparent(); slotBackground.sprite = background; }
+
+        public void DesetTransparent() {if (itemView != null) { itemView.color = Color.white; }}
 
         public void ResetBackground() { if(oldBack == null) { return; } slotBackground.sprite = oldBack; } 
 

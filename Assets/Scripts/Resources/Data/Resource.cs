@@ -11,6 +11,7 @@ namespace Assets.Scripts.Resources.Data
         public bool IsTakenInHand => _isTakenInHand;
 
         public Sprite SpriteInInventary;
+        public int MaxCount = 64;
         public string Name;
         public Tool Tool;
         [TextArea(3, 10)] public string Info;

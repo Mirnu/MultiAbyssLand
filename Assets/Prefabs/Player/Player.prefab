@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7958677803690804971}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &3650708544049677920
 MonoBehaviour:
@@ -4037,7 +4037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4073349156892493321}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &3975777015295918768
 MonoBehaviour:
@@ -6324,7 +6324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 8839515373331824564}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &8138536419352295273
 MonoBehaviour:
@@ -10630,7 +10630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4030324315540846874}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &4030324315710729625
 MonoBehaviour:
@@ -10873,7 +10873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4030324316533337164}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &4030324316290106732
 MonoBehaviour:
@@ -11402,7 +11402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 4030324316747249409}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &4030324317025264149
 MonoBehaviour:
@@ -15392,6 +15392,7 @@ GameObject:
   - component: {fileID: 4744783742279693474}
   - component: {fileID: 1608041549634993475}
   - component: {fileID: 7480032946866705832}
+  - component: {fileID: 7317346860354261575}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -15719,8 +15720,104 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Size: {x: 0.25, y: 0.25, z: 2}
   m_Center: {x: 0.005582147, y: -0.04509129, z: 0}
+--- !u!82 &7317346860354261575
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473458847305667641}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5487727715340822707
 GameObject:
   m_ObjectHideFlags: 0
@@ -15813,7 +15910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7863847354353657057}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &6199598868647670224
 MonoBehaviour:
@@ -26784,6 +26881,7 @@ MonoBehaviour:
   _armAnimator: {fileID: 1808985569174054163}
   _character: {fileID: 5473458847305667641}
   _stats: {fileID: 3683828707839203424}
+  hotbar: {fileID: 0}
 --- !u!114 &8589261147340174131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28193,7 +28291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7015185587429848912}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &7876912466513011661
 MonoBehaviour:
@@ -28698,7 +28796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemView: {fileID: 7118572199170892271}
-  selected_sprite: {fileID: 21300000, guid: f6dc819ce3149844d8244551c6be68ca, type: 3}
+  selected_sprite: {fileID: 21300000, guid: bf527c56433783145834e7a1bc6b0a0c, type: 3}
   IsSelected: 0
 --- !u!114 &170091032883623128
 MonoBehaviour:

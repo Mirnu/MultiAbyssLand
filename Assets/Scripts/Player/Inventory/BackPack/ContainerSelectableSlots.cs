@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Inventory.View;
 using Assets.Scripts.Player.Inventory.View;
 using Assets.Scripts.Resources.Crafting;
 using Assets.Scripts.Resources.Data;
@@ -122,10 +123,22 @@ namespace Assets.Scripts.Player.Inventory.BackPack
 
         public void AddToFirst(RecipeComponent recipeComponent) {
             foreach(var slot in _slots) {
-                if(!slot.TryGet(out Resource res)) {
+                if(!slot.TryGet(out Resource res) || (res == recipeComponent.resource)) {
                     slot.TrySet(recipeComponent.resource);
-                    slot.SetCount(recipeComponent.count);
-                    slot.TryGet(out Resource _res);
+                    if(res == recipeComponent.resource) {
+                        slot.SetCount(slot.GetCount() + recipeComponent.count);
+                    } else {
+                        slot.SetCount(recipeComponent.count);
+                    }
+                    if (slot.TryGetComponent(out HotbarSlotView hotbar)) {
+                        hotbar.DesetTransparent();
+                        hotbar.TrySet(recipeComponent.resource);
+                        if(res == recipeComponent.resource) {
+                            hotbar.SetCount(hotbar.GetCount() + recipeComponent.count);
+                        } else {
+                            hotbar.SetCount(recipeComponent.count);
+                        }
+                    }
                     UpdateDict();
                     return;
                 }
