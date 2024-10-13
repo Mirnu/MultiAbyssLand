@@ -209,6 +209,8 @@ MonoBehaviour:
   statsModel: {fileID: 1945159726685513426}
   maxStatsModel: {fileID: 2804308325356722937}
   pathfindingStrategy: {fileID: 6796907416547300163}
+  soundManager: {fileID: -6189679509158176535}
+  audioSource: {fileID: 5635732884062469685}
   CurrentTarget: {fileID: 0}
   stateMachine: {fileID: 8114585766834157483}
   AttackCooldown: 1
@@ -574,7 +576,7 @@ MonoBehaviour:
   attackSounds: []
   hitSounds:
   - {fileID: 8300000, guid: 9d44cfdebcdfee1489b59b556ea32dd1, type: 3}
-  AudioSource: {fileID: 5635732884062469685}
+  audioSource: {fileID: 5635732884062469685}
   IdleCooldown: 5
 --- !u!1 &5287931695576771192
 GameObject:

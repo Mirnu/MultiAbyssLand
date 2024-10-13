@@ -9,6 +9,8 @@ namespace Assets.Scripts.Entity
         public EntityStatsModel statsModel;
         [SerializeField] protected EntityMaxStatsModel maxStatsModel;
         [SerializeField] protected PathfindingStrategy pathfindingStrategy;
+        [SerializeField] protected EntitySoundManager soundManager;
+        [SerializeField] protected AudioSource audioSource;
 
         protected EntityStateMachine stateMachine;
 
@@ -18,6 +20,7 @@ namespace Assets.Scripts.Entity
         public virtual void TakeDamage(int damage)
         {
             statsModel.HP -= damage;
+            soundManager.PlayHitSound();
         }
 
         public virtual void Die(int hp)
