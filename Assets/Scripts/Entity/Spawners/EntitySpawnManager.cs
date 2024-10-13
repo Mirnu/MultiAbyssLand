@@ -54,8 +54,8 @@ namespace Assets.Scripts.Entity
             foreach (SpawnData mob in _mobSpawnData)
             {
                 if (_mobPool.Count >= _maxEntitiesSimCount) continue;
-                float rate = Random.Range(1, 101);
-                if (rate < mob.SpawnChance * 100) continue;
+                float rate = Random.Range(0f, 1f);
+                if (rate > mob.SpawnChance) continue;
                 float x_min = Random.Range(Math.Min(playerPos.x - _playerViewDistance, playerPos.x - _playerSimDistance), Math.Max(playerPos.x - _playerViewDistance, playerPos.x - _playerSimDistance));
                 float x_max = Random.Range(Math.Min(playerPos.x + _playerSimDistance, playerPos.x + _playerViewDistance), Math.Max(playerPos.x + _playerViewDistance, playerPos.x + _playerSimDistance));
                 float y_min = Random.Range(Math.Min(playerPos.y - _playerSimDistance, playerPos.y - _playerViewDistance), Math.Max(playerPos.y - _playerSimDistance, playerPos.y - _playerViewDistance));
