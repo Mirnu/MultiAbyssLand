@@ -19,6 +19,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
         {
             Vector3 r = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             FirstTypeManager.Singleton.PutBlock(new Vector2(Mathf.Round(r.x), Mathf.Round(r.y)), inWorld);
+            PlayerFacade.Singleton.hotbar.DeleteFromSlot();
         }
 
     }
