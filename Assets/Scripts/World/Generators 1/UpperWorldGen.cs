@@ -55,6 +55,7 @@ namespace Assets.Scripts.World {
 
         public IEnumerator Generate(string seed)
         {
+            yield return null; //пока нафек
             Debug.Log("Generate");
             Debug.Log(_sequentialGeneration.Count);
             this.seed = seed;

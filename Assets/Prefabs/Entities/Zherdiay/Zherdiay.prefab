@@ -64,7 +64,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  _HP: 25
+  _HP: 60
   _Speed: 2
   _Damage: 30
   _CanDie: 1
@@ -300,12 +300,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -762375817, guid: 8f26713498b9f644ead24e7ec7a3a80b, type: 3}
+  m_Sprite: {fileID: 2139306930, guid: e87cbd05aacbee84cb1a4d45538782d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -344,6 +344,8 @@ MonoBehaviour:
   statsModel: {fileID: 1099445178240935016}
   maxStatsModel: {fileID: 1714239193882711701}
   pathfindingStrategy: {fileID: 2566188070058473836}
+  soundManager: {fileID: 0}
+  audioSource: {fileID: 0}
   CurrentTarget: {fileID: 0}
   stateMachine: {fileID: 2003806183602188297}
   AttackCooldown: 1
@@ -408,8 +410,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12, y: 12, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.24147324, y: 0.4804323, z: 3}
+  m_Center: {x: 0.002556415, y: 0.0032671366, z: 0}
 --- !u!65 &1151450020262023932
 BoxCollider:
   m_ObjectHideFlags: 0

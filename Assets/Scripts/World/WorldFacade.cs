@@ -40,7 +40,7 @@ namespace Assets.Scripts.World {
             GenerateStageChanged?.Invoke(stage);
         }
 
-        public IEnumerator Generate(string seed) => _gen.Generate(seed);
+        public IEnumerator Generate(string seed) { yield return null; }
 
         //public void Place(Resource res, Vector2 pos) => _gen.Place(res, pos);
     }
