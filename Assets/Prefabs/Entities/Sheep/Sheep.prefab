@@ -650,9 +650,10 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   idleSounds:
-  - {fileID: 8300000, guid: 0b156d95586803445b76ec4f7dbff152, type: 3}
+  - {fileID: 8300000, guid: 4ee808bde2c018246a0de0428b92f2c1, type: 3}
   attackSounds: []
   hitSounds:
-  - {fileID: 8300000, guid: 0b156d95586803445b76ec4f7dbff152, type: 3}
+  - {fileID: 8300000, guid: 4ee808bde2c018246a0de0428b92f2c1, type: 3}
   audioSource: {fileID: 9142248798853926010}
-  IdleCooldown: 3
+  IdleCooldownMax: 14
+  IdleCooldownMin: 7

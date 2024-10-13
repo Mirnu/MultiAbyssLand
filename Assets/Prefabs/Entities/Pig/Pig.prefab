@@ -556,11 +556,12 @@ MonoBehaviour:
   idleSounds: []
   attackSounds: []
   hitSounds:
-  - {fileID: 8300000, guid: f9b780616cda8ea46b2d4fe2d9ec0a88, type: 3}
-  - {fileID: 8300000, guid: 6945ecb8b37be5046b5ae32d25a01ff3, type: 3}
-  - {fileID: 8300000, guid: a1588c80aa08d5c429900ca7d1fec659, type: 3}
+  - {fileID: 8300000, guid: edaeb51d7b278fe4b997f0978004e50c, type: 3}
+  - {fileID: 8300000, guid: 592c218e78fe63c4ab69c402bcfe5be2, type: 3}
+  - {fileID: 8300000, guid: 8771c0c53b68f944c81b879ce199e6ac, type: 3}
   audioSource: {fileID: 525021396602489992}
-  IdleCooldown: 8
+  IdleCooldownMax: 14
+  IdleCooldownMin: 7
 --- !u!82 &525021396602489992
 AudioSource:
   m_ObjectHideFlags: 0
