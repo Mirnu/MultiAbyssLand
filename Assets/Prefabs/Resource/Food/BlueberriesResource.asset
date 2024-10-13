@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa25df4473e1c049a44247d1ab8f2dc, type: 3}
   m_Name: BlueberriesResource
   m_EditorClassIdentifier: 
-  _isTakenInHand: 1
-  SpriteInInventary: {fileID: 0}
+  _isTakenInHand: 0
+  SpriteInInventary: {fileID: 21300000, guid: 4b41f2384326af043ab1853858ed621c, type: 3}
   MaxCount: 64
   Name: "\u0413\u043E\u043B\u0443\u0431\u0438\u043A\u0430"
   Tool: {fileID: 1278551059963765683, guid: bd3eac634118d8d42bc00ed5ccf5bca5, type: 3}

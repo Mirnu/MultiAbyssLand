@@ -89,6 +89,7 @@ namespace Assets.Scripts.Player.Data
             get { return _food; }
             set
             {
+                Debug.Log("Я КОРМЛЮСЬБСЬСЬЬ!~~~  " + value);
                 int newValue = Math.Clamp(value, 0, _maxModel.FoodMax);
                 if (newValue == _food) return;
                 _food = newValue;

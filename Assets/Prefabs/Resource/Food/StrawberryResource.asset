@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa25df4473e1c049a44247d1ab8f2dc, type: 3}
   m_Name: StrawberryResource
   m_EditorClassIdentifier: 
-  _isTakenInHand: 1
-  SpriteInInventary: {fileID: 0}
+  _isTakenInHand: 0
+  SpriteInInventary: {fileID: 21300000, guid: 7c7f24333305ae845b0359fbcd97f3bf, type: 3}
   MaxCount: 64
   Name: "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430"
   Tool: {fileID: 1278551059963765683, guid: 84b5c1531c52ffe40b55bc4ebf91be13, type: 3}

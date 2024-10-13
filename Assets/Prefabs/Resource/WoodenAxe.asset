@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isTakenInHand: 0
   SpriteInInventary: {fileID: 21300000, guid: b27ba5c052271b342aa4abff8f6c075f, type: 3}
+  MaxCount: 1
   Name: Wooden Axe
   Tool: {fileID: 9209898059082004809, guid: 034c82ed161db734f86bbf522bced168, type: 3}
   Info: 

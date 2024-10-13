@@ -48,7 +48,7 @@ namespace Assets.Scripts.Player.Components
             GameObject instance = Instantiate(resource.Tool.gameObject, gameObject.transform);
             Tool tool = instance.GetComponent<Tool>();
             tool.Init(resource);
-            NetworkServer.Spawn(instance);
+            NetworkServer.Spawn(instance, playerManager.gameObject);
             return tool;
         }
     }
