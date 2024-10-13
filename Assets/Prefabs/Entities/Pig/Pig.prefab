@@ -556,9 +556,9 @@ MonoBehaviour:
   idleSounds: []
   attackSounds: []
   hitSounds:
-  - {fileID: 8300000, guid: edaeb51d7b278fe4b997f0978004e50c, type: 3}
-  - {fileID: 8300000, guid: 592c218e78fe63c4ab69c402bcfe5be2, type: 3}
-  - {fileID: 8300000, guid: 8771c0c53b68f944c81b879ce199e6ac, type: 3}
+  - {fileID: 8300000, guid: 59cb83f36ebf9b8438abc7d092de39c5, type: 3}
+  - {fileID: 8300000, guid: 430e96481eb246c4593b7dd09211beb3, type: 3}
+  - {fileID: 8300000, guid: 7abe87522ddf03840ad95ae6810eb507, type: 3}
   audioSource: {fileID: 525021396602489992}
   IdleCooldownMax: 14
   IdleCooldownMin: 7
