@@ -50,6 +50,7 @@ namespace Assets.Scripts.Inventory.View {
             _currentAmount = 0;
             _currentResource = null;
             itemView.sprite = null;
+            SetTransparent();
             UpdateCount();
         }
 
