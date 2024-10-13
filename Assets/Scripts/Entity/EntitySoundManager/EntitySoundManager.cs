@@ -11,12 +11,13 @@ public class EntitySoundManager : NetworkBehaviour
 
     [SerializeField] protected AudioSource audioSource;
 
-    public float IdleCooldown = 1f;
+    public float IdleCooldownMax = 1f;
+    public float IdleCooldownMin = 1f;
     private float curTime = 0f;
     public void Update()
     {
         audioSource.volume = SoundSettings.BackgroundVolume * SoundSettings.MasterVolume;
-        if (Time.time - curTime >= (IdleCooldown + Random.Range(-0.25f, 0.25f)))
+        if (Time.time - curTime >= Random.Range(IdleCooldownMin, IdleCooldownMax))
         {
             PlayIdle();
             curTime = Time.time;
