@@ -94,7 +94,7 @@ namespace Assets.Scripts.Player.Components
         {
             AudioClip clip = SoundContainer.Instance.GetSound(SoundType.Walk);
             _audioSource.Stop();
-            _audioSource.PlayOneShot(clip);
+            _audioSource.Play();
         }
     }
 }
