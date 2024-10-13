@@ -32,7 +32,7 @@ namespace Assets.Scripts.Misc.Managers
             if (Random.Range(0, 10000) == 1) {
                 PlaySound(SoundType.WindAndTrees);
             }
-            _windAudioSource.volume = SoundSettings.MasterVolume * SoundSettings.BackgroundVolume;
+            _windAudioSource.volume = SoundSettings.MasterVolume * SoundSettings.BackgroundVolume / 10;
             _themeAudioSource.volume = SoundSettings.MasterVolume * SoundSettings.MusicVolume;
         }
 
