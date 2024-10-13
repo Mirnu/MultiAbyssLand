@@ -21,6 +21,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         [SerializeField] private Resource mock;
         [SerializeField] private Resource mock1;
         [SerializeField] private ToolContainer _hand;
+        public bool isInvOpen => _inventory.activeSelf;
 
         public override void OnStartClient()
         {
@@ -61,7 +62,9 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         }
 
         public void DeleteFromSlot() {
+            if(!_slots.Any(x => x.IsSelected)) { return; }
             if(_slots.Find(x => x.IsSelected).GetCount() == 1) { _hand.EmptyHand(); }
+            Debug.LogWarning("::: " + _slots.Find(x => x.IsSelected).GetCount() + " ++++ " + _slots.Find(x => x.IsSelected).GetComponent<SelectableSlotView>().GetCount());
             _slots.Find(x => x.IsSelected).Decrement();
             _slots.Find(x => x.IsSelected).GetComponent<SelectableSlotView>().Decrement();
         }

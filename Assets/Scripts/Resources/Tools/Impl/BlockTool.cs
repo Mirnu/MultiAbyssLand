@@ -17,6 +17,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
         [Client]
         protected override void OnActivated(InputAction.CallbackContext context)
         {
+            if(PlayerFacade.Singleton.hotbar.isInvOpen) { return; }
             Vector3 r = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             FirstTypeManager.Singleton.PutBlock(new Vector2(Mathf.Round(r.x), Mathf.Round(r.y)), inWorld);
             PlayerFacade.Singleton.hotbar.DeleteFromSlot();

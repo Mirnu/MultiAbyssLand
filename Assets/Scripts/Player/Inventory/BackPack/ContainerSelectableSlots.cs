@@ -67,6 +67,7 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                 } else if(slot.TrySet(_cursorResource)) {
                     //?
                     //slot.TrySet(_cursorResource);
+                    if(slot.TryGetComponent(out HotbarSlotView h)) { h.SetCount(_cursorCount); }
                     slot.SetCount(_cursorCount);
                     EmptyCursor();
                 }
@@ -154,16 +155,19 @@ namespace Assets.Scripts.Player.Inventory.BackPack
                     _cursorResource = res;
                     _cursorCount = 1;
                     slot.Decrement();
+                    if(slot.TryGetComponent(out HotbarSlotView h)) { h.Decrement(); }
                 }
             } else {
                 if (!_) {
                     slot.TrySet(_cursorResource);
                     slot.Increment();
+                    if(slot.TryGetComponent(out HotbarSlotView h)) { h.Increment(); }
                     if(_cursorCount > 1) { _cursorCount--; } 
                     else { EmptyCursor(); }
                 } else if(res == _cursorResource) {
                     //Бесконечная хуйня
                     _cursorCount++; slot.Decrement();
+                    if(slot.TryGetComponent(out HotbarSlotView h)) { h.Decrement(); }
                 } else {
                     Replace(slot);
                 }
