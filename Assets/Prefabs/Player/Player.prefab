@@ -9745,7 +9745,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   entityManager: {fileID: 8589261147340174131}
-  _baseResource: {fileID: 11400000, guid: ed7080fa57b50a34c83143087dc795c1, type: 2}
+  _baseResource: {fileID: 11400000, guid: b55cc8f837ef0c8459473f59a74cf288, type: 2}
 --- !u!114 &4091061670237376811
 MonoBehaviour:
   m_ObjectHideFlags: 0
