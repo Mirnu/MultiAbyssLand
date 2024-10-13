@@ -17,8 +17,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
         [Client]
         protected override void OnActivated(InputAction.CallbackContext context)
         {
-            Vector3 r = Camera.main.transform.position + Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
+            Vector3 r = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             FirstTypeManager.Singleton.PutBlock(new Vector2(Mathf.Round(r.x), Mathf.Round(r.y)), inWorld);
         }
 
