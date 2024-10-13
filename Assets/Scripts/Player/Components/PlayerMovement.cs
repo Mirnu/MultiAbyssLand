@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.ILifeCycle;
+using Assets.Scripts.Misc.Managers;
 using Assets.Scripts.World.Blocks;
 using Assets.Scripts.World.Managers;
 using Mirror;
@@ -8,11 +9,13 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Player.Components
 {
+    [RequireComponent(typeof(AudioSource))]
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : PlayerComponent
     {
         private PlayerInput _input;
         private Rigidbody _rigidbody;
+        private AudioSource _audioSource;
         [SerializeField] private float speedMult = 1f;
 
         public event Action StartMoved;
@@ -24,6 +27,7 @@ namespace Assets.Scripts.Player.Components
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -61,12 +65,14 @@ namespace Assets.Scripts.Player.Components
             {
                 StartMoved?.Invoke();
                 IsStaying = false;
+                PlaySound();
                 OnStartMoved();
             }
             if (direction.x == 0 && direction.y == 0 && !IsStaying)
             {
                 StopMoved?.Invoke();
                 IsStaying = true;
+                _audioSource.Stop();
                 OnStopMoved();
             }
             if (direction.x != 0 || direction.y != 0)
@@ -81,6 +87,14 @@ namespace Assets.Scripts.Player.Components
                 deltaZ); //fck mgk num cuz map not ready
 
             _rigidbody.MovePosition(_rigidbody.position + deltaPos);
+            _audioSource.volume = SoundSettings.BackgroundVolume * SoundSettings.MasterVolume;
+        }
+
+        private void PlaySound()
+        {
+            AudioClip clip = SoundContainer.Instance.GetSound(SoundType.Walk);
+            _audioSource.Stop();
+            _audioSource.PlayOneShot(clip);
         }
     }
 }

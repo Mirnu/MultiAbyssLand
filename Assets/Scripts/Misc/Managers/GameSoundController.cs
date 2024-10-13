@@ -12,6 +12,7 @@ namespace Assets.Scripts.Misc.Managers
         private GameObject _character => PlayerFacade.Instance;
         private Vector2 _characterPos => _character.transform.position;
         private SoundContainer _container => SoundContainer.Instance;
+        private SoundType? _currentSoundType;
 
         private void Update()
         {
@@ -31,6 +32,8 @@ namespace Assets.Scripts.Misc.Managers
             if (Random.Range(0, 10000) == 1) {
                 PlaySound(SoundType.WindAndTrees);
             }
+            _windAudioSource.volume = SoundSettings.MasterVolume * SoundSettings.BackgroundVolume;
+            _themeAudioSource.volume = SoundSettings.MasterVolume * SoundSettings.MusicVolume;
         }
 
         public void PlaySound(SoundType type)
@@ -43,6 +46,9 @@ namespace Assets.Scripts.Misc.Managers
             }
             else
             {
+                if (_currentSoundType != null && _currentSoundType == type) return;
+
+                _currentSoundType = type;
                 _themeAudioSource.Stop();
                 _themeAudioSource.PlayOneShot(clip);
             }

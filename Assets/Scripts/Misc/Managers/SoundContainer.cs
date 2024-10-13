@@ -12,7 +12,8 @@ namespace Assets.Scripts.Misc.Managers
         MeadowDayTheme,
         ForestDayTheme,
         SwampDayTheme,
-        WindAndTrees
+        WindAndTrees,
+        Walk
     }
 
     public class SoundContainer : MonoBehaviour

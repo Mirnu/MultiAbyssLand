@@ -63,6 +63,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
 
         protected virtual void Attack()
         {
+            _audioSource.volume = SoundSettings.MasterVolume * SoundSettings.BackgroundVolume;
             _audioSource?.Play();
             Collider[] colliders = Physics.OverlapBox(gameObject.transform.position + center, size)
                 .Where(x => x.isTrigger == false).ToArray();
