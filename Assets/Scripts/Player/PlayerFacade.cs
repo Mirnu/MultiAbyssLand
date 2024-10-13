@@ -2,6 +2,7 @@ using Assets.Scripts.Entity;
 using Assets.Scripts.Game;
 using Assets.Scripts.Player.Components.Controllers;
 using Assets.Scripts.Player.Data;
+using Assets.Scripts.Player.Inventory.Hotbar;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class PlayerFacade : EntityFacade
     [SerializeField] private ArmAnimator _armAnimator;
     [SerializeField] private GameObject _character;
     [SerializeField] private PlayerStats _stats;
+    public ContainerHotbarSlots hotbar;
 
     public static GameObject Instance;
 

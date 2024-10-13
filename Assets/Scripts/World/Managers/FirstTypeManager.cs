@@ -14,6 +14,8 @@ namespace Assets.Scripts.World.Managers {
     {
         [SerializeField] private List<InteractableGO> blocks = new List<InteractableGO>();
         [SerializeField] private BlockOnGround blockOnGroundPrefab;
+        [SerializeField] private AudioClip onDamagedClip;
+        [SerializeField] private AudioClip onDestroyedClip;
 
         private static FirstTypeManager _singleton;
 
@@ -26,7 +28,6 @@ namespace Assets.Scripts.World.Managers {
                 _singleton = this;
             }
             
-
             base.OnStartServer();
         }
 
@@ -55,7 +56,7 @@ namespace Assets.Scripts.World.Managers {
 
         [ServerCallback]
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
-            iGo.Init(delegate { iGo.Damage(1); }, delegate{ DropBlock(orig.resource, pos); Destroy(orig.gameObject); blocks.Remove(iGo); }, orig);
+            iGo.Init(delegate { iGo.Damage(1); orig.GetComponent<AudioSource>().PlayOneShot(onDamagedClip); }, delegate{ orig.GetComponent<AudioSource>().PlayOneShot(onDestroyedClip); DropBlock(orig.resource, pos); Destroy(orig.gameObject); blocks.Remove(iGo); }, orig);
         }
 
         public void DropBlock(RecipeComponent drop, Vector2 pos) {

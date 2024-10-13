@@ -60,6 +60,10 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
             _slots.ForEach(x => x.GetComponent<HotbarSlotView>().enabled = !x.GetComponent<HotbarSlotView>().enabled);
         }
 
+        public void DeleteFromSlot() {
+            _slots.Find(x => x.IsSelected).Delete();
+        }
+
         private void HotbarChangeState(InputAction.CallbackContext context) {
             var index = context.ReadValue<float>();
             if(index < _slots.Count) {
