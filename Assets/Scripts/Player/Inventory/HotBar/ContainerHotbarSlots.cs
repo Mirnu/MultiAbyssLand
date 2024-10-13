@@ -61,7 +61,7 @@ namespace Assets.Scripts.Player.Inventory.Hotbar
         }
 
         public void DeleteFromSlot() {
-            _slots.Find(x => x.IsSelected).Delete();
+            _slots.Find(x => x.IsSelected).Decrement();
         }
 
         private void HotbarChangeState(InputAction.CallbackContext context) {
