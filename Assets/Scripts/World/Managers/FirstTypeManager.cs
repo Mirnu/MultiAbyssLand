@@ -47,12 +47,12 @@ namespace Assets.Scripts.World.Managers {
         }
 
         // моя тупить
-        // public void Place(Block orig, Vector2 pos, InteractableGO iGo) {
-        //     var l = Instantiate(orig, pos, orig.transform.rotation);
-        //     NetworkServer.Spawn(l.gameObject);
-        //     iGo = new InteractableGO(delegate { l.transform.Rotate(0, 0, 10); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
-        //     blocks.Add(iGo);
-        // }
+        public void Place(Block orig, Vector2 pos, InteractableGO iGo) {
+            var l = Instantiate(orig, pos, orig.transform.rotation);
+            NetworkServer.Spawn(l.gameObject);
+            iGo = new InteractableGO(delegate { l.transform.Rotate(0, 0, 10); iGo.Damage(1); }, delegate{ Destroy(l.gameObject); }, l);
+            blocks.Add(iGo);
+        }
 
         [ServerCallback]
         public void RegisterBlock(Block orig, Vector2 pos, InteractableGO iGo) {
@@ -76,27 +76,19 @@ namespace Assets.Scripts.World.Managers {
             }
         }
 
-        // ну типа пока тестинг пон?
-        // [Command(requiresAuthority = false)]
-        // public void AnyClickCmd(Vector2 mousePos2D, float m) {
-        //     RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-        //     if(hit.collider != null && blocks.Any(x => x.Pos == hit.collider.transform.position)) {
-        //         switch (m) {
-        //             case 0 : { 
-        //                 blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnLeftClick?.Invoke();
-        //                 break; 
-        //             }
-        //             case 1 : {
-        //                 blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnRightClick?.Invoke();
-        //                 break; 
-        //             }
-        //             case 2 : {
-        //                 blocks.Find(x =>  x.Pos == hit.collider.transform.position).Go.OnMiddleClick?.Invoke();
-        //                 break; 
-        //             }
-        //         }
-        //     }
-        // }
+        public void DamageBlock(Block block) {
+            blocks.Find(x => x.Go == block).Go.OnLeftClick?.Invoke();
+        }
+
+        public void PutBlock(Vector2 pos, Block orig) {
+            Debug.LogWarning("NIGGERS");
+            var i = new InteractableGO();
+            i.Go = Instantiate(orig, pos, Quaternion.identity);
+            NetworkServer.Spawn(i.Go.gameObject);
+            i.Pos = pos;
+            i.MaxHealth = orig.MaxHealth;
+            blocks.Add(i);
+        }
     }
 
     [Serializable]

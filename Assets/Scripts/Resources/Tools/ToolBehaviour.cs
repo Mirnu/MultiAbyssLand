@@ -41,7 +41,6 @@ namespace Assets.Scripts.Resources.Tools
             tool.OnUse -= OnUse;
         }
 
-        // ну типа сигмо жесткий туса свэг дрип ещкере костыль пон да?
         [Client]
         protected virtual void OnActivated(InputAction.CallbackContext context) { }
 

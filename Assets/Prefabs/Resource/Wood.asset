@@ -16,7 +16,7 @@ MonoBehaviour:
   SpriteInInventary: {fileID: 21300000, guid: f97814619bd5948a09147404aa248c89, type: 3}
   MaxCount: 3
   Name: Wood
-  Tool: {fileID: 1278551059963765683, guid: a8f405a5aec0740b6b3a53dade7fe54c, type: 3}
+  Tool: {fileID: 9209898059082004809, guid: 35c277c668536430a8723da60bf8ae44, type: 3}
   Info: 
-  _damage: 0
-  _speed: 0
+  _damage: 1
+  _speed: 5

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e540e1836a070741bff07e48e4dd3c0, type: 3}
+  m_Name: WoodenAxe 1
+  m_EditorClassIdentifier: 
+  _isTakenInHand: 0
+  SpriteInInventary: {fileID: 21300000, guid: f97814619bd5948a09147404aa248c89, type: 3}
+  MaxCount: 64
+  Name: Wood
+  Tool: {fileID: 9209898059082004809, guid: 034c82ed161db734f86bbf522bced168, type: 3}
+  Info: 
+  _damage: 5
+  _speed: 5

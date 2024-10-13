@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Entity;
 using Assets.Scripts.Resources.Data;
 using Assets.Scripts.World.Blocks;
+using Assets.Scripts.World.Managers;
 using Mirror;
 using System.Drawing;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Resources.Tools.Impl
                 if (collider.TryGetComponent(out Block block))
                 {
                     Debug.Log("АФИГЕЕЕЕТТЬ ОН БЛООООК НАШЕЛ НЕ ЗРЯ Я МОЛИЛСЯ");
-                    block.Destroy();
+                    FirstTypeManager.Singleton.DamageBlock(block);
                 }
             }
         }
