@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Assets.Scripts.Misc.Managers;
 
 public class EntitySoundManager : NetworkBehaviour
 {
@@ -14,11 +15,12 @@ public class EntitySoundManager : NetworkBehaviour
     private float curTime = 0f;
     public void Update()
     {
-       if (Time.time - curTime >= (IdleCooldown + Random.Range(-0.25f, 0.25f)))
-       {
+        audioSource.volume = SoundSettings.BackgroundVolume * SoundSettings.MasterVolume;
+        if (Time.time - curTime >= (IdleCooldown + Random.Range(-0.25f, 0.25f)))
+        {
             PlayIdle();
             curTime = Time.time;
-       }
+        }
     }
     public virtual void PlayIdle()
     {
