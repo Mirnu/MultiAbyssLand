@@ -13,14 +13,20 @@ using UnityEngine.UI;
 namespace Assets.Scripts.Player.Inventory.UI
 {
     public class SlotView : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,
-        IPointerUpHandler, IPointerDownHandler
+        IPointerUpHandler, IPointerDownHandler, IPointerExitHandler
     {
+        [Header("Sprites")]
+        [SerializeField] private Sprite _emptySprite;
+        [SerializeField] private Sprite _hoverSprite;
+        [SerializeField] private Sprite _selectedSprite;
+
         [Header("Configs")]
         [SerializeField] private float _accelerationByHalfSecond = 1f;
 
         [Header("Components")]
         [SerializeField] private ItemContainer _itemContainer;
         private ItemService _itemService => ServiceLocator.GetService<ItemService>();
+        private Image _backgroundView;
 
         private int _index;
         public int Index
@@ -56,7 +62,8 @@ namespace Assets.Scripts.Player.Inventory.UI
 
         private void Start()
         {
-            _imageView = Array.Find(GetComponentsInChildren<Image>(true), 
+            _backgroundView = GetComponent<Image>();
+            _imageView = Array.Find(GetComponentsInChildren<Image>(true),
                 x => x.transform.parent == transform);
             _textView = GetComponentInChildren<TMP_Text>();
 
@@ -65,7 +72,7 @@ namespace Assets.Scripts.Player.Inventory.UI
         }
 
         private void Update()
-        {       
+        {
             if (_hoverAction != null && _hoverAction())
             {
                 _hoverAction = CDUtils.CycleWait(0.5f / _hoverTime, Hold);
@@ -91,7 +98,7 @@ namespace Assets.Scripts.Player.Inventory.UI
                 return;
             }
 
-            _imageView.enabled = true;  
+            _imageView.enabled = true;
             Resource resource = _itemService[item.Id];
             if (item.Count > 1)
             {
@@ -115,6 +122,7 @@ namespace Assets.Scripts.Player.Inventory.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            ChangeSprite(_hoverSprite);
             OnHover?.Invoke();
         }
 
@@ -135,6 +143,29 @@ namespace Assets.Scripts.Player.Inventory.UI
             {
                 _hoverAction = CDUtils.CycleWait(0.5f, Hold);
             }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            ChangeSprite(_emptySprite);
+        }
+
+        private void ChangeSprite(Sprite sprite, bool force = false)
+        {
+            if (_backgroundView.sprite != _selectedSprite || force)
+            {
+                _backgroundView.sprite = sprite;
+            }
+        }
+
+        public void Select()
+        {
+            ChangeSprite(_selectedSprite, true);
+        }
+
+        public void Deselect()
+        {
+            ChangeSprite(_emptySprite, true);
         }
     }
 }

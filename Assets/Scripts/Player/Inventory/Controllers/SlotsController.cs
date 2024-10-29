@@ -25,6 +25,7 @@ namespace Assets.Scripts.Player.Inventory.Controllers
         private ItemService _itemService => ServiceLocator.GetService<ItemService>();
 
         private ItemData _currentItem = new();
+        private SlotView _selectedView;
 
         private bool CurrentResourceIsEmpty => _currentItem.Count == 0;
 
@@ -43,10 +44,24 @@ namespace Assets.Scripts.Player.Inventory.Controllers
 
             foreach (var slot in _slotsAccessory)
             {
+                slot.Index = _index;
                 slot.View.Index = _index++;
                 slot.View.OnRightClick += (int index) => OnAccessorySlotClick(index, slot.Type);
                 slot.View.OnLeftClick += (int index) => OnAccessorySlotClick(index, slot.Type);
             }
+        }
+
+        private void UpdateSelectView(int index)
+        {
+            SlotView view = _slotsInventory[index] ?? _slotsAccessory[index];
+
+            if (_selectedView != null)
+            {
+                _selectedView.Deselect();
+            }
+
+            _selectedView = view;
+            _selectedView.Select();
         }
 
         private void OnInventorySlotRelease(int index)
@@ -65,6 +80,8 @@ namespace Assets.Scripts.Player.Inventory.Controllers
 
         private void OnInventorySlotHold(int index)
         {
+            if (!_inventoryView.activeSelf) return;
+            UpdateSelectView(index);
             ItemData item = _itemContainer[index];
             if (!CurrentResourceIsEmpty && !_currentItem.IsRealised)
             {
@@ -130,6 +147,7 @@ namespace Assets.Scripts.Player.Inventory.Controllers
 
         private void OnInventorySlotRightClick(int index)
         {
+            UpdateSelectView(index);
             if (!_inventoryView.activeSelf || _currentItem.IsRealised) return;
             ItemData item = _itemContainer[index];
 
@@ -186,6 +204,7 @@ namespace Assets.Scripts.Player.Inventory.Controllers
 
         private void OnInventorySlotLeftClick(int index)
         {
+            UpdateSelectView(index);
             if (!_inventoryView.activeSelf) return;
             ItemData item = _itemContainer[index];
 
@@ -275,7 +294,10 @@ namespace Assets.Scripts.Player.Inventory.Controllers
     [Serializable]
     public class AccessorySlot
     {
+        public int Index { get; set; }
         public SlotView View;
         public ArmorSlotType Type;
+
+        public static implicit operator SlotView(AccessorySlot slot) => slot.View;
     }
 }
