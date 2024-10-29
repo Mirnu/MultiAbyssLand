@@ -19,7 +19,6 @@ namespace Assets.Scripts.Entity.Cow
         {
             FacadeLocator.Singleton.RegisterFacade(this);
             /*stateMachine.Initialize();*/
-            Debug.Log(pathfindingStrategy);
             var agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;

@@ -4082,6 +4082,69 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 28.789997}
   m_SizeDelta: {x: 0, y: -77.58001}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1004576797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004576798}
+  - component: {fileID: 1004576799}
+  - component: {fileID: 1004576800}
+  m_Layer: 0
+  m_Name: EG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1004576798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004576797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 916.5988, y: 545.3931, z: -12.217517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004576799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004576797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc5e3bdd40e04845a3730491480082f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 11400000, guid: ed7080fa57b50a34c83143087dc795c1, type: 2}
+  - {fileID: 11400000, guid: 08e27425f49c1488dbeda02a94555c9a, type: 2}
+  - {fileID: 11400000, guid: 038809b3b699664478d75157ff97d535, type: 2}
+--- !u!114 &1004576800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004576797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695352a5ade7f8043a21339d9438c46d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _servicesBehaviours:
+  - {fileID: 1004576799}
 --- !u!1 &1069703776
 GameObject:
   m_ObjectHideFlags: 0
@@ -7220,7 +7283,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729024852}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 042e742dd64b15b419477c84616e61aa, type: 3}
@@ -9280,3 +9343,4 @@ SceneRoots:
   - {fileID: 1729024854}
   - {fileID: 686620444}
   - {fileID: 1153045373}
+  - {fileID: 1004576798}

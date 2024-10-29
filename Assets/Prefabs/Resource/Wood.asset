@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   _isTakenInHand: 0
-  SpriteInInventary: {fileID: 21300000, guid: f97814619bd5948a09147404aa248c89, type: 3}
-  MaxCount: 3
-  Name: Wood
   Tool: {fileID: 9209898059082004809, guid: 35c277c668536430a8723da60bf8ae44, type: 3}
   Info: 
+  _name: 
+  _spriteInInventory: {fileID: 21300000, guid: a8b4404524dcf8f4daeab27fe34a4b2b, type: 3}
+  _maxItemsInStack: 64
   _damage: 1
   _speed: 5

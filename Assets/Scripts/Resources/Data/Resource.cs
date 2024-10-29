@@ -9,11 +9,15 @@ namespace Assets.Scripts.Resources.Data
     {
         [SerializeField] private bool _isTakenInHand = true;
         public bool IsTakenInHand => _isTakenInHand;
-
-        public Sprite SpriteInInventary;
-        public int MaxCount = 64;
-        public string Name;
         public Tool Tool;
         [TextArea(3, 10)] public string Info;
+
+        [SerializeField] private string _name;
+        [SerializeField] private Sprite _spriteInInventory;
+        [SerializeField] private int _maxItemsInStack;
+
+        public string Name => _name;
+        public Sprite SpriteInInventory => _spriteInInventory;
+        public int MaxItemsInStack => _maxItemsInStack;
     }
 }

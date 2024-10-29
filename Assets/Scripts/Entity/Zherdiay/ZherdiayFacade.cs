@@ -14,7 +14,6 @@ namespace Assets.Scripts.Entity.Zherdiay
         private void Start()
         {
             FacadeLocator.Singleton.RegisterFacade(this);
-            Debug.Log(pathfindingStrategy);
             var agent = GetComponent<NavMeshAgent>();
             agent.updateRotation = false;
             agent.updateUpAxis = false;
@@ -43,7 +42,6 @@ namespace Assets.Scripts.Entity.Zherdiay
         [Server]
         private void OnCollisionStay(Collision other)
         {
-            Debug.Log("Attacked");
             var player = other.gameObject.GetComponentInParent<PlayerFacade>();
             if (player)
             {

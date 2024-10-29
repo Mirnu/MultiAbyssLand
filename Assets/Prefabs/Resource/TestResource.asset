@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba594e59f987d4147900ddebbbb36df3, type: 3}
   m_Name: TestResource
   m_EditorClassIdentifier: 
-  SpriteInInventary: {fileID: 0}
-  Name: "\u041F\u043E\u043D"
+  _isTakenInHand: 1
   Tool: {fileID: -1237101038304737512, guid: a47d9ce28e40bd54daf5126e2b848797, type: 3}
-  Info: 
+  Info: Lorem Impulse
+  _name: 
+  _spriteInInventory: {fileID: 21300000, guid: 95d45839193d65a488a3f3bbaf01a864, type: 3}
+  _maxItemsInStack: 64

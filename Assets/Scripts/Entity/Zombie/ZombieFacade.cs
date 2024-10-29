@@ -1,12 +1,7 @@
 using Assets.Scripts.Game;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Assets.Scripts.Player;
-using Assets.Scripts.Player.Components;
 using UnityEngine.AI;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace Assets.Scripts.Entity.Zombie 
 {
@@ -39,7 +34,6 @@ namespace Assets.Scripts.Entity.Zombie
         [Server]
         private void OnCollisionStay(Collision other)
         {
-            Debug.Log("Attacked");
             var player = other.gameObject.GetComponentInParent<PlayerFacade>();
             if (player)
             {

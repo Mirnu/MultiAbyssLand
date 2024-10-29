@@ -1,11 +1,8 @@
 ﻿using Assets.Scripts.ILifeCycle;
 using Assets.Scripts.Misc.Managers;
-using Assets.Scripts.World.Blocks;
-using Assets.Scripts.World.Managers;
 using Mirror;
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Player.Components
 {

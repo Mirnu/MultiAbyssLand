@@ -23,6 +23,6 @@ public class MALNetworkManager : NetworkManager
 
     private void OnEnable()
     {
-        Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
+        //Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
     }
 }

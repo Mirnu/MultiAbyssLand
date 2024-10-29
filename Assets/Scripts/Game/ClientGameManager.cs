@@ -14,7 +14,7 @@ namespace Assets.Scripts.Game
         private ClientGameState _currentState;
         public ClientGameState CurrentState
         {
-            get { return _currentState; }
+            get => _currentState; 
             private set
             {
                 _currentState = value;

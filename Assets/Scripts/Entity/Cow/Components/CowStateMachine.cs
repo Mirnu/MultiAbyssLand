@@ -13,14 +13,12 @@ namespace Assets.Scripts.Entity.Cow {
 
         public override void ServerInitialize()
         {
-            Debug.Log("Cw sm  init");
             Init(SearchState);
         }
 
         private bool Init(EntityState state)
         {
             _curState = state;
-            Debug.Log(_curState);
             return ChangeState(state);
         }
 
@@ -30,7 +28,6 @@ namespace Assets.Scripts.Entity.Cow {
             if (!_curState.Exit()) return false;
             _prevState = _curState;
             _curState = newState;
-            Debug.Log(_curState);
             _curState.Enter();
             return true;
         }

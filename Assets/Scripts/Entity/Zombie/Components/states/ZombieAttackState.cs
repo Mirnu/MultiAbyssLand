@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Entity;
-using Assets.Scripts.Entity.Pathfinding;
-using Mirror;
 using Assets.Scripts.Entity.Cow;
 using UnityEngine.AI;
 

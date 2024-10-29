@@ -8,15 +8,16 @@ namespace Assets.Scripts.Misc.CD
         /// <summary>
         /// Обычный ждун, после того как функция сработает, счетчик обнулится
         /// </summary>
-        public static Action CycleWait(float time, Action callback)
+        public static Func<bool> CycleWait(float time, Action callback)
         {
             float start = Time.time;
 
             return () =>
             {
-                if (start + time > Time.time) return;
+                if (start + time > Time.time) return false;
                 start = Time.time;
                 callback();
+                return true;
             };
         }
 

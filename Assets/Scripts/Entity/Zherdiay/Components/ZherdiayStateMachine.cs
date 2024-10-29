@@ -21,14 +21,12 @@ namespace Assets.Scripts.Entity.Zherdiay
 
         public override void ServerInitialize()
         {
-            Debug.Log("Fox sm  init");
             Init(SearchState);
         }
 
         private bool Init(EntityState state)
         {
             _curState = state;
-            Debug.Log(_curState);
             return ChangeState(state);
         }
 
@@ -38,7 +36,6 @@ namespace Assets.Scripts.Entity.Zherdiay
             if (!_curState.Exit()) return false;
             _prevState = _curState;
             _curState = newState;
-            Debug.Log(_curState);
             _curState.Enter();
             return true;
         }

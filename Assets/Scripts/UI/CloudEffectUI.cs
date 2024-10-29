@@ -64,7 +64,6 @@ namespace Assets.Scripts.UI
             while (start + _timeLive > Time.time)
             {
                 cloud.anchoredPosition -= Vector2.right * _cloudSpeed * Time.deltaTime;
-                Debug.Log(_cloudSpeed);
                 yield return null;
             }
             Destroy(cloud.gameObject);
